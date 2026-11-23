@@ -23,7 +23,9 @@ VIDEOS_URL = "https://www.googleapis.com/youtube/v3/videos"
 
 TITLE_MAX = 95
 DESCRIPTION_MAX = 4900
-CATEGORY_GAMING = "20"
+# default category: 1 = Film & Animation (movie-clip channels). Override per
+# brand via config.json -> seo.youtube_category_id (20 = Gaming, 24 = Entertainment).
+CATEGORY_DEFAULT = "1"
 _PRIVACY_STATUS = "public"
 
 
@@ -116,13 +118,17 @@ class YouTubePoster(PosterBase):
         except PosterError as exc:
             return _failed(str(exc))
 
+    def _category_id(self) -> str:
+        seo = self.cfg.get("seo", {}) or {}
+        return str(seo.get("youtube_category_id") or CATEGORY_DEFAULT)
+
     def _metadata(self, package: dict) -> dict:
         return {
             "snippet": {
                 "title": self._title(package),
                 "description": self._description(package),
                 "tags": self._tags(package),
-                "categoryId": CATEGORY_GAMING,
+                "categoryId": self._category_id(),
             },
             "status": {
                 "selfDeclaredMadeForKids": False,

@@ -41,6 +41,7 @@
     "allow_profanity": false
   },
   "seo": {
+    "youtube_category_id": "1",
     "llm_api_base": null,
     "llm_model": null,
     "max_title_len": 90,
