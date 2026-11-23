@@ -18,6 +18,7 @@ original creator's watermark or credit.
 from __future__ import annotations
 
 import json
+import re
 import subprocess
 from pathlib import Path
 
@@ -61,6 +62,27 @@ def _probe(path: Path) -> dict:
         "dur": dur,
         "audio": bool(a),
     }
+
+
+def _audio_is_silent(src: Path) -> bool:
+    """True when the source's audio track is (near-)digital silence.
+
+    loudnorm produces NaN gains on pure silence, which makes the aac
+    encoder bail with EINVAL (seen on ffmpeg 8/9 and 6.x), so silent
+    tracks are detected and passed through un-normalized instead.
+    """
+    try:
+        res = subprocess.run(
+            ["ffmpeg", "-v", "info", "-i", str(src), "-map", "0:a:0",
+             "-af", "volumedetect", "-f", "null", "-"],
+            capture_output=True, text=True, timeout=300,
+            encoding="utf-8", errors="replace")
+    except (subprocess.TimeoutExpired, OSError):
+        return False  # can't tell -> treat as audible, let loudnorm run
+    m = re.search(r"max_volume:\s*(-?[\d.]+|-inf)\s*dB", res.stderr or "")
+    if not m:
+        return False
+    return m.group(1) == "-inf" or float(m.group(1)) < -70.0
 
 
 def render(src: Path, dst: Path, hook: str = "") -> Path | None:
@@ -123,7 +145,10 @@ def render(src: Path, dst: Path, hook: str = "") -> Path | None:
 
     # audio: normalize when present, silence track when not (posters require audio)
     silent = "-f lavfi -i anullsrc=channel_layout=stereo:sample_rate=44100"
-    if info.get("audio"):
+    if info.get("audio") and _audio_is_silent(src):
+        # audio stream exists but is silent: re-encode as-is (loudnorm NaNs out)
+        amap = ["-map", "0:a:0"]
+    elif info.get("audio"):
         amap = ["-map", "0:a:0", "-af", "loudnorm=I=-14:TP=-1.5:LRA=11"]
     else:
         inputs += silent.split()
