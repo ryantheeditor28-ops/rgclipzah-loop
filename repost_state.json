@@ -1,44 +1,341 @@
 {
-  "config": {
-    "sources": [
-      { "url": "https://www.youtube.com/@alizedits/shorts", "enabled": true, "max_per_run": 2, "edit": true },
-      { "url": "https://www.youtube.com/@TaleTalker088/shorts", "enabled": true, "max_per_run": 2, "edit": true },
-      { "url": "https://www.youtube.com/@YahBak/shorts", "enabled": true, "max_per_run": 2, "edit": true },
-      { "url": "https://www.youtube.com/@sippymemes/shorts", "enabled": true, "max_per_run": 2, "edit": true },
-      { "url": "https://www.youtube.com/@Editclips-k2r/shorts", "enabled": true, "max_per_run": 2, "edit": true },
-      { "url": "https://www.youtube.com/@Armanyt89/shorts", "enabled": true, "max_per_run": 2, "edit": true },
-      { "url": "https://www.youtube.com/@CLIPSEDIT.88/shorts", "enabled": true, "max_per_run": 2, "edit": true },
-      { "url": "https://www.youtube.com/@FireflyEdtx/shorts", "enabled": true, "max_per_run": 2, "edit": true },
-      { "url": "https://www.youtube.com/@xCROSSx3/shorts", "enabled": true, "max_per_run": 2, "edit": true },
-      { "url": "https://www.youtube.com/@Maqurak/shorts", "enabled": true, "max_per_run": 2, "edit": true },
-      { "url": "https://www.youtube.com/@Ardan-editzz/shorts", "enabled": true, "max_per_run": 2, "edit": true },
-      { "url": "https://www.youtube.com/@buschx_ae/shorts", "enabled": true, "max_per_run": 2, "edit": true },
-      { "url": "https://www.youtube.com/@Avexnedit/shorts", "enabled": true, "max_per_run": 2, "edit": true },
-      { "url": "https://www.youtube.com/@real_neox-EDITS/shorts", "enabled": true, "max_per_run": 2, "edit": true },
-      { "url": "https://www.tiktok.com/@avex.dex", "enabled": true, "max_per_run": 2, "edit": true },
-      { "url": "https://www.tiktok.com/@mossgleam", "enabled": true, "max_per_run": 2, "edit": true },
-      { "url": "https://www.tiktok.com/@cl1p0calypse", "enabled": true, "max_per_run": 2, "edit": true },
-      { "url": "https://www.tiktok.com/@jxudk24", "enabled": true, "max_per_run": 2, "edit": true },
-      { "url": "https://www.tiktok.com/@english.short.cli84", "enabled": true, "max_per_run": 2, "edit": true },
-      { "url": "https://www.tiktok.com/@nwa.fxx", "enabled": true, "max_per_run": 2, "edit": true },
-      { "url": "https://www.tiktok.com/@pixl.filmz", "enabled": true, "max_per_run": 2, "edit": true },
-      { "url": "https://www.tiktok.com/@christal2660", "enabled": true, "max_per_run": 2, "edit": true },
-      { "url": "https://www.tiktok.com/@drxpz.aepp", "enabled": true, "max_per_run": 2, "edit": true },
-      { "url": "https://www.tiktok.com/@dailyclips.gg98", "enabled": true, "max_per_run": 2, "edit": true }
-    ],
-    "mode": "auto",
-    "video_platforms": ["youtube", "instagram", "facebook"],
-    "image_platforms": ["instagram", "facebook"],
-    "interval_minutes": 120,
-    "enabled": false,
-    "daily_cap": 10,
-    "daily_image_cap": 6,
-    "daily_video_cap": 6,
-    "max_age_h": 72,
-    "min_post_gap_h": 2
+ "config": {
+  "sources": [
+   {
+    "id": "acbd7159",
+    "kind": "youtube",
+    "url": "https://www.youtube.com/@alizedits/shorts",
+    "ident": "alizedits",
+    "enabled": true,
+    "max_per_run": 2,
+    "min_score": 100,
+    "edit": true
+   },
+   {
+    "id": "08d813ca",
+    "kind": "youtube",
+    "url": "https://www.youtube.com/@TaleTalker088/shorts",
+    "ident": "TaleTalker088",
+    "enabled": true,
+    "max_per_run": 2,
+    "min_score": 100,
+    "edit": true
+   },
+   {
+    "id": "87b788fc",
+    "kind": "youtube",
+    "url": "https://www.youtube.com/@YahBak/shorts",
+    "ident": "YahBak",
+    "enabled": true,
+    "max_per_run": 2,
+    "min_score": 100,
+    "edit": true
+   },
+   {
+    "id": "841aac0a",
+    "kind": "youtube",
+    "url": "https://www.youtube.com/@sippymemes/shorts",
+    "ident": "sippymemes",
+    "enabled": true,
+    "max_per_run": 2,
+    "min_score": 100,
+    "edit": true
+   },
+   {
+    "id": "24a75d4d",
+    "kind": "youtube",
+    "url": "https://www.youtube.com/@Editclips-k2r/shorts",
+    "ident": "Editclips-k2r",
+    "enabled": true,
+    "max_per_run": 2,
+    "min_score": 100,
+    "edit": true
+   },
+   {
+    "id": "46a3b521",
+    "kind": "youtube",
+    "url": "https://www.youtube.com/@Armanyt89/shorts",
+    "ident": "Armanyt89",
+    "enabled": true,
+    "max_per_run": 2,
+    "min_score": 100,
+    "edit": true
+   },
+   {
+    "id": "412cb873",
+    "kind": "youtube",
+    "url": "https://www.youtube.com/@CLIPSEDIT.88/shorts",
+    "ident": "CLIPSEDIT.88",
+    "enabled": true,
+    "max_per_run": 2,
+    "min_score": 100,
+    "edit": true
+   },
+   {
+    "id": "6a4c4172",
+    "kind": "youtube",
+    "url": "https://www.youtube.com/@FireflyEdtx/shorts",
+    "ident": "FireflyEdtx",
+    "enabled": true,
+    "max_per_run": 2,
+    "min_score": 100,
+    "edit": true
+   },
+   {
+    "id": "f3589b17",
+    "kind": "youtube",
+    "url": "https://www.youtube.com/@xCROSSx3/shorts",
+    "ident": "xCROSSx3",
+    "enabled": true,
+    "max_per_run": 2,
+    "min_score": 100,
+    "edit": true
+   },
+   {
+    "id": "a966408c",
+    "kind": "youtube",
+    "url": "https://www.youtube.com/@Maqurak/shorts",
+    "ident": "Maqurak",
+    "enabled": true,
+    "max_per_run": 2,
+    "min_score": 100,
+    "edit": true
+   },
+   {
+    "id": "201c4863",
+    "kind": "youtube",
+    "url": "https://www.youtube.com/@Ardan-editzz/shorts",
+    "ident": "Ardan-editzz",
+    "enabled": true,
+    "max_per_run": 2,
+    "min_score": 100,
+    "edit": true
+   },
+   {
+    "id": "ae20ea75",
+    "kind": "youtube",
+    "url": "https://www.youtube.com/@buschx_ae/shorts",
+    "ident": "buschx_ae",
+    "enabled": true,
+    "max_per_run": 2,
+    "min_score": 100,
+    "edit": true
+   },
+   {
+    "id": "1ccfd05a",
+    "kind": "youtube",
+    "url": "https://www.youtube.com/@Avexnedit/shorts",
+    "ident": "Avexnedit",
+    "enabled": true,
+    "max_per_run": 2,
+    "min_score": 100,
+    "edit": true
+   },
+   {
+    "id": "28e73ff2",
+    "kind": "youtube",
+    "url": "https://www.youtube.com/@real_neox-EDITS/shorts",
+    "ident": "real_neox-EDITS",
+    "enabled": true,
+    "max_per_run": 2,
+    "min_score": 100,
+    "edit": true
+   },
+   {
+    "id": "d014b8ca",
+    "kind": "tiktok",
+    "url": "https://www.tiktok.com/@avex.dex",
+    "ident": "avex.dex",
+    "enabled": true,
+    "max_per_run": 2,
+    "min_score": 100,
+    "edit": true
+   },
+   {
+    "id": "bf607df4",
+    "kind": "tiktok",
+    "url": "https://www.tiktok.com/@mossgleam",
+    "ident": "mossgleam",
+    "enabled": true,
+    "max_per_run": 2,
+    "min_score": 100,
+    "edit": true
+   },
+   {
+    "id": "cdaf5523",
+    "kind": "tiktok",
+    "url": "https://www.tiktok.com/@cl1p0calypse",
+    "ident": "cl1p0calypse",
+    "enabled": true,
+    "max_per_run": 2,
+    "min_score": 100,
+    "edit": true
+   },
+   {
+    "id": "b3dae9b6",
+    "kind": "tiktok",
+    "url": "https://www.tiktok.com/@jxudk24",
+    "ident": "jxudk24",
+    "enabled": true,
+    "max_per_run": 2,
+    "min_score": 100,
+    "edit": true
+   },
+   {
+    "id": "1bbbb631",
+    "kind": "tiktok",
+    "url": "https://www.tiktok.com/@english.short.cli84",
+    "ident": "english.short.cli84",
+    "enabled": true,
+    "max_per_run": 2,
+    "min_score": 100,
+    "edit": true
+   },
+   {
+    "id": "a8c95400",
+    "kind": "tiktok",
+    "url": "https://www.tiktok.com/@nwa.fxx",
+    "ident": "nwa.fxx",
+    "enabled": true,
+    "max_per_run": 2,
+    "min_score": 100,
+    "edit": true
+   },
+   {
+    "id": "de2fe594",
+    "kind": "tiktok",
+    "url": "https://www.tiktok.com/@pixl.filmz",
+    "ident": "pixl.filmz",
+    "enabled": true,
+    "max_per_run": 2,
+    "min_score": 100,
+    "edit": true
+   },
+   {
+    "id": "884ab56b",
+    "kind": "tiktok",
+    "url": "https://www.tiktok.com/@christal2660",
+    "ident": "christal2660",
+    "enabled": true,
+    "max_per_run": 2,
+    "min_score": 100,
+    "edit": true
+   },
+   {
+    "id": "38b4aeb8",
+    "kind": "tiktok",
+    "url": "https://www.tiktok.com/@drxpz.aepp",
+    "ident": "drxpz.aepp",
+    "enabled": true,
+    "max_per_run": 2,
+    "min_score": 100,
+    "edit": true
+   },
+   {
+    "id": "14b2c4e4",
+    "kind": "tiktok",
+    "url": "https://www.tiktok.com/@dailyclips.gg98",
+    "ident": "dailyclips.gg98",
+    "enabled": true,
+    "max_per_run": 2,
+    "min_score": 100,
+    "edit": true
+   }
+  ],
+  "mode": "auto",
+  "video_platforms": [
+   "youtube",
+   "instagram",
+   "facebook"
+  ],
+  "image_platforms": [
+   "instagram",
+   "facebook"
+  ],
+  "interval_minutes": 120,
+  "enabled": true,
+  "daily_cap": 10,
+  "daily_image_cap": 6,
+  "daily_video_cap": 6,
+  "max_age_h": 72,
+  "min_post_gap_h": 2
+ },
+ "seen": {
+  "acbd7159": [
+   "youtube:Fox8Zvh2Y38",
+   "youtube:2U13vMS5ilo"
+  ]
+ },
+ "runs": [
+  {
+   "at": "2026-11-24T05:23:52+08:00",
+   "ok": true,
+   "summary": "2 new post(s) processed (0 image, 2 video)"
+  }
+ ],
+ "items": [
+  {
+   "key": "youtube:Fox8Zvh2Y38",
+   "source": "youtube alizedits",
+   "title": "He Can Curve Bullets! - Raya (Slowed) #trending #shorts",
+   "kind": "video",
+   "url": "https://www.youtube.com/watch?v=Fox8Zvh2Y38",
+   "at": "2026-11-24T05:23:54+08:00",
+   "status": "posted",
+   "package": "20261124-0524-0eca6c",
+   "results": [
+    {
+     "platform": "youtube",
+     "ok": true,
+     "url": "https://www.youtube.com/shorts/2WQ70Dnx28E",
+     "error": ""
+    },
+    {
+     "platform": "instagram",
+     "ok": true,
+     "url": "https://www.instagram.com/reel/DgGVxXfFPyC/",
+     "error": ""
+    },
+    {
+     "platform": "facebook",
+     "ok": true,
+     "url": "https://www.facebook.com/reel/1452982116821046",
+     "error": ""
+    }
+   ],
+   "detail": "youtube: posted; instagram: posted; facebook: posted"
   },
-  "seen": {},
-  "runs": [],
-  "items": [],
-  "last_run": ""
+  {
+   "key": "youtube:2U13vMS5ilo",
+   "source": "youtube alizedits",
+   "title": "ULTRON Is BACK! - MONTAGEM GLORIA (Slowed) #trending #shorts",
+   "kind": "video",
+   "url": "https://www.youtube.com/watch?v=2U13vMS5ilo",
+   "at": "2026-11-24T05:26:10+08:00",
+   "status": "posted",
+   "package": "20261124-0527-2ee27d",
+   "results": [
+    {
+     "platform": "youtube",
+     "ok": true,
+     "url": "https://www.youtube.com/shorts/isa4dO1rIIU",
+     "error": ""
+    },
+    {
+     "platform": "instagram",
+     "ok": true,
+     "url": "https://www.instagram.com/reel/DgGWC-6nIqM/",
+     "error": ""
+    },
+    {
+     "platform": "facebook",
+     "ok": true,
+     "url": "https://www.facebook.com/reel/1144266828344816",
+     "error": ""
+    }
+   ],
+   "detail": "youtube: posted; instagram: posted; facebook: posted"
+  }
+ ],
+ "last_run": "2026-11-24T05:23:52+08:00"
 }

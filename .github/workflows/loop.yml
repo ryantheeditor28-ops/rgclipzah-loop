@@ -40,6 +40,7 @@ jobs:
       - name: Run one repost cycle (discover -> edit -> post)
         env:
           RGCLIP_LOOP: "1"
+          RGCLIP_MAX_PER_CYCLE: "1"
           YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
           YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
           YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}

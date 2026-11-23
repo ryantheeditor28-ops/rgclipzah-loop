@@ -3,6 +3,7 @@
 cookies.txt
 
 # ephemeral run artifacts
+log.md
 media/
 outbox/
 logs/

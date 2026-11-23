@@ -55,7 +55,10 @@ def main() -> int:
         log("loop: disabled in dashboard state - skipping cycle (enable it to go live)")
         return 0
 
-    res = repost.run_cycle()
+    # one branded post per cycle by default (owner rule after the double-post);
+    # override with RGCLIP_MAX_PER_CYCLE if that ever needs to change
+    max_items = max(1, int(os.environ.get("RGCLIP_MAX_PER_CYCLE", "1")))
+    res = repost.run_cycle(max_items=max_items)
     log(f"loop: {res.get('summary', res)}")
     if res.get("failures"):
         for f in res["failures"]:
