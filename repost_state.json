@@ -276,6 +276,11 @@
    "at": "2026-11-23T22:04:04+00:00",
    "ok": true,
    "summary": "post throttle: last post 37 min ago, min gap 2h - waiting before the next send (anti-spam spacing)"
+  },
+  {
+   "at": "2026-11-23T22:28:35+00:00",
+   "ok": true,
+   "summary": "post throttle: last post 62 min ago, min gap 2h - waiting before the next send (anti-spam spacing)"
   }
  ],
  "items": [
@@ -342,5 +347,5 @@
    "detail": "youtube: posted; instagram: posted; facebook: posted"
   }
  ],
- "last_run": "2026-11-23T22:04:04+00:00"
+ "last_run": "2026-11-23T22:28:35+00:00"
 }
