@@ -21,6 +21,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Install ffmpeg (not preinstalled on the runner)
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install -y --no-install-recommends ffmpeg
+
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
