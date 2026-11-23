@@ -26,15 +26,22 @@ avatar = shield.crop((140, 130, 884, 874)).resize((800, 800), Image.LANCZOS)
 avatar.save(os.path.join(OUT, "avatar.png"))
 
 # ---------------------------------------------------------- wordmark bug ----
-# Crop the wordmark band, round it into a soft-edged dark pill badge.
-# This is the brand bug that goes on RGClipzah's own edited clips.
+# Crop the wordmark band and knock the dark background out with a luminance
+# key, leaving just the gradient text (no pill/box behind it). This is the
+# brand bug that goes on RGClipzah's own edited clips.
 band = text.crop((110, 390, 915, 700))  # 805 x 310
-mask = Image.new("L", band.size, 0)
-d = ImageDraw.Draw(mask)
-d.rounded_rectangle((4, 4, band.width - 5, band.height - 5), radius=58, fill=255)
-mask = mask.filter(ImageFilter.GaussianBlur(3))
+LO, HI = 0.16, 0.34     # luminance ramp: below LO -> transparent, above HI -> opaque
 bug = band.copy()
-bug.putalpha(mask)
+bp = bug.load()
+sp = band.load()
+for y in range(band.height):
+    for x in range(band.width):
+        r, g, b, _ = sp[x, y]
+        lum = (0.2126 * r + 0.7152 * g + 0.0722 * b) / 255.0
+        t = (lum - LO) / (HI - LO)
+        t = 0.0 if t < 0.0 else 1.0 if t > 1.0 else t
+        t = t * t * (3.0 - 2.0 * t)  # smoothstep for soft glyph edges
+        bp[x, y] = (r, g, b, round(255 * t))
 bug_w = 720
 bug_h = round(bug.height * bug_w / bug.width)
 bug = bug.resize((bug_w, bug_h), Image.LANCZOS)

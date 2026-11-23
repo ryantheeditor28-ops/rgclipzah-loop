@@ -3,12 +3,12 @@
 Takes any downloaded video and re-renders it as a branded 1080x1920 edit:
   - vertical source  -> subtle 3.5% punch-in reframe (changes the framing)
   - landscape source -> 9:16 blur-background layout, centered
-  - hook text drawn at the top (pre-wrapped, boxed)
-  - RGCIPZAH wordmark bug overlaid bottom-right (our brand on OUR edit)
+  - no on-video text (hook text overlay was removed by owner request)
+  - RGCIPZAH wordmark bug (text only) centered at ~70% frame height
   - loudness normalized to -14 LUFS, H.264/AAC, <=58.5s (Shorts-eligible)
 
-Only needs ffmpeg/ffprobe on PATH and a bold TTF font, so it runs identically
-on this PC and on GitHub Actions runners.
+Only needs ffmpeg/ffprobe on PATH, so it runs identically on this PC and on
+GitHub Actions runners.
 
 Note on branding: this module adds the RGCIPZAH mark to clips WE re-render.
 It is not a watermark-covering tool and must not be used to obscure the
@@ -17,10 +17,7 @@ original creator's watermark or credit.
 from __future__ import annotations
 
 import json
-import os
-import shutil
 import subprocess
-import textwrap
 from pathlib import Path
 
 from .config import ROOT
@@ -28,26 +25,8 @@ from .logutil import log
 
 MAX_OUT_SEC = 58.5
 OUT_W, OUT_H = 1080, 1920
-BUG_WIDTH = 340          # on-screen width of the wordmark bug
-BUG_MARGIN_X = 36
-BUG_MARGIN_BOTTOM = 150  # keep clear of platform UI overlays
-
-_FONT_CANDIDATES = [
-    os.environ.get("RGCLIP_FONT") or "",
-    "C:/Windows/Fonts/arialbd.ttf",
-    "C:/Windows/Fonts/Arial Bold.ttf",
-    "C:/Windows/Fonts/impact.ttf",
-    "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",
-    "/usr/share/fonts/truetype/liberation/LiberationSans-Bold.ttf",
-    "/usr/share/fonts/truetype/freefont/FreeSansBold.ttf",
-]
-
-
-def _font() -> str | None:
-    for f in _FONT_CANDIDATES:
-        if f and Path(f).exists():
-            return f
-    return None
+BUG_WIDTH = 340        # on-screen width of the wordmark bug
+BUG_CENTER_Y = 0.70    # bug's vertical center as a fraction of frame height
 
 
 def _probe(path: Path) -> dict:
@@ -73,44 +52,17 @@ def _probe(path: Path) -> dict:
     }
 
 
-def _hook_file(job: Path, hook: str) -> str:
-    """Write the pre-wrapped hook text; returns the relative filename."""
-    lines = textwrap.wrap(" ".join((hook or "").split()), width=24)[:3]
-    (job / "hook.txt").write_text("\n".join(lines) or "watch this", encoding="utf-8")
-    return "hook.txt"
-
-
-def _font_file(job: Path) -> str | None:
-    """Copy the bold font next to the job and return the RELATIVE name.
-
-    drawtext's fontfile option sits inside the filtergraph, where ':' is an
-    option separator - so 'C:/Windows/Fonts/...' would be parsed as fontfile=C.
-    A relative 'font.ttf' sidesteps path escaping entirely (we run ffmpeg with
-    cwd=job)."""
-    src = _font()
-    if not src:
-        return None
-    try:
-        shutil.copy(src, job / "font.ttf")
-        return "font.ttf"
-    except OSError as exc:
-        log(f"editclip: font copy failed: {exc}", level="error")
-        return None
-
-
 def render(src: Path, dst: Path, hook: str = "") -> Path | None:
-    """Re-render src as a branded vertical clip. Returns dst or None."""
+    """Re-render src as a branded vertical clip. Returns dst or None.
+
+    `hook` is accepted for call compatibility but no text is drawn on the
+    video anymore (owner request: no on-video text at all)."""
     src = Path(src).resolve()   # ffmpeg runs with cwd=job dir; inputs must be absolute
     dst = Path(dst).resolve()
     dst.parent.mkdir(parents=True, exist_ok=True)
     info = _probe(src)
     if not info.get("w") or not info.get("h"):
         log("editclip: could not probe source video", level="error")
-        return None
-
-    font = _font_file(dst.parent)
-    if not font:
-        log("editclip: no bold TTF font found - set RGCLIP_FONT", level="error")
         return None
 
     bug = ROOT / "brand" / "wordmark-bug.png"
@@ -133,23 +85,17 @@ def render(src: Path, dst: Path, hook: str = "") -> Path | None:
                 f"[bgb][fgs]overlay=(W-w)/2:(H-h)/2")
     chain = f"[0:v]{base},fps=30[b0]"
 
-    # part 2: brand bug overlay (input 1)
+    # part 2: brand bug overlay (input 1) - centered, ~70% frame height
     inputs = ["-i", str(src)]
     parts = [chain]
     last = "b0"
     if bug:
         inputs += ["-i", str(bug)]
         parts.append(f"[1:v]scale={BUG_WIDTH}:-1[bugm]")
-        parts.append(f"[{last}][bugm]overlay=x=W-w-{BUG_MARGIN_X}:y=H-h-{BUG_MARGIN_BOTTOM}[b1]")
+        parts.append(f"[{last}][bugm]overlay=x=(W-w)/2:y=H*{BUG_CENTER_Y}-h/2[b1]")
         last = "b1"
 
-    # part 3: hook text (input 2 if bug else input 1)
-    hookf = _hook_file(dst.parent, hook)
-    idx = 2 if bug else 1
-    draw = (f"drawtext=fontfile={font}:textfile={hookf}:fontsize=56:fontcolor=white:"
-            f"borderw=3:bordercolor=black@0.85:box=1:boxcolor=black@0.32:boxborderw=18:"
-            f"line_spacing=10:x=(w-text_w)/2:y=150")
-    parts.append(f"[{last}]{draw},format=yuv420p[vout]")
+    parts.append(f"[{last}]format=yuv420p[vout]")
 
     # audio: normalize when present, silence track when not (posters require audio)
     silent = "-f lavfi -i anullsrc=channel_layout=stereo:sample_rate=44100"
