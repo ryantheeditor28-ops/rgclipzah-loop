@@ -1,16 +1,16 @@
-"""Self-contained clip transformer for RGClipzah (no gtavi-claudecode repo needed).
+"""Self-contained clip transformer for RGCIPZAH (no gtavi-claudecode repo needed).
 
 Takes any downloaded video and re-renders it as a branded 1080x1920 edit:
   - vertical source  -> subtle 3.5% punch-in reframe (changes the framing)
   - landscape source -> 9:16 blur-background layout, centered
   - hook text drawn at the top (pre-wrapped, boxed)
-  - RGClipzah wordmark bug overlaid bottom-right (our brand on OUR edit)
+  - RGCIPZAH wordmark bug overlaid bottom-right (our brand on OUR edit)
   - loudness normalized to -14 LUFS, H.264/AAC, <=58.5s (Shorts-eligible)
 
 Only needs ffmpeg/ffprobe on PATH and a bold TTF font, so it runs identically
 on this PC and on GitHub Actions runners.
 
-Note on branding: this module adds the RGClipzah mark to clips WE re-render.
+Note on branding: this module adds the RGCIPZAH mark to clips WE re-render.
 It is not a watermark-covering tool and must not be used to obscure the
 original creator's watermark or credit.
 """

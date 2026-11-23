@@ -1,4 +1,4 @@
-name: RGClipzah repost loop
+name: RGCIPZAH repost loop
 
 # Every 2 hours (matches the anti-spam post gap), plus a manual run button.
 on:

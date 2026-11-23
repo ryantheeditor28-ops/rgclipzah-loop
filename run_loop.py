@@ -1,4 +1,4 @@
-"""RGClipzah repost loop - headless entry (GitHub Actions or any server).
+"""RGCIPZAH repost loop - headless entry (GitHub Actions or any server).
 
 Runs ONE repost cycle (discover -> download -> EDIT -> package -> auto-post)
 and prints the summary. Unlike grand6-loop, editing happens here too: the

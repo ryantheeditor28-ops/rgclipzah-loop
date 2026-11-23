@@ -134,7 +134,7 @@ def captions_for(meta: dict, cfg: dict | None = None) -> dict[str, dict]:
 
 
 # ---------------------------------------------------------------- LLM refine
-_LLM_PROMPT = """You are a short-form video SEO strategist for a movie clip & edit fan page (RGClipzah).
+_LLM_PROMPT = """You are a short-form video SEO strategist for a movie clip & edit fan page (RGCIPZAH).
 Improve this post's metadata. Rules:
 - Keep it factual to the source material; never invent movie facts or spoilers in the title.
 - No clickbait lies, no words like: {banned}.
