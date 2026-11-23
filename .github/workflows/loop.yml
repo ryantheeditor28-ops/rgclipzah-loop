@@ -28,6 +28,21 @@ jobs:
       - name: Install loop dependencies
         run: pip install -r requirements-loop.txt
 
+      - name: Smoke-test the edit chain on runner ffmpeg
+        run: |
+          set -e
+          ffmpeg -y -hide_banner -loglevel error -f lavfi -i testsrc2=size=720x1280:rate=30:duration=3 -f lavfi -i anullsrc=channel_layout=stereo:sample_rate=44100 -shortest -c:v libx264 -preset veryfast -pix_fmt yuv420p -c:a aac smoke-src.mp4
+          python - <<'PY'
+          import sys
+          from pathlib import Path
+          sys.path.insert(0, '.')
+          from agency import editclip
+          out = editclip.render(Path('smoke-src.mp4'), Path('smoke-out.mp4'))
+          print('smoke render:', 'OK' if out else 'FAILED')
+          sys.exit(0 if out else 1)
+          PY
+          rm -f smoke-src.mp4 smoke-out.mp4
+
       - name: Restore browser cookies (if the secret is set)
         env:
           YTDL_COOKIES: ${{ secrets.YTDL_COOKIES_FILE }}

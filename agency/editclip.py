@@ -4,7 +4,8 @@ Takes any downloaded video and re-renders it as a branded 1080x1920 edit:
   - vertical source  -> subtle 3.5% punch-in reframe (changes the framing)
   - landscape source -> 9:16 blur-background layout, centered
   - no on-video text (hook text overlay was removed by owner request)
-  - RGCIPZAH wordmark bug (text only) centered at ~70% frame height
+  - RGCIPZAH wordmark bug (text only) centered at ~70% frame height,
+    pulsing: fades in, holds 0.5s, fades out, hidden ~7s, then repeats
   - loudness normalized to -14 LUFS, H.264/AAC, <=58.5s (Shorts-eligible)
 
 Only needs ffmpeg/ffprobe on PATH, so it runs identically on this PC and on
@@ -27,6 +28,16 @@ MAX_OUT_SEC = 58.5
 OUT_W, OUT_H = 1080, 1920
 BUG_WIDTH = 340        # on-screen width of the wordmark bug
 BUG_CENTER_Y = 0.70    # bug's vertical center as a fraction of frame height
+
+# bug pulse (owner spec): fade in, hold 0.5s at full strength, fade out,
+# stay hidden ~7s, repeat. Timings are frames at BUG_FPS, driven via geq(N).
+BUG_FPS = 30
+BUG_FADE_IN_FR = 8     # ~0.27s ramp-up
+BUG_HOLD_FR = 15       # 0.5s fully visible
+BUG_FADE_OUT_FR = 8    # ~0.27s ramp-down
+BUG_GAP_FR = 209       # ~7s fully hidden between pulses
+BUG_PERIOD_FR = (BUG_FADE_IN_FR + BUG_HOLD_FR + BUG_FADE_OUT_FR
+                 + BUG_GAP_FR)  # 240 frames = 8s cycle
 
 
 def _probe(path: Path) -> dict:
@@ -85,14 +96,27 @@ def render(src: Path, dst: Path, hook: str = "") -> Path | None:
                 f"[bgb][fgs]overlay=(W-w)/2:(H-h)/2")
     chain = f"[0:v]{base},fps=30[b0]"
 
-    # part 2: brand bug overlay (input 1) - centered, ~70% frame height
+    # part 2: brand bug overlay (input 1) - centered, ~70% frame height.
+    # The bug pulses (fade in / hold 0.5s / fade out / ~7s hidden / repeat):
+    # -loop 1 keeps the PNG stream alive so geq can animate its alpha per
+    # frame (without it, overlay would repeat one static frame forever).
+    # Alpha factor multiplies the PNG's own alpha, so transparency is kept.
     inputs = ["-i", str(src)]
     parts = [chain]
     last = "b0"
     if bug:
-        inputs += ["-i", str(bug)]
-        parts.append(f"[1:v]scale={BUG_WIDTH}:-1[bugm]")
-        parts.append(f"[{last}][bugm]overlay=x=(W-w)/2:y=H*{BUG_CENTER_Y}-h/2[b1]")
+        inputs += ["-loop", "1", "-i", str(bug)]
+        t = f"mod(N,{BUG_PERIOD_FR})"
+        fo_start = BUG_FADE_IN_FR + BUG_HOLD_FR
+        fo_end = fo_start + BUG_FADE_OUT_FR
+        factor = (f"if(lt({t},{BUG_FADE_IN_FR}),{t}/{BUG_FADE_IN_FR},"
+                  f"if(lt({t},{fo_start}),1,"
+                  f"if(lt({t},{fo_end}),({fo_end}-{t})/{BUG_FADE_OUT_FR},0)))")
+        parts.append(
+            f"[1:v]scale={BUG_WIDTH}:-1,fps={BUG_FPS},format=gbrap,"
+            f"geq=r='r(X,Y)':g='g(X,Y)':b='b(X,Y)':"
+            f"a='alpha(X,Y)*{factor}'[bugm]")
+        parts.append(f"[{last}][bugm]overlay=x=(W-w)/2:y=H*{BUG_CENTER_Y}-h/2:shortest=1[b1]")
         last = "b1"
 
     parts.append(f"[{last}]format=yuv420p[vout]")
