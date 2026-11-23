@@ -1,0 +1,67 @@
+[
+  {
+    "id": "kaicenat",
+    "name": "KaiCenat",
+    "color": "#ff8a2a",
+    "twitch": "https://www.twitch.tv/kaicenat",
+    "kick": "",
+    "youtube": "",
+    "auto_record": false,
+    "ai_check_min": 5,
+    "clip_min_sec": 30,
+    "clip_max_sec": 60,
+    "platforms": [
+      "youtube",
+      "tiktok",
+      "instagram",
+      "facebook"
+    ],
+    "credit_line": "Clipped from @kaicenat",
+    "created": "2026-11-21T07:25:01+08:00"
+  },
+  {
+    "id": "jynxzi",
+    "name": "jynxzi",
+    "color": "#ff2d78",
+    "twitch": "https://www.twitch.tv/jynxzi",
+    "kick": "",
+    "youtube": "",
+    "auto_record": false,
+    "ai_check_min": 5,
+    "clip_min_sec": 30,
+    "clip_max_sec": 60,
+    "platforms": [],
+    "credit_line": "",
+    "created": "2026-11-21T08:16:38+08:00"
+  },
+  {
+    "id": "wynnsanity",
+    "name": "Wynnsanity",
+    "color": "#a03cff",
+    "twitch": "",
+    "kick": "",
+    "youtube": "https://www.youtube.com/@Wynnsanity",
+    "auto_record": false,
+    "ai_check_min": 5,
+    "clip_min_sec": 30,
+    "clip_max_sec": 60,
+    "platforms": [],
+    "credit_line": "",
+    "created": "2026-11-21T08:17:57+08:00"
+  },
+  {
+    "id": "factdrizzle",
+    "name": "Factdrizzle",
+    "color": "#4493f8",
+    "twitch": "",
+    "kick": "",
+    "youtube": "https://www.youtube.com/@factdrizzle",
+    "auto_record": false,
+    "ai_check_min": 5,
+    "clip_min_sec": 30,
+    "clip_max_sec": 60,
+    "platforms": [],
+    "credit_line": "",
+    "created": "2026-11-21T09:18:49+08:00"
+  }
+]

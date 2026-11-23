@@ -1,0 +1,62 @@
+{
+  "page": {
+    "name": "RGClipzah",
+    "handle": "@rgclipzah",
+    "niche": "movie scenes & viral edits",
+    "timezone": "local",
+    "bio_credit": "Fan page - clips credited to their editors. DM for credit or removal."
+  },
+  "platforms": ["youtube", "instagram", "facebook"],
+  "autonomy": {
+    "approval_gate": true
+  },
+  "schedule": {
+    "daily_run": "08:00",
+    "monitor_runs": ["12:00", "18:00", "21:30"],
+    "vertical_posts_per_day": 6,
+    "x_posts_per_day": 0
+  },
+  "research": {
+    "query": "movie clips",
+    "trend_hours": 24,
+    "trend_limit": 30,
+    "subreddits": "MovieClips,movies,MovieClipsAndScenes",
+    "max_moments": 8,
+    "max_source_minutes": 90
+  },
+  "reddit": {
+    "sub": "MovieClips",
+    "min_score": 100,
+    "min_comments": 5,
+    "max_age_h": 48,
+    "limit": 100,
+    "max_downloads": 3
+  },
+  "production": {
+    "layout": "blur",
+    "captions": "word",
+    "min_sec": 7,
+    "max_sec": 58,
+    "loudnorm_lufs": -14,
+    "allow_profanity": false
+  },
+  "seo": {
+    "llm_api_base": null,
+    "llm_model": null,
+    "max_title_len": 90,
+    "max_desc_len": 900,
+    "hashtags": {
+      "youtube": ["#shorts", "#movie", "#edit", "#movieedits", "#viral"],
+      "tiktok": [],
+      "instagram": ["#movie", "#edit", "#movieedits", "#filmedit", "#viral"],
+      "facebook": ["#movie", "#edit", "#movieedits", "#viral", "#fyp"],
+      "x": []
+    }
+  },
+  "paths": {
+    "repo": "",
+    "outbox": "outbox",
+    "media_edits": "media/edits",
+    "jobs": "jobs"
+  }
+}

@@ -1,0 +1,69 @@
+name: RGClipzah repost loop
+
+# Every 2 hours (matches the anti-spam post gap), plus a manual run button.
+on:
+  schedule:
+    - cron: "41 */2 * * *"
+  workflow_dispatch:
+
+# never let two cycles overlap; state is committed back after each run
+concurrency:
+  group: rgclipzah-loop
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  loop:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install loop dependencies
+        run: pip install -r requirements-loop.txt
+
+      - name: Restore browser cookies (if the secret is set)
+        env:
+          YTDL_COOKIES: ${{ secrets.YTDL_COOKIES_FILE }}
+        run: |
+          if [ -n "$YTDL_COOKIES" ]; then
+            printf '%s\n' "$YTDL_COOKIES" > cookies.txt
+            echo "cookies restored"
+          fi
+
+      - name: Run one repost cycle (discover -> edit -> post)
+        env:
+          RGCLIP_LOOP: "1"
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+          IG_PUBLIC_URL_BASE: ${{ secrets.IG_PUBLIC_URL_BASE }}
+          IG_UPLOAD_ENDPOINT: ${{ secrets.IG_UPLOAD_ENDPOINT }}
+          IG_UPLOAD_ACCESS_KEY: ${{ secrets.IG_UPLOAD_ACCESS_KEY }}
+          IG_UPLOAD_SECRET_KEY: ${{ secrets.IG_UPLOAD_SECRET_KEY }}
+          IG_UPLOAD_REGION: ${{ secrets.IG_UPLOAD_REGION }}
+          FB_APP_ID: ${{ secrets.FB_APP_ID }}
+          FB_APP_SECRET: ${{ secrets.FB_APP_SECRET }}
+          FB_SHORT_TOKEN: ${{ secrets.FB_SHORT_TOKEN }}
+          FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
+          FB_PAGE_ACCESS_TOKEN: ${{ secrets.FB_PAGE_ACCESS_TOKEN }}
+          LLM_API_BASE: ${{ secrets.LLM_API_BASE }}
+          LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
+          LLM_MODEL: ${{ secrets.LLM_MODEL }}
+        run: python run_loop.py
+
+      - name: Persist state (dedupe, caps, throttle)
+        run: |
+          git config user.name "rgclipzah-loop"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add repost_state.json
+          git diff --cached --quiet || git commit -m "loop state $(date -u +%Y%m%d-%H%M)"
+          git push

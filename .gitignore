@@ -1,0 +1,11 @@
+# secrets never touch the repo - they live in GitHub Secrets
+.env
+cookies.txt
+
+# ephemeral run artifacts
+media/
+outbox/
+logs/
+jobs/
+__pycache__/
+*.pyc
