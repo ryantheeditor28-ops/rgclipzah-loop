@@ -518,6 +518,10 @@ def _run_cycle_inner(only_source: str | None, max_items: int | None) -> dict:
     cap_left = rcfg["daily_cap"] - _posted_today(state)
     img_left = rcfg["daily_image_cap"] - _posted_today(state, "image")
     vid_left = rcfg["daily_video_cap"] - _posted_today(state, "video")
+    # cap for the WHOLE cycle (owner rule: one post per cycle). It applies to
+    # every source AND within a source's item loop - a single source with
+    # max_per_run > 1 used to post several videos in one cycle (double-post).
+    cycle_limit = cap_left if max_items is None else min(cap_left, max_items)
     if cap_left <= 0 or (img_left <= 0 and vid_left <= 0):
         summary = (f"daily caps reached ({rcfg['daily_cap']}/day"
                    f", {rcfg['daily_image_cap']} image, {rcfg['daily_video_cap']} video) - nothing downloaded")
@@ -547,7 +551,7 @@ def _run_cycle_inner(only_source: str | None, max_items: int | None) -> dict:
             continue
         if not source.get("enabled", True):
             continue
-        if len(made) >= (max_items if max_items is not None else cap_left):
+        if len(made) >= cycle_limit:
             break
         try:
             found = discover(source, rcfg)
@@ -562,7 +566,7 @@ def _run_cycle_inner(only_source: str | None, max_items: int | None) -> dict:
                  and _attempts(state, i["key"]) < 3]
         log(f"repost: {source['kind']} {source['ident']}: {len(fresh)} new of {len(found)}")
         for item in fresh[:source["max_per_run"]]:
-            if len(made) >= cap_left:
+            if len(made) >= cycle_limit:
                 break
             qk = _qkind(item["kind"])
             if (qk == "image" and made_kinds["image"] >= img_left) or (qk == "video" and made_kinds["video"] >= vid_left):
