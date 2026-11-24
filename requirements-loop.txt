@@ -1,3 +1,8 @@
 yt-dlp>=2025.1.1
 requests>=2.31
 tzdata>=2024.1
+# YouTube puts logged-in accounts on SABR-only streaming: without a
+# proof-of-origin token yt-dlp sees only storyboard images. The bgutil
+# provider generates that token; yt-dlp-ejs provides the JS challenge solver.
+bgutil-ytdlp-pot-provider>=2.0.0
+yt-dlp-ejs>=0.3.0

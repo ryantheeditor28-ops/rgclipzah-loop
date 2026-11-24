@@ -33,6 +33,45 @@ jobs:
       - name: Install loop dependencies
         run: pip install -r requirements-loop.txt
 
+      # YouTube puts logged-in accounts on SABR-only streaming: without a
+      # proof-of-origin token yt-dlp sees only storyboard images and every
+      # download fails with "Requested format is not available". The bgutil
+      # POT provider generates that token; node also runs the JS challenge
+      # solver that the web client needs for the "n" signature parameter.
+      - name: Install POT provider + JS challenge solver
+        run: |
+          set -e
+          pip install -q bgutil-ytdlp-pot-provider yt-dlp-ejs
+          git clone -q --depth 1 https://github.com/Brainicism/bgutil-ytdlp-pot-provider.git pot
+          cd pot/server
+          npm install --silent --no-audit --no-fund
+          npx --yes tsc
+          node build/main.js --port 4416 > /tmp/pot.log 2>&1 &
+          cd -
+          for i in $(seq 1 60); do
+            if curl -sf http://127.0.0.1:4416/ping >/dev/null 2>&1; then
+              echo "POT server up after ${i}s"
+              break
+            fi
+            sleep 1
+          done
+          curl -s http://127.0.0.1:4416/ping || { echo "POT server failed"; tail -20 /tmp/pot.log; exit 1; }
+          node --version
+
+      - name: Verify yt-dlp can download a YouTube clip
+        env:
+          YTDL_COOKIES: ${{ secrets.YTDL_COOKIES_FILE }}
+        run: |
+          set -e
+          printf '%s\n' "$YTDL_COOKIES" > cookies.txt
+          python -m yt_dlp --cookies cookies.txt \
+            --extractor-args "youtubepot-bgutilhttp:base_url=http://127.0.0.1:4416" \
+            --js-runtimes node --remote-components ejs:github --no-warnings \
+            -f "bv*[height<=720]+ba/b" --merge-output-format mp4 \
+            -o "potcheck.%(ext)s" "https://www.youtube.com/shorts/JX0ZNfgYnak"
+          ls -la potcheck.*
+          rm -f potcheck.*
+
       - name: Smoke-test the edit chain on runner ffmpeg
         run: |
           set -e
@@ -61,6 +100,8 @@ jobs:
         env:
           RGCLIP_LOOP: "1"
           RGCLIP_MAX_PER_CYCLE: "1"
+          RGCLIP_POT_URL: "http://127.0.0.1:4416"
+          RGCLIP_EJS: "1"
           YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
           YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
           YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}

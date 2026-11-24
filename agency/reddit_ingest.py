@@ -23,7 +23,7 @@ from pathlib import Path
 import requests
 
 from .config import ROOT, env, ensure_dirs, load_config
-from .portable import ytdlp_cookie_args
+from .portable import ytdlp_cmd, ytdlp_cookie_args
 from .logutil import log
 from .research import _run_repo
 from . import queue, seo
@@ -177,7 +177,7 @@ def _dl_video(permalink: str, out: Path) -> Path | None:
     Reddit login) provide it. No secrets leave the machine.
     """
     res = subprocess.run(
-        ["yt-dlp", *ytdlp_cookie_args(), "--no-warnings",
+        [*ytdlp_cmd(), *ytdlp_cookie_args(), "--no-warnings",
          "-f", "bv*[height<=1080]+ba/b",
          "-o", str(out), permalink],
         capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=1800,
@@ -331,7 +331,7 @@ def ingest_url(url: str, *, cfg: dict | None = None) -> dict | None:
             log(f"reddit: package {pkg['id']} ready from operator link ({post['kind']})")
         return pkg
     res = subprocess.run(
-        ["yt-dlp", *ytdlp_cookie_args(), "--no-warnings",
+        [*ytdlp_cmd(), *ytdlp_cookie_args(), "--no-warnings",
          "--skip-download", "--print", "%(webpage_url)s|%(title)s", url],
         capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=300,
     )

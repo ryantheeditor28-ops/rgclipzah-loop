@@ -29,7 +29,7 @@ from pathlib import Path
 
 from . import queue, reddit_ingest, seo
 from .config import ROOT, load_config
-from .portable import ytdlp_cookie_args
+from .portable import ytdlp_cmd, ytdlp_cookie_args, ytdlp_pot_args
 from .logutil import log
 
 STATE_PATH = ROOT / "repost_state.json"
@@ -225,7 +225,7 @@ def parse_source(url: str) -> tuple[str, str] | tuple[None, None]:
 
 def _run_ytdlp(args: list[str], timeout: int = 600) -> subprocess.CompletedProcess:
     return subprocess.run(
-        ["yt-dlp", *ytdlp_cookie_args(), "--no-warnings", *args],
+        [*ytdlp_cmd(), *ytdlp_cookie_args(), *ytdlp_pot_args(), "--no-warnings", *args],
         capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=timeout,
     )
 
