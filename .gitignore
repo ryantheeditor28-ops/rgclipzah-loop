@@ -2,6 +2,9 @@
 .env
 cookies.txt
 
+# local secret drop-box for the cron-job.org trigger setup (never committed)
+.secrets/
+
 # ephemeral run artifacts
 log.md
 media/

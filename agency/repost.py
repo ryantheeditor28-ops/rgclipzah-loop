@@ -50,7 +50,7 @@ _DEFAULTS = {
     "daily_video_cap": 8,
     "max_age_h": 48,
     "min_post_gap_h": 0,
-    "post_gap_slack_min": 10,
+    "post_gap_slack_min": 15,
 }
 
 _lock = threading.Lock()          # one download/post cycle at a time
