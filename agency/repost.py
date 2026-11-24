@@ -50,6 +50,7 @@ _DEFAULTS = {
     "daily_video_cap": 8,
     "max_age_h": 48,
     "min_post_gap_h": 0,
+    "post_gap_slack_min": 10,
 }
 
 _lock = threading.Lock()          # one download/post cycle at a time
@@ -94,7 +95,8 @@ def normalize_config(raw: dict) -> dict:
         cfg["image_platforms"] = list(_DEFAULTS["image_platforms"])
     for key, lo, hi in (("interval_minutes", 15, 10080), ("daily_cap", 1, 999),
                         ("daily_image_cap", 1, 999), ("daily_video_cap", 1, 999), ("max_age_h", 1, 720),
-                        ("min_post_gap_h", 0, 168)):
+                        ("min_post_gap_h", 0, 168),
+                        ("post_gap_slack_min", 0, 120)):
         try:
             cfg[key] = int(cfg.get(key, _DEFAULTS[key]))
         except (TypeError, ValueError):
@@ -516,6 +518,31 @@ def _last_post_at(state: dict) -> datetime.datetime | None:
     return best
 
 
+def _effective_gap_h(cfg: dict) -> float:
+    """The gap we actually enforce: nominal gap minus a tolerance band.
+
+    The external trigger (cron-job.org) fires on a fixed grid - every 2
+    hours. A post is not stamped at the instant the trigger fires: discovery,
+    download, render and upload take a few minutes, so the recorded
+    timestamp lands a minute or two AFTER the slot. Comparing that stamp
+    against the next slot with a strict `>= 2h` rejects the next slot and
+    pushes the post to the one after it - a 4-hour gap, which is exactly
+    the "3 hours, then 12 hours" pattern this loop used to show.
+
+    The tolerance band lets the engine post on the next grid slot instead
+    of skipping it, while still refusing to post twice inside one slot.
+    """
+    try:
+        gap = float(cfg.get("min_post_gap_h", 0) or 0)
+    except (TypeError, ValueError):
+        gap = 0.0
+    try:
+        slack = float(cfg.get("post_gap_slack_min", 0) or 0) / 60.0
+    except (TypeError, ValueError):
+        slack = 0.0
+    return max(0.0, gap - slack)
+
+
 def _mark_seen(state: dict, source_id: str, key: str) -> None:
     seen = state["seen"].setdefault(source_id, [])
     if key not in seen:
@@ -569,11 +596,12 @@ def _run_cycle_inner(only_source: str | None, max_items: int | None) -> dict:
     # posts so platforms don't flag the account for burst-posting. Unseen items
     # stay fresh - the next cycle after the gap picks them up.
     gap_h = rcfg.get("min_post_gap_h", 0)
+    eff_gap_h = _effective_gap_h(rcfg)
     if rcfg["mode"] == "auto" and gap_h > 0:
         last_post = _last_post_at(state)
         if last_post:
             waited = datetime.datetime.now().astimezone() - last_post
-            if waited < datetime.timedelta(hours=gap_h):
+            if waited < datetime.timedelta(hours=eff_gap_h):
                 summary = (f"post throttle: last post {int(waited.total_seconds() // 60)} min ago, "
                            f"min gap {gap_h}h - waiting before the next send (anti-spam spacing)")
                 state["runs"] = [*state["runs"][-29:], {"at": ran_at, "ok": True, "summary": summary}]

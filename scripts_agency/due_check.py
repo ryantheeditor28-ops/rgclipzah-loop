@@ -1,11 +1,11 @@
 """Cheap "is a post due?" gate for the GitHub Actions loop.
 
-GitHub's cron scheduler skips slots under load, so the workflow knocks every
-30 minutes instead of every 2 hours (see .github/workflows/loop.yml). This
-script answers the only question worth asking before we burn runner minutes
-on apt-get, the POT provider and a video download:
+The external trigger (cron-job.org) fires on a fixed 2-hour grid. This script
+answers the only question worth asking before we burn runner minutes on
+apt-get, the POT provider and a video download:
 
-    has it been at least the configured post gap since the last post?
+    has it been at least the configured post gap (minus a small tolerance
+    band that absorbs trigger jitter and run latency) since the last post?
 
 Stdlib only, on purpose: it has to run before `pip install`.
 
@@ -81,6 +81,15 @@ def main() -> int:
         _emit(True, "no post gap configured - always due")
         return 0
 
+    # Must mirror agency.repost._effective_gap_h() exactly: if this gate says
+    # "due" but the worker's own throttle says "wait", the run is wasted and
+    # the post slips to the next slot after the next - a 4-hour gap.
+    try:
+        slack_h = float(cfg.get("post_gap_slack_min", 0) or 0) / 60.0
+    except (TypeError, ValueError):
+        slack_h = 0.0
+    eff_gap_h = max(0.0, gap_h - slack_h)
+
     last = last_post(state)
     if last is None:
         _emit(True, "nothing posted yet - due")
@@ -88,13 +97,14 @@ def main() -> int:
 
     now = datetime.datetime.now(datetime.timezone.utc)
     waited_h = (now - last).total_seconds() / 3600.0
-    if waited_h >= gap_h:
-        _emit(True, f"last post {waited_h:.2f}h ago, gap {gap_h:g}h - due")
+    if waited_h >= eff_gap_h:
+        _emit(True, f"last post {waited_h:.2f}h ago, gap {gap_h:g}h "
+                    f"(tolerance {slack_h * 60:.0f} min) - due")
         return 0
 
-    remaining = gap_h - waited_h
-    _emit(False, f"last post {waited_h:.2f}h ago, gap {gap_h:g}h - "
-                 f"{remaining * 60:.0f} min left")
+    remaining = eff_gap_h - waited_h
+    _emit(False, f"last post {waited_h:.2f}h ago, gap {gap_h:g}h "
+                 f"(tolerance {slack_h * 60:.0f} min) - {remaining * 60:.0f} min left")
     return 0
 
 

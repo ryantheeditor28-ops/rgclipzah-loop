@@ -258,7 +258,8 @@
   "daily_image_cap": 999,
   "daily_video_cap": 999,
   "max_age_h": 72,
-  "min_post_gap_h": 2
+  "min_post_gap_h": 2,
+  "post_gap_slack_min": 10
  },
  "seen": {
   "acbd7159": [

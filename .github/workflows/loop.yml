@@ -2,13 +2,17 @@ name: RGCIPZAH repost loop
 
 # GitHub's cron scheduler is dropping ~99% of this account's scheduled runs
 # (a public probe repo with a 5-minute cron fired once in 10.5 hours), so
-# `on: schedule` can never carry a 2-hour cadence. The cadence lives in the
-# public `rgclipzah-keeper` repo, which dispatches THIS workflow through the
-# API when a post is actually due. The hourly cron below is only a cheap
-# backstop in case the keeper chain ever dies.
+# `on: schedule` cannot carry the cadence on its own. The cadence comes from
+# cron-job.org, which POSTs to this workflow's dispatch endpoint every 2
+# hours.
+#
+# The schedule below is a backstop on the SAME grid (every even hour, minute
+# 7, UTC) so that if cron-job.org is down, GitHub's own cron can still fire
+# the slot - and because both land on the same minute, the due-gate plus the
+# concurrency group guarantee only one post per slot.
 on:
   schedule:
-    - cron: "53 * * * *"
+    - cron: "7 */2 * * *"
   workflow_dispatch:
 
 # never let two cycles overlap; state is committed back after each run
@@ -26,26 +30,34 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # Cheap gate before we burn runner minutes on apt-get, the POT provider
-      # and a video download. Stdlib only, so it runs before `pip install`.
+      # Cheap gate before we burn runner minutes on the POT provider and a
+      # video download. Stdlib only, so it runs before `pip install`.
       - name: Check if a post is due
         id: gate
         run: python3 scripts_agency/due_check.py
 
       - name: Skip (not due yet)
         if: steps.gate.outputs.due != 'true'
-        run: echo "not due: ${{ steps.gate.outputs.reason }}"
+        run: |
+          echo "not due: ${{ steps.gate.outputs.reason }}"
 
-      - name: Install ffmpeg (not preinstalled on the runner)
+      # ubuntu-latest ships ffmpeg; only pay for apt-get if it is missing.
+      - name: Ensure ffmpeg is available
         if: steps.gate.outputs.due == 'true'
         run: |
-          sudo apt-get update -y
-          sudo apt-get install -y --no-install-recommends ffmpeg
+          if ! command -v ffmpeg >/dev/null 2>&1; then
+            sudo apt-get update -y
+            sudo apt-get install -y --no-install-recommends ffmpeg
+          else
+            echo "ffmpeg preinstalled: $(ffmpeg -version | head -1)"
+          fi
 
       - uses: actions/setup-python@v5
         if: steps.gate.outputs.due == 'true'
         with:
           python-version: "3.12"
+          cache: pip
+          cache-dependency-path: requirements-loop.txt
 
       - name: Install loop dependencies
         if: steps.gate.outputs.due == 'true'
@@ -56,17 +68,29 @@ jobs:
       # download fails with "Requested format is not available". The bgutil
       # POT provider generates that token; node also runs the JS challenge
       # solver that the web client needs for the "n" signature parameter.
+      #
+      # The npm build is the slowest step in the whole workflow, so the built
+      # server is cached and only rebuilt when the source changes.
+      - name: Cache POT provider build
+        if: steps.gate.outputs.due == 'true'
+        uses: actions/cache@v4
+        with:
+          path: pot
+          key: pot-${{ runner.os }}-${{ hashFiles('requirements-loop.txt') }}
+
       - name: Install POT provider + JS challenge solver
         if: steps.gate.outputs.due == 'true'
         run: |
           set -e
           pip install -q bgutil-ytdlp-pot-provider yt-dlp-ejs
-          git clone -q --depth 1 https://github.com/Brainicism/bgutil-ytdlp-pot-provider.git pot
-          cd pot/server
-          npm install --silent --no-audit --no-fund
-          npx --yes tsc
-          node build/main.js --port 4416 > /tmp/pot.log 2>&1 &
-          cd -
+          if [ ! -d pot/server/build ]; then
+            git clone -q --depth 1 https://github.com/Brainicism/bgutil-ytdlp-pot-provider.git pot
+            cd pot/server
+            npm install --silent --no-audit --no-fund
+            npx --yes tsc
+            cd -
+          fi
+          node pot/server/build/main.js --port 4416 > /tmp/pot.log 2>&1 &
           for i in $(seq 1 60); do
             if curl -sf http://127.0.0.1:4416/ping >/dev/null 2>&1; then
               echo "POT server up after ${i}s"
