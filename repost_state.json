@@ -265,7 +265,8 @@
    "youtube:Fox8Zvh2Y38",
    "youtube:2U13vMS5ilo",
    "youtube:OJ5Xfz6fMyA",
-   "youtube:24vU9iv6Bac"
+   "youtube:24vU9iv6Bac",
+   "youtube:y0kEPS4ahRI"
   ],
   "b3dae9b6": [
    "tiktok:7710525636502211871",
@@ -275,11 +276,6 @@
   ]
  },
  "runs": [
-  {
-   "at": "2026-11-23T22:42:12+00:00",
-   "ok": true,
-   "summary": "2 new post(s) processed (0 image, 2 video), 28 failed"
-  },
   {
    "at": "2026-11-24T08:55:00+08:00",
    "ok": true,
@@ -448,6 +444,11 @@
    "at": "2026-11-24T04:28:39+00:00",
    "ok": true,
    "summary": "1 new post(s) processed (0 image, 1 video), 28 failed"
+  },
+  {
+   "at": "2026-11-24T04:41:45+00:00",
+   "ok": true,
+   "summary": "1 new post(s) processed (0 image, 1 video)"
   }
  ],
  "items": [
@@ -1706,7 +1707,38 @@
     }
    ],
    "detail": "youtube: posted; instagram: posted; facebook: posted"
+  },
+  {
+   "key": "youtube:y0kEPS4ahRI",
+   "source": "youtube alizedits",
+   "title": "Bro & Me! - Raya (Slowed) #trending #shorts",
+   "kind": "video",
+   "url": "https://www.youtube.com/watch?v=y0kEPS4ahRI",
+   "at": "2026-11-24T04:41:46+00:00",
+   "status": "posted",
+   "package": "20261124-0443-de5185",
+   "results": [
+    {
+     "platform": "youtube",
+     "ok": true,
+     "url": "https://www.youtube.com/shorts/WHc2OTitb5w",
+     "error": ""
+    },
+    {
+     "platform": "instagram",
+     "ok": true,
+     "url": "https://www.instagram.com/reel/DgHH_bqD46Z/",
+     "error": ""
+    },
+    {
+     "platform": "facebook",
+     "ok": true,
+     "url": "https://www.facebook.com/reel/1546685890851505",
+     "error": ""
+    }
+   ],
+   "detail": "youtube: posted; instagram: posted; facebook: posted"
   }
  ],
- "last_run": "2026-11-24T04:28:39+00:00"
+ "last_run": "2026-11-24T04:41:45+00:00"
 }
