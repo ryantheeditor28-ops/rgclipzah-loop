@@ -92,8 +92,8 @@ def normalize_config(raw: dict) -> dict:
         cfg["video_platforms"] = list(_DEFAULTS["video_platforms"])
     if not cfg["image_platforms"]:
         cfg["image_platforms"] = list(_DEFAULTS["image_platforms"])
-    for key, lo, hi in (("interval_minutes", 15, 10080), ("daily_cap", 1, 100),
-                        ("daily_image_cap", 1, 100), ("daily_video_cap", 1, 100), ("max_age_h", 1, 720),
+    for key, lo, hi in (("interval_minutes", 15, 10080), ("daily_cap", 1, 999),
+                        ("daily_image_cap", 1, 999), ("daily_video_cap", 1, 999), ("max_age_h", 1, 720),
                         ("min_post_gap_h", 0, 168)):
         try:
             cfg[key] = int(cfg.get(key, _DEFAULTS[key]))

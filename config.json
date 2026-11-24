@@ -4,7 +4,7 @@
     "handle": "@rgcipzah",
     "niche": "movie scenes & viral edits",
     "timezone": "local",
-    "bio_credit": "Fan page - clips credited to their editors. DM for credit or removal."
+    "bio_credit": "Fan page - movie scenes & fan edits. Not affiliated with any studio or creator. DM for takedown requests."
   },
   "platforms": ["youtube", "instagram", "facebook"],
   "autonomy": {
@@ -44,6 +44,7 @@
     "youtube_category_id": "1",
     "llm_api_base": null,
     "llm_model": null,
+    "show_credit": false,
     "max_title_len": 90,
     "max_desc_len": 900,
     "hashtags": {

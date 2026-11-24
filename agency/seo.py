@@ -44,9 +44,20 @@ def sanitize(text: str, *, credit: str = "", pillar: str = "clip") -> str:
     return re.sub(r"\s+", " ", text).strip()
 
 
-def credit_line(meta: dict) -> str:
+def credit_line(meta: dict, cfg: dict | None = None) -> str:
+    """Public credit line.
+
+    Off by default: the page republishes other people's edits, and the
+    original channel is not named in the caption. Provenance is still recorded
+    in the package meta (meta["source"]["url"] / ["channel"] and meta["credit"])
+    so a takedown request naming a specific clip can still be honoured.
+    Set seo.show_credit = true to put the credit back on the caption.
+    """
+    cfg = cfg or load_config()
+    if not (cfg.get("seo", {}) or {}).get("show_credit"):
+        return ""
     ch = meta.get("credit") or meta.get("source", {}).get("channel") or ""
-    return f"🎥 {ch}" if ch else ""
+    return f"Original: {ch}" if ch else ""
 
 
 def _subject_from(candidate: dict) -> str:
@@ -172,22 +183,34 @@ def _clean_source_title(meta: dict) -> str:
     return t
 
 
+_BOILERPLATE = re.compile(
+    r"(?i)all rights belong|own nothing except|does not claim any right|"
+    r"educational purposes|thanks for watching|thanks for watching|"
+    r"my (?:instagram|tiktok|youtube|twitter|facebook)\s*:|"
+    r"credit\s*:\s*$|for more (?:videos|updates)|subscribe to"
+)
+
+
 def _clean_source_desc(meta: dict, limit: int = 400) -> str:
     """The original poster's description, cleaned: no links, no hashtag-only
-    lines (hashtags get re-curated), banned words out. '' when there was no
-    real text (hashtag-only descriptions are the TikTok norm)."""
+    lines (hashtags get re-curated), no legal/boilerplate blocks, banned words
+    out. '' when there was no real text (hashtag-only descriptions are the
+    TikTok norm)."""
     d = str(meta.get("source", {}).get("description", "") or "")
     if not d:
         return ""
     d = re.sub(r"https?://\S+|www\.\S+", "", d)
     lines = []
     for ln in d.splitlines():
+        if _BOILERPLATE.search(ln):
+            continue
         ln = _strip_hashtags(ln).strip()
         # a stripped link leaves a dangling label behind ("link:", "source:")
         ln = re.sub(r"(?i)\b(?:link|source|src|watch|full\s+video|credits?)\s*:\s*$", "", ln)
         ln = re.sub(r"[\s,;:.\-–—]+$", "", ln).strip()
-        if ln:
-            lines.append(ln)
+        if not ln or _looks_like_music_title(ln):
+            continue
+        lines.append(ln)
     return sanitize(" ".join(lines))[:limit].strip()
 
 
@@ -206,6 +229,32 @@ def _is_title_like(text: str) -> bool:
     return True
 
 
+# The source channels post music videos and slowed tracks, so their titles
+# are track names ("Naughty Captain! - Raya (Slowed)"). Track names stay out
+# of our titles and descriptions - the post is about the scene.
+_MUSIC_PAT = re.compile(
+    r"(?i)\((?:slowed(?:\s*\+\s*sped\s*up)?|sped\s*up|speed\s*up|reversed|remix|"
+    r"official\s+(?:video|audio)|lyrics?|audio|visualizer|4k|hd|full\s+album|"
+    r"mix|extended|nightcore)\)|official\s+(?:music\s+)?video|music\s+video|"
+    r"lyric\s+video|out\s+now"
+)
+
+
+def _looks_like_music_title(text: str) -> bool:
+    """True when a title/line is a music release rather than a scene line."""
+    t = re.sub(r"\s+", " ", (text or "")).strip()
+    if not t:
+        return False
+    if _MUSIC_PAT.search(t):
+        return True
+    m = re.search(r"\s+[-–—]\s+(.{1,24})$", t)
+    if m and len(t.split(" - ")[0].split()) <= 4 and len(m.group(1).split()) <= 2:
+        return True  # "Track - Artist"
+    if len(t.split()) <= 3 and t.isascii() and not re.search(r"[?!]", t):
+        return True  # a bare track name ("Raya", "Nightcall")
+    return False
+
+
 def _orig_hashtags(meta: dict, limit: int = 3, exclude: frozenset = frozenset()) -> list[str]:
     """The source's own topical hashtags (junk tags dropped, ours not repeated)."""
     src = meta.get("source", {})
@@ -222,12 +271,13 @@ def _orig_hashtags(meta: dict, limit: int = 3, exclude: frozenset = frozenset())
 
 
 def _hook_for(meta: dict) -> str:
-    """The poster's proven title is the best hook when it reads like a title;
-    otherwise a seeded strategist hook so '#movie' never ships again and a
-    run-on caption never becomes the title."""
+    """A seeded strategist hook.
+
+    The source's own title is only used when it reads like a scene line -
+    their titles are usually track names, and the song name never ships."""
     title = _clean_source_title(meta)
     emoji = _pick(_HOOK_EMOJI, _seed(meta) + "|e")
-    if title and _is_title_like(title):
+    if title and _is_title_like(title) and not _looks_like_music_title(title):
         t = title if len(title) <= 70 else title[:70].rsplit(" ", 1)[0]
         return sanitize(f"{t} {emoji}")
     return sanitize(_pick(_HOOK_TEMPLATES, _seed(meta) + "|h").format(e=emoji))
@@ -257,8 +307,8 @@ def _dedupe_stems(tags: list[str]) -> list[str]:
 
 
 def _hashtag_list(platform: str, cfg: dict, meta: dict) -> list[str]:
-    """Core discovery tags + a seeded rotation of the pool + the source's own
-    topical tags. Near-duplicates are dropped."""
+    """Core discovery tags + the source's own topical tags + a seeded rotation
+    of the pool. The total always fits the platform budget."""
     n = _TAG_COUNTS.get(platform, 5)
     if n <= 0:
         return []
@@ -273,9 +323,11 @@ def _hashtag_list(platform: str, cfg: dict, meta: dict) -> list[str]:
     if rest:  # deterministic rotation so every post gets a different mix
         off = int(hashlib.sha1((seed + "|tags").encode()).hexdigest(), 16) % len(rest)
         rest = rest[off:] + rest[:off]
-    ours = _dedupe_stems(core[:n] + rest[: max(0, n - len(core))])[:n]
-    topical = _orig_hashtags(meta, limit=3, exclude=frozenset(t.lower() for t in ours))
-    return _dedupe_stems(topical + ours)
+    ours = _dedupe_stems(core[:n])
+    topical = _orig_hashtags(meta, limit=2, exclude=frozenset(t.lower() for t in ours))
+    room = max(0, n - len(ours) - len(topical))
+    ours = _dedupe_stems(ours + rest[:room])[:n]
+    return _dedupe_stems(topical + ours)[:n]
 
 
 def _paras(*parts: str) -> str:
@@ -288,7 +340,7 @@ def captions_for(meta: dict, cfg: dict | None = None) -> dict[str, dict]:
     cfg = cfg or load_config()
     platforms = list(meta.get("posts", {}).keys()) or cfg["platforms"]
     hook = _hook_for(meta)
-    credit = credit_line(meta)
+    credit = credit_line(meta, cfg)
     orig = _clean_source_desc(meta)
     bio = cfg["page"].get("bio_credit", "")
     cta = _cta(cfg)
@@ -298,7 +350,9 @@ def captions_for(meta: dict, cfg: dict | None = None) -> dict[str, dict]:
     title_text = _clean_source_title(meta)
     if orig and title_text and _is_title_like(title_text) \
             and orig.lower().startswith(title_text.lower()[:40]):
-        orig = ""
+        orig = orig[len(title_text):].strip(" -–—|.,\n")
+        if len(orig) < 12:
+            orig = ""
 
     out: dict[str, dict] = {}
     for p in platforms:
@@ -332,7 +386,7 @@ Improve this post's metadata. Rules:
 - Keep it factual to the source material; never invent movie facts or spoilers in the title.
 - No clickbait lies, no words like: {banned}.
 - YouTube title <= 95 chars. Facebook caption <= 2200 chars. Instagram caption <= 2200 chars with at most 8 hashtags. X text <= 280 chars, no hashtags.
-- Always keep creator credit exactly: "{credit}"
+- Never name the original channel or the music track; write about the scene.
 - Vertical clip audience: movie fans 13-34. Hook must earn the first second.
 Return ONLY minified JSON: {{"youtube":{{"title":"","description":""}},"tiktok":{{"caption":""}},"instagram":{{"caption":""}},"x":{{"text":""}}}}
 
@@ -362,7 +416,7 @@ def _llm_refine(meta: dict, captions: dict, cfg: dict) -> dict | None:
             json={
                 "model": model,
                 "messages": [{"role": "user", "content": _LLM_PROMPT.format(
-                    banned=", ".join(BANNED), credit=credit_line(meta) or "(none)", context=context)}],
+                    banned=", ".join(BANNED), context=context)}],
                 "temperature": 0.8, "max_tokens": 800,
             },
             timeout=60,
@@ -407,8 +461,8 @@ def fill_captions(meta: dict, *, use_llm: bool = True, cfg: dict | None = None) 
         refined = _llm_refine(meta, captions, cfg)
         if refined:
             captions = refined
-    # final guard: credit must survive in clip captions
-    credit = credit_line(meta)
+    # final guard: credit must survive in clip captions (when enabled)
+    credit = credit_line(meta, cfg)
     if credit:
         for p, cap in captions.items():
             joined = " ".join(str(v) for v in cap.values())
