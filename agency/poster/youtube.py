@@ -29,6 +29,15 @@ CATEGORY_DEFAULT = "1"
 _PRIVACY_STATUS = "public"
 
 
+class QuotaExceeded(PosterError):
+    """Raised when YouTube refuses an upload because the daily upload quota
+    for the channel is used up (unverified channels: ~6 videos/day).
+
+    The repost engine treats this as "skip YouTube this cycle" instead of a
+    hard failure, so Instagram / Facebook still get their post.
+    """
+
+
 def _clip(text: str, limit: int) -> str:
     return text[:limit].strip()
 
@@ -49,8 +58,13 @@ def _result(post_id: str, url: str) -> dict:
     }
 
 
-def _failed(error: str, retry: bool = False) -> dict:
-    return {"ok": False, "error": error, "retry": retry}
+def _failed(error: str, retry: bool = False, quota: bool = False) -> dict:
+    res = {"ok": False, "error": error, "retry": retry}
+    if quota:
+        # tells the caller this is a quota wall (skip this platform this
+        # cycle), not a broken post that should be retried
+        res["quota"] = True
+    return res
 
 
 class YouTubePoster(PosterBase):
@@ -115,6 +129,10 @@ class YouTubePoster(PosterBase):
             return self._upload(package)
         except oauth.RetryableError as exc:
             return _failed(str(exc), retry=True)
+        except QuotaExceeded as exc:
+            # daily upload quota is used up - skip YouTube this cycle,
+            # let Instagram / Facebook post normally
+            return _failed(str(exc), quota=True)
         except PosterError as exc:
             return _failed(str(exc))
 
@@ -151,9 +169,19 @@ class YouTubePoster(PosterBase):
             },
         )
         if resp.status_code >= 400:
+            body = oauth.body_snippet(resp)
+            if "uploadLimitExceeded" in body or "exceeded the number of videos" in body:
+                # Unverified YouTube channels can only upload ~6 videos/day
+                # (counted in Pacific Time). This is a quota wall, not a
+                # fault - mark it so the cycle can skip YouTube cleanly and
+                # still post to Instagram / Facebook.
+                raise QuotaExceeded(
+                    "youtube daily upload quota reached (unverified channels "
+                    "are capped at ~6 uploads/day). Verify the channel to raise "
+                    "the limit to 500/day."
+                )
             raise PosterError(
-                f"youtube session init failed: HTTP {resp.status_code}: "
-                f"{oauth.body_snippet(resp)}"
+                f"youtube session init failed: HTTP {resp.status_code}: {body}"
             )
         location = resp.headers.get("Location")
         if not location:

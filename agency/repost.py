@@ -536,6 +536,7 @@ def _run_cycle_inner(only_source: str | None, max_items: int | None) -> dict:
     made, failures = [], []
     made_kinds = {"image": 0, "video": 0}
     skipped = {"image": 0, "video": 0}
+    quota_skipped: list[str] = []
     cap_left = rcfg["daily_cap"] - _posted_today(state)
     img_left = rcfg["daily_image_cap"] - _posted_today(state, "image")
     vid_left = rcfg["daily_video_cap"] - _posted_today(state, "video")
@@ -615,11 +616,17 @@ def _run_cycle_inner(only_source: str | None, max_items: int | None) -> dict:
                         if rcfg["mode"] == "auto":
                             results = _post_now(meta, cfg)
                             entry["results"] = [{"platform": r.get("platform", ""), "ok": bool(r.get("ok")),
-                                                 "url": r.get("url", ""), "error": str(r.get("error", ""))[:160]}
+                                                 "url": r.get("url", ""), "error": str(r.get("error", ""))[:160],
+                                                 "quota": bool(r.get("quota"))}
                                                 for r in results]
                             entry["status"] = "posted" if any(r["ok"] for r in entry["results"]) else "failed"
                             entry["detail"] = "; ".join(f"{r['platform']}: {r['error'] or 'posted'}"
                                                         for r in entry["results"])
+                            for r in entry["results"]:
+                                if r.get("quota"):
+                                    quota_skipped.append(r["platform"])
+                                    log(f"repost: {r['platform']} daily quota reached - "
+                                        f"skipping {r['platform']} this cycle")
                         else:
                             entry["status"] = "packaged"
                             entry["detail"] = ("edited with Grand6, " if edited else "") + "waiting at the Approval Gate"
@@ -638,6 +645,9 @@ def _run_cycle_inner(only_source: str | None, max_items: int | None) -> dict:
     if skipped["image"] or skipped["video"]:
         skipped_note = (f", {skipped['image'] + skipped['video']} skipped by caps "
                         f"({skipped['image']} image, {skipped['video']} video)")
+    if quota_skipped:
+        skipped_note += (", " + ", ".join(sorted(set(quota_skipped)))
+                         + " skipped (daily quota reached)")
     state["runs"] = [*state["runs"][-29:], {"at": ran_at, "ok": not failures or bool(made),
                                             "summary": f"{len(made)} new post(s) processed "
                                                        f"({made_kinds['image']} image, {made_kinds['video']} video)"

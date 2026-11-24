@@ -97,8 +97,15 @@ def post_one(package_id: str, cfg: dict | None = None) -> list[dict]:
             human_log(f"POSTED {meta['id']} to {pname}: {res.get('url', '')}")
             log(f"post: OK {meta['id']} -> {pname} {res.get('url', '')}")
         else:
-            queue.set_platform_status(meta, pname, "failed", error=res.get("error", "unknown"))
-            log(f"post: FAIL {meta['id']} -> {pname}: {res.get('error', '')[:200]}", level="error")
+            if res.get("quota"):
+                # quota wall (e.g. YouTube daily upload cap): skip this
+                # platform for the cycle instead of failing the whole post
+                queue.set_platform_status(meta, pname, "skipped",
+                                          error=res.get("error", "quota reached"))
+                log(f"post: SKIP {meta['id']} -> {pname}: {res.get('error', '')[:200]}")
+            else:
+                queue.set_platform_status(meta, pname, "failed", error=res.get("error", "unknown"))
+                log(f"post: FAIL {meta['id']} -> {pname}: {res.get('error', '')[:200]}", level="error")
         results.append({"package": meta["id"], "platform": pname, **res})
     return results
 
@@ -149,8 +156,15 @@ def stage_post(cfg: dict) -> list[dict]:
                 human_log(f"POSTED {meta['id']} to {pname}: {res.get('url', '')}")
                 log(f"post: OK {meta['id']} -> {pname} {res.get('url', '')}")
             else:
-                queue.set_platform_status(meta, pname, "failed", error=res.get("error", "unknown"))
-                log(f"post: FAIL {meta['id']} -> {pname}: {res.get('error', '')[:200]}", level="error")
+                if res.get("quota"):
+                    # quota wall (e.g. YouTube daily upload cap): skip this
+                    # platform for the cycle instead of failing the whole post
+                    queue.set_platform_status(meta, pname, "skipped",
+                                              error=res.get("error", "quota reached"))
+                    log(f"post: SKIP {meta['id']} -> {pname}: {res.get('error', '')[:200]}")
+                else:
+                    queue.set_platform_status(meta, pname, "failed", error=res.get("error", "unknown"))
+                    log(f"post: FAIL {meta['id']} -> {pname}: {res.get('error', '')[:200]}", level="error")
             results.append({"package": meta["id"], "platform": pname, **res})
     return results
 
