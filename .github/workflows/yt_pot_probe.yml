@@ -1,0 +1,61 @@
+name: yt pot probe
+
+# TEMPORARY diagnostic: test the bgutil PO-token provider, the supported way
+# to get past "Sign in to confirm you're not a bot" on datacenter IPs.
+# Delete once the main workflow uses it.
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install deno
+        run: |
+          curl -fsSL https://deno.land/install.sh | sh
+          echo "$HOME/.deno/bin" >> "$GITHUB_PATH"
+
+      - name: Install yt-dlp + POT plugin + POT server
+        run: |
+          set -e
+          pip install -q -U yt-dlp
+          git clone -q --depth 1 https://github.com/Brainicism/bgutil-ytdlp-pot-provider.git pot
+          pip install -q -e ./pot/plugin
+          cd pot/server
+          deno run -A --unstable-kv main.ts > /tmp/pot.log 2>&1 &
+          echo $! > /tmp/pot.pid
+          cd -
+          for i in $(seq 1 30); do
+            if curl -sf http://localhost:4416/ping >/dev/null 2>&1; then
+              echo "POT server up after ${i}s"
+              break
+            fi
+            sleep 1
+          done
+          curl -s http://localhost:4416/ping || echo "POT ping failed"
+          echo "--- pot server log ---"
+          tail -5 /tmp/pot.log || true
+
+      - name: download with POT
+        run: |
+          set +e
+          URL="https://www.youtube.com/shorts/JX0ZNfgYnak"
+          yt-dlp --extractor-args "youtubepot-bgutilserver:base_url=http://localhost:4416" \
+                 --no-warnings -f "bv*[height<=720]+ba/b" --merge-output-format mp4 \
+                 -o "/tmp/pot_test.%(ext)s" "$URL" 2>&1 | tail -5
+          if ls /tmp/pot_test.* >/dev/null 2>&1; then
+            echo "POTRESULT OK $(du -h /tmp/pot_test.* | head -1 | cut -f1)"
+          else
+            echo "POTRESULT FAIL"
+          fi
