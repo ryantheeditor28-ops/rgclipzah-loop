@@ -47,10 +47,10 @@
     "max_title_len": 90,
     "max_desc_len": 900,
     "hashtags": {
-      "youtube": ["#shorts", "#movie", "#edit", "#movieedits", "#viral"],
-      "tiktok": [],
-      "instagram": ["#movie", "#edit", "#movieedits", "#filmedit", "#viral"],
-      "facebook": ["#movie", "#edit", "#movieedits", "#viral", "#fyp"],
+      "youtube": ["#shorts", "#movie", "#movieclips", "#movieedit", "#film", "#cinema", "#moviemoments", "#shortsfeed"],
+      "tiktok": ["#movie", "#movieclips", "#filmedit", "#movieedit", "#filmtok", "#movietok", "#cinematok", "#fyp"],
+      "instagram": ["#movie", "#movieclips", "#movieedit", "#filmedit", "#filmedits", "#film", "#cinema", "#moviescenes", "#moviemoments", "#edits"],
+      "facebook": ["#movie", "#movieclips", "#movieedits", "#filmedit", "#film", "#cinema", "#moviemoments", "#reels"],
       "x": []
     }
   },

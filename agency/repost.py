@@ -329,10 +329,13 @@ def discover(source: dict, cfg: dict) -> list[dict]:
 # ----------------------------------------------------------------- download
 
 def _download_video(page_url: str, out: Path) -> tuple[Path | None, str]:
-    """Fetch one post's video. Returns (file, failure reason)."""
+    """Fetch one post's video (+ its metadata json for the caption engine).
+    Returns (file, failure reason)."""
     if out.exists() and out.stat().st_size > 50_000:
         return out, ""  # already on disk from an earlier attempt
-    res = _run_ytdlp(["-f", "bv*[height<=1080]+ba/b", "--merge-output-format", "mp4", "-o", str(out), page_url],
+    res = _run_ytdlp(["-f", "bv*[height<=1080]+ba/b", "--merge-output-format", "mp4",
+                      "--write-info-json", "--no-write-playlist-metafiles",
+                      "-o", str(out), page_url],
                      timeout=1800)
     f = out if out.exists() else out.with_suffix(".mp4")
     if res.returncode == 0 and f.exists() and f.stat().st_size > 50_000:
@@ -342,14 +345,36 @@ def _download_video(page_url: str, out: Path) -> tuple[Path | None, str]:
     return None, why
 
 
+def _enrich_from_info(item: dict, out: Path) -> None:
+    """Fold the real title/uploader/description from yt-dlp's info.json into the
+    item — flat playlist listings often carry hashtag-only titles ('#movie')."""
+    try:
+        info_p = out.with_suffix(".info.json")
+        if not info_p.exists():
+            return
+        info = json.loads(info_p.read_text(encoding="utf-8", errors="replace"))
+        if str(info.get("title") or "").strip():
+            item["title"] = str(info["title"])[:120]
+        if str(info.get("description") or "").strip():
+            item["description"] = str(info["description"])[:2000]
+        up = str(info.get("uploader") or info.get("channel") or "").strip()
+        if up:
+            item["author"] = up if up.startswith("@") else f"@{up}"
+    except Exception as exc:  # noqa: BLE001 - metadata is a bonus, never fatal
+        log(f"repost: info.json parse failed for {item.get('key')}: {exc!r}")
+
+
 def _download(item: dict) -> tuple[Path | None, str]:
     """Download the item's media. Returns (file, failure reason)."""
     WORK.mkdir(parents=True, exist_ok=True)
     safe = _safe_name(item["key"])
     if item["kind"] == "video":
         out = WORK / f"{safe}.mp4"
-        return _download_video(item.get("permalink") or item["url"] if item["key"].startswith("reddit:")
-                               else item["url"], out)
+        f, why = _download_video(item.get("permalink") or item["url"] if item["key"].startswith("reddit:")
+                                 else item["url"], out)
+        if f:
+            _enrich_from_info(item, out)
+        return f, why
     url = (item.get("gallery") or [item["url"]])[0]
     ext = ".png" if ".png" in url.lower() else ".jpg"
     f = reddit_ingest._dl_image(url, WORK / f"{safe}{ext}")
@@ -396,7 +421,8 @@ def _edit_video(file: Path, item: dict) -> Path | None:
     (job / "candidates.json").write_text(json.dumps({
         "source": str(src),
         "info": {"webpage_url": item.get("permalink") or item["url"], "title": item["title"],
-                 "channel": item.get("author", ""), "uploader": item.get("author", "")},
+                 "channel": item.get("author", ""), "uploader": item.get("author", ""),
+                 "description": item.get("description", "")},
         "candidates": [{"n": 1, "start": 0.0, "end": round(min(dur or 58.0, 58.0), 2),
                         "score": int(item.get("views") or 0), "peak": None,
                         "why": [f"rgclipzah edit of {item['key'].split(':', 1)[0]}"]}],
@@ -427,23 +453,18 @@ def _package(item: dict, file: Path, rcfg: dict, agency: dict, *, edited: bool =
     meta = queue.new_package(
         file, hook=_hook(item["title"]), source_url=item.get("permalink") or item["url"],
         source_channel=item.get("author", ""), source_title=item["title"],
+        source_description=item.get("description", ""),
         credit=item.get("author", ""), pillar="clip",
         layout="fill" if image else "blur", rule_check="PASS", platforms=platforms,
         notes=(f"repost {item['kind']} via {item['key'].split(':', 1)[0]} "
                f"({'grand6 edit' if edited else 'raw'})"
                + (", ultra-wide image so facebook only" if wide else "")),
     )
-    if image:
-        caption = f"{item['title'][:180]}\n\nCredit: {item.get('author', '')}"
-        tags = " ".join((agency.get("seo", {}).get("hashtags", {}).get("facebook") or [])[:5])
-        if tags:
-            caption = f"{caption}\n\n{tags}"
-        for p in platforms:
-            queue.set_caption(meta, p, {"title": _hook(item["title"]), "caption": caption, "hashtags": []})
-    else:
-        for p, cap in seo.fill_captions(meta, cfg=agency).items():
-            if p in platforms:
-                queue.set_caption(meta, p, cap)
+    # every post gets the strategist captions (hook, original description,
+    # credit, CTA, platform-tuned hashtags) - images and videos alike
+    for p, cap in seo.fill_captions(meta, cfg=agency).items():
+        if p in platforms:
+            queue.set_caption(meta, p, cap)
     return meta
 
 
@@ -741,6 +762,8 @@ def ingest_single(url: str, *, edit: bool | None = None, force_auto: bool = Fals
                 item["title"] = title[:120]
             if uploader:
                 item["author"] = f"@{uploader}" if not str(uploader).startswith("@") else str(uploader)
+            if str(meta_j.get("description") or "").strip():
+                item["description"] = str(meta_j["description"])[:2000]
         file, why = _download(item)
         if not file:
             return {"ok": False, "error": f"Download failed - {why or 'yt-dlp could not fetch this post'}"}

@@ -274,13 +274,8 @@ def _package_image(image: Path, post: dict, cfg: dict) -> dict | None:
         platforms=["instagram", "facebook"],
         notes=f"reddit image ({post['score']}pts, {post['comments']}cmts) - IG/FB only",
     )
-    caption = f"{post['title'][:180]}\n\nCredit: {post['author']}"
-    tags = " ".join((cfg.get("seo", {}).get("hashtags", {}).get("facebook") or [])[:5])
-    if tags:
-        caption = f"{caption}\n\n{tags}"
-    for p in ("instagram", "facebook"):
-        queue.set_caption(meta, p, {"title": _hook_from_title(post["title"]),
-                                    "caption": caption, "hashtags": []})
+    for p, cap in seo.fill_captions(meta, cfg=cfg).items():
+        queue.set_caption(meta, p, cap)
     return queue.load_meta(meta)
 
 
