@@ -174,10 +174,92 @@ def _strip_hashtags(text: str) -> str:
     return re.sub(r"(?<![\w#])#[\w\d_]+", "", text or "")
 
 
+# A source title often hides the music in its TAIL, after the scene hook:
+#   "... | Maleficent | Headlights ( feat. KIDDO)"
+#   "... | Song - RAYA (slowed)"
+#   "... | MONTAGEM SANTA FE 2"
+#   "... | Raya - Zericxxn"
+# The hook in front stays, the music tail goes.
+_MUSIC_SEGMENT_PAT = re.compile(
+    r"(?i)"
+    r"\(\s*(?:feat|ft|featuring)\b[^)]*\)"        # ( feat. KIDDO)
+    r"|\b(?:song|m[uú]sica|track|trilha|montagem)\b"  # "Song - RAYA", "MONTAGEM X"
+    r"|\b(?:slowed|sped\s*up|reverb|nightcore|phonk)\b"
+    r"|\bpresets?\s+in\s+bio\b"
+)
+# episode markers ("SO1E01") are channel bookkeeping, not scene context
+_EPISODE_PAT = re.compile(r"(?i)\bS[O0]?\d{1,2}\s?E\d{1,3}\b")
+
+
+def _is_music_segment(seg: str) -> bool:
+    """True when one title segment names a track, montage or artist."""
+    s = re.sub(r"\s+", " ", seg or "").strip()
+    if not s:
+        return True
+    if _MUSIC_SEGMENT_PAT.search(s):
+        return True
+    # "Track - Artist": a short left part and a short right part. The dash
+    # must be padded ("Raya - Zericxxn"), otherwise movie names that end in
+    # "- Edit" / "- SO1E01" would be thrown away too.
+    m = re.match(r"^(.{1,40}?)\s+[-–—]\s+(\S.{0,23})$", s)
+    if m and len(m.group(1).split()) <= 4 and len(m.group(2).split()) <= 2:
+        return True
+    return False
+
+
+def _has_quoted_track(seg: str) -> bool:
+    """True for the "<quoted track> - <content>" shape ("not today "- Mercedes edit)."""
+    s = re.sub(r"\s+", " ", seg or "").strip()
+    return bool(re.match(r"^[\"'“”]\s*([^/\"'“”]{2,40}?)\s*[\"'“”]\s*[-–—]\s*(.+)$", s))
+
+
+def _clean_segment(seg: str) -> str:
+    """One title segment with the track reference removed.
+    '' when the whole segment is a music reference."""
+    s = re.sub(r"\s+", " ", seg or "").strip()
+    if not s:
+        return ""
+    if _MUSIC_SEGMENT_PAT.search(s):
+        return ""
+    # "Track - Artist" (both sides short) -> the whole segment is music
+    m = re.match(r"^(.{1,40}?)\s+[-–—]\s+(\S.{0,23})$", s)
+    if m and len(m.group(1).split()) <= 4 and len(m.group(2).split()) <= 2:
+        return ""
+    # "<quoted track> - <content>": the quoted part is the track name, the
+    # rest describes the edit. The scene hook usually sits in front of it
+    # ("' When Cap picked up Mjolnir' -" has nothing after the dash and is
+    # therefore left alone).
+    if _has_quoted_track(s):
+        q = re.match(r"^[\"'“”]\s*([^/\"'“”]{2,40}?)\s*[\"'“”]\s*[-–—]\s*(.+)$", s)
+        rest = q.group(2).strip()
+        return "" if _is_music_segment(rest) else rest
+    return s
+
+
+def _strip_music_segments(text: str) -> str:
+    """Remove the music/montagem tail from a source title, keep the scene hook."""
+    if not text:
+        return ""
+    parts = re.split(r"\s*[|｜]\s*|\s*//\s*", text)
+    cleaned = [_clean_segment(p) for p in parts]
+    # A "<quoted track> - <content> | <montage>" title always ends with the
+    # montage name ("... | SEM DEMORA"). Once that shape is seen, the last
+    # segment is the track and goes as well.
+    if len(parts) > 1 and any(_has_quoted_track(p) for p in parts):
+        if cleaned and cleaned[-1] and not _is_music_segment(cleaned[-1]):
+            cleaned = cleaned[:-1]
+    kept = [p for p in cleaned if p]
+    out = " | ".join(kept)
+    out = _EPISODE_PAT.sub("", out)
+    return re.sub(r"\s{2,}", " ", out).strip(" -–—|.,")
+
+
 def _clean_source_title(meta: dict) -> str:
-    """The poster's own title without hashtag noise — '' when it was only hashtags."""
+    """The poster's own title without hashtag noise and without the music
+    tail — '' when it was only hashtags or only a track name."""
     raw = str(meta.get("source", {}).get("title", "") or "")
     t = re.sub(r"\s+", " ", _strip_hashtags(raw)).strip(" -–—|.,")
+    t = _strip_music_segments(t)
     if t.lower().rstrip("!.") in ("", "movie", "video", "clip", "shorts"):
         return ""
     return t
@@ -208,6 +290,10 @@ def _clean_source_desc(meta: dict, limit: int = 400) -> str:
         # a stripped link leaves a dangling label behind ("link:", "source:")
         ln = re.sub(r"(?i)\b(?:link|source|src|watch|full\s+video|credits?)\s*:\s*$", "", ln)
         ln = re.sub(r"[\s,;:.\-–—]+$", "", ln).strip()
+        if not ln or _looks_like_music_title(ln):
+            continue
+        # a music tail inside the line ("Hook | Song - RAYA") goes too
+        ln = _strip_music_segments(ln)
         if not ln or _looks_like_music_title(ln):
             continue
         lines.append(ln)
