@@ -271,7 +271,8 @@
    "youtube:jAuk3UZ7XDg",
    "youtube:nDIN9KMf3c4",
    "youtube:LNQVCjtfQ48",
-   "youtube:oIeNzwlDk-E"
+   "youtube:oIeNzwlDk-E",
+   "youtube:bx0n1jihShM"
   ],
   "b3dae9b6": [
    "tiktok:7710525636502211871",
@@ -281,12 +282,6 @@
   ]
  },
  "runs": [
-  {
-   "at": "2026-11-24T02:56:25+00:00",
-   "ok": false,
-   "summary": "could not list youtube YahBak",
-   "error": "could not list https://www.youtube.com/@YahBak/shorts: ERROR: '/home/runner/work/rgclipzah-loop/rgclipzah-loop/cookies.txt' does not look like a Netscape format cookies file"
-  },
   {
    "at": "2026-11-24T02:56:25+00:00",
    "ok": false,
@@ -450,6 +445,11 @@
   },
   {
    "at": "2026-11-24T18:18:32+00:00",
+   "ok": true,
+   "summary": "1 new post(s) processed (0 image, 1 video), youtube skipped (daily quota reached)"
+  },
+  {
+   "at": "2026-11-24T20:10:32+00:00",
    "ok": true,
    "summary": "1 new post(s) processed (0 image, 1 video), youtube skipped (daily quota reached)"
   }
@@ -1871,7 +1871,41 @@
     }
    ],
    "detail": "youtube: youtube daily upload quota reached (unverified channels are capped at ~6 uploads/day). Verify the channel to raise the limit to 500/day.; instagram: posted; facebook: posted"
+  },
+  {
+   "key": "youtube:bx0n1jihShM",
+   "source": "youtube alizedits",
+   "title": "I Am Ultron - TRAKELLA (Slowed) #trending #shorts",
+   "kind": "video",
+   "url": "https://www.youtube.com/watch?v=bx0n1jihShM",
+   "at": "2026-11-24T20:10:33+00:00",
+   "status": "posted",
+   "package": "20261124-2010-abdefc",
+   "results": [
+    {
+     "platform": "youtube",
+     "ok": false,
+     "url": "",
+     "error": "youtube daily upload quota reached (unverified channels are capped at ~6 uploads/day). Verify the channel to raise the limit to 500/day.",
+     "quota": true
+    },
+    {
+     "platform": "instagram",
+     "ok": true,
+     "url": "https://www.instagram.com/reel/DgIyG3KkgSu/",
+     "error": "",
+     "quota": false
+    },
+    {
+     "platform": "facebook",
+     "ok": true,
+     "url": "https://www.facebook.com/reel/1513633290636904",
+     "error": "",
+     "quota": false
+    }
+   ],
+   "detail": "youtube: youtube daily upload quota reached (unverified channels are capped at ~6 uploads/day). Verify the channel to raise the limit to 500/day.; instagram: posted; facebook: posted"
   }
  ],
- "last_run": "2026-11-24T18:18:32+00:00"
+ "last_run": "2026-11-24T20:10:32+00:00"
 }
