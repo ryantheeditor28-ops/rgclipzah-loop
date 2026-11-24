@@ -23,6 +23,7 @@ jobs:
 
       - name: matrix
         run: |
+          set +e
           URL="https://www.youtube.com/shorts/JX0ZNfgYnak"
           for CL in default android ios tv tv_simply web_safari mweb android_vr web_embedded tv_embedded; do
             if [ "$CL" = "default" ]; then
@@ -31,7 +32,7 @@ jobs:
               ARGS="--extractor-args youtube:player_client=$CL"
             fi
             OUT=$(yt-dlp $ARGS --no-warnings -f "bv*[height<=720]+ba/b" \
-                  --merge-output-format mp4 -o "/tmp/t_$CL.%(ext)s" "$URL" 2>&1)
+                  --merge-output-format mp4 -o "/tmp/t_$CL.%(ext)s" "$URL" 2>&1 || true)
             if ls /tmp/t_$CL.* >/dev/null 2>&1; then
               SZ=$(du -h /tmp/t_$CL.* 2>/dev/null | head -1 | cut -f1)
               echo "RESULT $CL OK size=$SZ"
@@ -40,3 +41,4 @@ jobs:
               echo "RESULT $CL FAIL $(echo "$OUT" | tail -1 | cut -c1-140)"
             fi
           done
+          echo "MATRIX DONE"
