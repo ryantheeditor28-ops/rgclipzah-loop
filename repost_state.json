@@ -264,7 +264,8 @@
   "acbd7159": [
    "youtube:Fox8Zvh2Y38",
    "youtube:2U13vMS5ilo",
-   "youtube:OJ5Xfz6fMyA"
+   "youtube:OJ5Xfz6fMyA",
+   "youtube:24vU9iv6Bac"
   ],
   "b3dae9b6": [
    "tiktok:7710525636502211871",
@@ -294,6 +295,11 @@
   },
   {
    "at": "2026-11-24T08:55:00+08:00",
+   "ok": true,
+   "summary": "1 new post(s) processed (0 image, 1 video)"
+  },
+  {
+   "at": "2026-11-24T09:41:32+08:00",
    "ok": true,
    "summary": "1 new post(s) processed (0 image, 1 video)"
   }
@@ -789,7 +795,38 @@
     }
    ],
    "detail": "youtube: posted; instagram: posted; facebook: posted"
+  },
+  {
+   "key": "youtube:24vU9iv6Bac",
+   "source": "youtube alizedits",
+   "title": "Her Aim! - Raya (Slowed) #trending #shorts",
+   "kind": "video",
+   "url": "https://www.youtube.com/watch?v=24vU9iv6Bac",
+   "at": "2026-11-24T09:41:35+08:00",
+   "status": "posted",
+   "package": "20261124-0942-32aa86",
+   "results": [
+    {
+     "platform": "youtube",
+     "ok": true,
+     "url": "https://www.youtube.com/shorts/80_gB_hyX-A",
+     "error": ""
+    },
+    {
+     "platform": "instagram",
+     "ok": true,
+     "url": "https://www.instagram.com/reel/DgGzY4nCT3b/",
+     "error": ""
+    },
+    {
+     "platform": "facebook",
+     "ok": true,
+     "url": "https://www.facebook.com/reel/2161179774765768",
+     "error": ""
+    }
+   ],
+   "detail": "youtube: posted; instagram: posted; facebook: posted"
   }
  ],
- "last_run": "2026-11-24T08:55:00+08:00"
+ "last_run": "2026-11-24T09:41:32+08:00"
 }
