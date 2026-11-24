@@ -274,11 +274,6 @@
  },
  "runs": [
   {
-   "at": "2026-11-24T05:23:52+08:00",
-   "ok": true,
-   "summary": "2 new post(s) processed (0 image, 2 video)"
-  },
-  {
    "at": "2026-11-23T22:04:04+00:00",
    "ok": true,
    "summary": "post throttle: last post 37 min ago, min gap 2h - waiting before the next send (anti-spam spacing)"
@@ -302,6 +297,155 @@
    "at": "2026-11-24T09:41:32+08:00",
    "ok": true,
    "summary": "1 new post(s) processed (0 image, 1 video)"
+  },
+  {
+   "at": "2026-11-24T02:56:24+00:00",
+   "ok": false,
+   "summary": "could not list youtube alizedits",
+   "error": "could not list https://www.youtube.com/@alizedits/shorts: ERROR: '/home/runner/work/rgclipzah-loop/rgclipzah-loop/cookies.txt' does not look like a Netscape format cookies file"
+  },
+  {
+   "at": "2026-11-24T02:56:24+00:00",
+   "ok": false,
+   "summary": "could not list youtube TaleTalker088",
+   "error": "could not list https://www.youtube.com/@TaleTalker088/shorts: ERROR: '/home/runner/work/rgclipzah-loop/rgclipzah-loop/cookies.txt' does not look like a Netscape format cookies file"
+  },
+  {
+   "at": "2026-11-24T02:56:25+00:00",
+   "ok": false,
+   "summary": "could not list youtube YahBak",
+   "error": "could not list https://www.youtube.com/@YahBak/shorts: ERROR: '/home/runner/work/rgclipzah-loop/rgclipzah-loop/cookies.txt' does not look like a Netscape format cookies file"
+  },
+  {
+   "at": "2026-11-24T02:56:25+00:00",
+   "ok": false,
+   "summary": "could not list youtube sippymemes",
+   "error": "could not list https://www.youtube.com/@sippymemes/shorts: ERROR: '/home/runner/work/rgclipzah-loop/rgclipzah-loop/cookies.txt' does not look like a Netscape format cookies file"
+  },
+  {
+   "at": "2026-11-24T02:56:26+00:00",
+   "ok": false,
+   "summary": "could not list youtube Editclips-k2r",
+   "error": "could not list https://www.youtube.com/@Editclips-k2r/shorts: ERROR: '/home/runner/work/rgclipzah-loop/rgclipzah-loop/cookies.txt' does not look like a Netscape format cookies file"
+  },
+  {
+   "at": "2026-11-24T02:56:26+00:00",
+   "ok": false,
+   "summary": "could not list youtube Armanyt89",
+   "error": "could not list https://www.youtube.com/@Armanyt89/shorts: ERROR: '/home/runner/work/rgclipzah-loop/rgclipzah-loop/cookies.txt' does not look like a Netscape format cookies file"
+  },
+  {
+   "at": "2026-11-24T02:56:26+00:00",
+   "ok": false,
+   "summary": "could not list youtube CLIPSEDIT.88",
+   "error": "could not list https://www.youtube.com/@CLIPSEDIT.88/shorts: ERROR: '/home/runner/work/rgclipzah-loop/rgclipzah-loop/cookies.txt' does not look like a Netscape format cookies file"
+  },
+  {
+   "at": "2026-11-24T02:56:27+00:00",
+   "ok": false,
+   "summary": "could not list youtube FireflyEdtx",
+   "error": "could not list https://www.youtube.com/@FireflyEdtx/shorts: ERROR: '/home/runner/work/rgclipzah-loop/rgclipzah-loop/cookies.txt' does not look like a Netscape format cookies file"
+  },
+  {
+   "at": "2026-11-24T02:56:27+00:00",
+   "ok": false,
+   "summary": "could not list youtube xCROSSx3",
+   "error": "could not list https://www.youtube.com/@xCROSSx3/shorts: ERROR: '/home/runner/work/rgclipzah-loop/rgclipzah-loop/cookies.txt' does not look like a Netscape format cookies file"
+  },
+  {
+   "at": "2026-11-24T02:56:27+00:00",
+   "ok": false,
+   "summary": "could not list youtube Maqurak",
+   "error": "could not list https://www.youtube.com/@Maqurak/shorts: ERROR: '/home/runner/work/rgclipzah-loop/rgclipzah-loop/cookies.txt' does not look like a Netscape format cookies file"
+  },
+  {
+   "at": "2026-11-24T02:56:28+00:00",
+   "ok": false,
+   "summary": "could not list youtube Ardan-editzz",
+   "error": "could not list https://www.youtube.com/@Ardan-editzz/shorts: ERROR: '/home/runner/work/rgclipzah-loop/rgclipzah-loop/cookies.txt' does not look like a Netscape format cookies file"
+  },
+  {
+   "at": "2026-11-24T02:56:28+00:00",
+   "ok": false,
+   "summary": "could not list youtube buschx_ae",
+   "error": "could not list https://www.youtube.com/@buschx_ae/shorts: ERROR: '/home/runner/work/rgclipzah-loop/rgclipzah-loop/cookies.txt' does not look like a Netscape format cookies file"
+  },
+  {
+   "at": "2026-11-24T02:56:29+00:00",
+   "ok": false,
+   "summary": "could not list youtube Avexnedit",
+   "error": "could not list https://www.youtube.com/@Avexnedit/shorts: ERROR: '/home/runner/work/rgclipzah-loop/rgclipzah-loop/cookies.txt' does not look like a Netscape format cookies file"
+  },
+  {
+   "at": "2026-11-24T02:56:29+00:00",
+   "ok": false,
+   "summary": "could not list youtube real_neox-EDITS",
+   "error": "could not list https://www.youtube.com/@real_neox-EDITS/shorts: ERROR: '/home/runner/work/rgclipzah-loop/rgclipzah-loop/cookies.txt' does not look like a Netscape format cookies file"
+  },
+  {
+   "at": "2026-11-24T02:56:29+00:00",
+   "ok": false,
+   "summary": "could not list tiktok avex.dex",
+   "error": "could not list https://www.tiktok.com/@avex.dex: ERROR: '/home/runner/work/rgclipzah-loop/rgclipzah-loop/cookies.txt' does not look like a Netscape format cookies file"
+  },
+  {
+   "at": "2026-11-24T02:56:30+00:00",
+   "ok": false,
+   "summary": "could not list tiktok mossgleam",
+   "error": "could not list https://www.tiktok.com/@mossgleam: ERROR: '/home/runner/work/rgclipzah-loop/rgclipzah-loop/cookies.txt' does not look like a Netscape format cookies file"
+  },
+  {
+   "at": "2026-11-24T02:56:31+00:00",
+   "ok": false,
+   "summary": "could not list tiktok cl1p0calypse",
+   "error": "could not list https://www.tiktok.com/@cl1p0calypse: ERROR: '/home/runner/work/rgclipzah-loop/rgclipzah-loop/cookies.txt' does not look like a Netscape format cookies file"
+  },
+  {
+   "at": "2026-11-24T02:56:31+00:00",
+   "ok": false,
+   "summary": "could not list tiktok jxudk24",
+   "error": "could not list https://www.tiktok.com/@jxudk24: ERROR: '/home/runner/work/rgclipzah-loop/rgclipzah-loop/cookies.txt' does not look like a Netscape format cookies file"
+  },
+  {
+   "at": "2026-11-24T02:56:32+00:00",
+   "ok": false,
+   "summary": "could not list tiktok english.short.cli84",
+   "error": "could not list https://www.tiktok.com/@english.short.cli84: ERROR: '/home/runner/work/rgclipzah-loop/rgclipzah-loop/cookies.txt' does not look like a Netscape format cookies file"
+  },
+  {
+   "at": "2026-11-24T02:56:32+00:00",
+   "ok": false,
+   "summary": "could not list tiktok nwa.fxx",
+   "error": "could not list https://www.tiktok.com/@nwa.fxx: ERROR: '/home/runner/work/rgclipzah-loop/rgclipzah-loop/cookies.txt' does not look like a Netscape format cookies file"
+  },
+  {
+   "at": "2026-11-24T02:56:33+00:00",
+   "ok": false,
+   "summary": "could not list tiktok pixl.filmz",
+   "error": "could not list https://www.tiktok.com/@pixl.filmz: ERROR: '/home/runner/work/rgclipzah-loop/rgclipzah-loop/cookies.txt' does not look like a Netscape format cookies file"
+  },
+  {
+   "at": "2026-11-24T02:56:34+00:00",
+   "ok": false,
+   "summary": "could not list tiktok christal2660",
+   "error": "could not list https://www.tiktok.com/@christal2660: ERROR: '/home/runner/work/rgclipzah-loop/rgclipzah-loop/cookies.txt' does not look like a Netscape format cookies file"
+  },
+  {
+   "at": "2026-11-24T02:56:34+00:00",
+   "ok": false,
+   "summary": "could not list tiktok drxpz.aepp",
+   "error": "could not list https://www.tiktok.com/@drxpz.aepp: ERROR: '/home/runner/work/rgclipzah-loop/rgclipzah-loop/cookies.txt' does not look like a Netscape format cookies file"
+  },
+  {
+   "at": "2026-11-24T02:56:35+00:00",
+   "ok": false,
+   "summary": "could not list tiktok dailyclips.gg98",
+   "error": "could not list https://www.tiktok.com/@dailyclips.gg98: ERROR: '/home/runner/work/rgclipzah-loop/rgclipzah-loop/cookies.txt' does not look like a Netscape format cookies file"
+  },
+  {
+   "at": "2026-11-24T02:56:23+00:00",
+   "ok": false,
+   "summary": "0 new post(s) processed (0 image, 0 video), 24 failed"
   }
  ],
  "items": [
@@ -828,5 +972,5 @@
    "detail": "youtube: posted; instagram: posted; facebook: posted"
   }
  ],
- "last_run": "2026-11-24T09:41:32+08:00"
+ "last_run": "2026-11-24T02:56:23+00:00"
 }
