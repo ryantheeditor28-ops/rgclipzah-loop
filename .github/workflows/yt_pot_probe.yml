@@ -30,9 +30,8 @@ jobs:
         run: |
           set -e
           pip install -q -U yt-dlp
+          pip install -q bgutil-ytdlp-pot-provider
           git clone -q --depth 1 https://github.com/Brainicism/bgutil-ytdlp-pot-provider.git pot
-          ls pot
-          pip install -q -e ./pot/plugin
           cd pot/server
           deno run -A --unstable-kv main.ts > /tmp/pot.log 2>&1 &
           echo $! > /tmp/pot.pid
