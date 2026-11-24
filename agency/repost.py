@@ -490,17 +490,30 @@ def _posted_today(state: dict, qkind: str | None = None) -> int:
 
 
 def _last_post_at(state: dict) -> datetime.datetime | None:
-    """When the engine last produced a post (auto sends or gate approvals)."""
-    last = ""
+    """When the engine last produced a post (auto sends or gate approvals).
+
+    Items are stamped with the local offset of whatever machine posted them
+    (the Actions runner writes UTC, this PC writes +08:00), so the newest post
+    is the newest *instant* - not the biggest ISO string. Comparing strings
+    used to mis-read a UTC post from the runner as older than a local one and
+    let the throttle fire an hour early.
+    """
+    best: datetime.datetime | None = None
     for it in state["items"]:
-        if it.get("status") == "posted" and it.get("at", "") > last:
-            last = it["at"]
-    if not last:
-        return None
-    try:
-        return datetime.datetime.fromisoformat(last)
-    except ValueError:
-        return None
+        if it.get("status") != "posted":
+            continue
+        raw = it.get("at") or ""
+        if not raw:
+            continue
+        try:
+            when = datetime.datetime.fromisoformat(raw)
+        except ValueError:
+            continue
+        if when.tzinfo is None:
+            when = when.astimezone()
+        if best is None or when > best:
+            best = when
+    return best
 
 
 def _mark_seen(state: dict, source_id: str, key: str) -> None:

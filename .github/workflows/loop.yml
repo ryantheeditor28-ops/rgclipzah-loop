@@ -1,9 +1,14 @@
 name: RGCIPZAH repost loop
 
-# Every 2 hours (matches the anti-spam post gap), plus a manual run button.
+# GitHub's cron scheduler is dropping ~99% of this account's scheduled runs
+# (a public probe repo with a 5-minute cron fired once in 10.5 hours), so
+# `on: schedule` can never carry a 2-hour cadence. The cadence lives in the
+# public `rgclipzah-keeper` repo, which dispatches THIS workflow through the
+# API when a post is actually due. The hourly cron below is only a cheap
+# backstop in case the keeper chain ever dies.
 on:
   schedule:
-    - cron: "41 */2 * * *"
+    - cron: "53 * * * *"
   workflow_dispatch:
 
 # never let two cycles overlap; state is committed back after each run
@@ -21,16 +26,29 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # Cheap gate before we burn runner minutes on apt-get, the POT provider
+      # and a video download. Stdlib only, so it runs before `pip install`.
+      - name: Check if a post is due
+        id: gate
+        run: python3 scripts_agency/due_check.py
+
+      - name: Skip (not due yet)
+        if: steps.gate.outputs.due != 'true'
+        run: echo "not due: ${{ steps.gate.outputs.reason }}"
+
       - name: Install ffmpeg (not preinstalled on the runner)
+        if: steps.gate.outputs.due == 'true'
         run: |
           sudo apt-get update -y
           sudo apt-get install -y --no-install-recommends ffmpeg
 
       - uses: actions/setup-python@v5
+        if: steps.gate.outputs.due == 'true'
         with:
           python-version: "3.12"
 
       - name: Install loop dependencies
+        if: steps.gate.outputs.due == 'true'
         run: pip install -r requirements-loop.txt
 
       # YouTube puts logged-in accounts on SABR-only streaming: without a
@@ -39,6 +57,7 @@ jobs:
       # POT provider generates that token; node also runs the JS challenge
       # solver that the web client needs for the "n" signature parameter.
       - name: Install POT provider + JS challenge solver
+        if: steps.gate.outputs.due == 'true'
         run: |
           set -e
           pip install -q bgutil-ytdlp-pot-provider yt-dlp-ejs
@@ -58,7 +77,12 @@ jobs:
           curl -s http://127.0.0.1:4416/ping || { echo "POT server failed"; tail -20 /tmp/pot.log; exit 1; }
           node --version
 
+      # Network reachability to googlevideo.com is flaky on the shared runner
+      # network and has taken down whole cycles on its own. A failed probe
+      # must not kill the cycle - the real download retries internally.
       - name: Verify yt-dlp can download a YouTube clip
+        if: steps.gate.outputs.due == 'true'
+        continue-on-error: true
         env:
           YTDL_COOKIES: ${{ secrets.YTDL_COOKIES_FILE }}
         run: |
@@ -73,6 +97,7 @@ jobs:
           rm -f potcheck.*
 
       - name: Smoke-test the edit chain on runner ffmpeg
+        if: steps.gate.outputs.due == 'true'
         run: |
           set -e
           ffmpeg -y -hide_banner -loglevel error -f lavfi -i testsrc2=size=720x1280:rate=30:duration=3 -f lavfi -i anullsrc=channel_layout=stereo:sample_rate=44100 -shortest -c:v libx264 -preset veryfast -pix_fmt yuv420p -c:a aac smoke-src.mp4
@@ -88,6 +113,7 @@ jobs:
           rm -f smoke-src.mp4 smoke-out.mp4
 
       - name: Restore browser cookies (if the secret is set)
+        if: steps.gate.outputs.due == 'true'
         env:
           YTDL_COOKIES: ${{ secrets.YTDL_COOKIES_FILE }}
         run: |
@@ -97,6 +123,7 @@ jobs:
           fi
 
       - name: Run one repost cycle (discover -> edit -> post)
+        if: steps.gate.outputs.due == 'true'
         env:
           RGCLIP_LOOP: "1"
           RGCLIP_MAX_PER_CYCLE: "1"
@@ -123,6 +150,7 @@ jobs:
         run: python run_loop.py
 
       - name: Persist state (dedupe, caps, throttle)
+        if: steps.gate.outputs.due == 'true'
         run: |
           git config user.name "rgclipzah-loop"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
