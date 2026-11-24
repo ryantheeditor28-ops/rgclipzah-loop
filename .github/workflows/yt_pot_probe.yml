@@ -21,11 +21,6 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Install deno
-        run: |
-          curl -fsSL https://deno.land/install.sh | sh
-          echo "$HOME/.deno/bin" >> "$GITHUB_PATH"
-
       - name: Install yt-dlp + POT plugin + POT server
         run: |
           set -e
@@ -33,10 +28,11 @@ jobs:
           pip install -q bgutil-ytdlp-pot-provider
           git clone -q --depth 1 https://github.com/Brainicism/bgutil-ytdlp-pot-provider.git pot
           cd pot/server
-          deno run -A --unstable-kv main.ts > /tmp/pot.log 2>&1 &
+          npm install --silent
+          npx --yes tsx src/main.ts --port 4416 > /tmp/pot.log 2>&1 &
           echo $! > /tmp/pot.pid
           cd -
-          for i in $(seq 1 40); do
+          for i in $(seq 1 60); do
             if curl -sf http://localhost:4416/ping >/dev/null 2>&1; then
               echo "POT server up after ${i}s"
               break
@@ -45,7 +41,7 @@ jobs:
           done
           curl -s http://localhost:4416/ping || echo "POT ping failed"
           echo "--- pot server log ---"
-          tail -5 /tmp/pot.log || true
+          tail -8 /tmp/pot.log || true
 
       - name: download with POT
         run: |
