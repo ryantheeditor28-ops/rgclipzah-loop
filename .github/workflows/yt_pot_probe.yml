@@ -31,12 +31,13 @@ jobs:
           set -e
           pip install -q -U yt-dlp
           git clone -q --depth 1 https://github.com/Brainicism/bgutil-ytdlp-pot-provider.git pot
+          ls pot
           pip install -q -e ./pot/plugin
           cd pot/server
           deno run -A --unstable-kv main.ts > /tmp/pot.log 2>&1 &
           echo $! > /tmp/pot.pid
           cd -
-          for i in $(seq 1 30); do
+          for i in $(seq 1 40); do
             if curl -sf http://localhost:4416/ping >/dev/null 2>&1; then
               echo "POT server up after ${i}s"
               break
