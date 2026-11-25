@@ -282,7 +282,8 @@
    "youtube:ddMD9VEn1ug",
    "youtube:DMCjn1GiPtA",
    "youtube:f9UZtxoHMW0",
-   "youtube:F7xtP7J8iVY"
+   "youtube:F7xtP7J8iVY",
+   "youtube:c85J9WF5cl8"
   ],
   "b3dae9b6": [
    "tiktok:7710525636502211871",
@@ -293,12 +294,6 @@
   ]
  },
  "runs": [
-  {
-   "at": "2026-11-24T02:56:29+00:00",
-   "ok": false,
-   "summary": "could not list tiktok avex.dex",
-   "error": "could not list https://www.tiktok.com/@avex.dex: ERROR: '/home/runner/work/rgclipzah-loop/rgclipzah-loop/cookies.txt' does not look like a Netscape format cookies file"
-  },
   {
    "at": "2026-11-24T02:56:30+00:00",
    "ok": false,
@@ -452,21 +447,14 @@
    "at": "2026-11-25T18:32:17+00:00",
    "ok": true,
    "summary": "1 new post(s) processed (0 image, 1 video), youtube skipped (daily quota reached)"
+  },
+  {
+   "at": "2026-11-25T20:31:01+00:00",
+   "ok": true,
+   "summary": "1 new post(s) processed (0 image, 1 video), youtube skipped (daily quota reached)"
   }
  ],
  "items": [
-  {
-   "key": "youtube:Hu1_JtPzYgM",
-   "source": "youtube TaleTalker088",
-   "title": "Bro sold a Ferrari without saying a word. \ud83d\ude02\ud83d\ude05",
-   "kind": "video",
-   "url": "https://www.youtube.com/watch?v=Hu1_JtPzYgM",
-   "at": "2026-11-24T02:59:44+00:00",
-   "status": "failed",
-   "package": "",
-   "results": [],
-   "detail": "ERROR: [youtube] Hu1_JtPzYgM: Sign in to confirm you\u2019re not a bot. This helps protect our community. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-d"
-  },
   {
    "key": "youtube:102L-ssLKWc",
    "source": "youtube YahBak",
@@ -2057,7 +2045,41 @@
     }
    ],
    "detail": "youtube: youtube daily upload quota reached (unverified channels are capped at ~6 uploads/day). Verify the channel to raise the limit to 500/day.; instagram: posted; facebook: posted"
+  },
+  {
+   "key": "youtube:c85J9WF5cl8",
+   "source": "youtube alizedits",
+   "title": "I am Both! - Karvenora (Slowed) #trending #shorts",
+   "kind": "video",
+   "url": "https://www.youtube.com/watch?v=c85J9WF5cl8",
+   "at": "2026-11-25T20:31:02+00:00",
+   "status": "posted",
+   "package": "20261125-2031-a3e177",
+   "results": [
+    {
+     "platform": "youtube",
+     "ok": false,
+     "url": "",
+     "error": "youtube daily upload quota reached (unverified channels are capped at ~6 uploads/day). Verify the channel to raise the limit to 500/day.",
+     "quota": true
+    },
+    {
+     "platform": "instagram",
+     "ok": true,
+     "url": "https://www.instagram.com/reel/DgLZQaDhyOk/",
+     "error": "",
+     "quota": false
+    },
+    {
+     "platform": "facebook",
+     "ok": true,
+     "url": "https://www.facebook.com/reel/1773484427087885",
+     "error": "",
+     "quota": false
+    }
+   ],
+   "detail": "youtube: youtube daily upload quota reached (unverified channels are capped at ~6 uploads/day). Verify the channel to raise the limit to 500/day.; instagram: posted; facebook: posted"
   }
  ],
- "last_run": "2026-11-25T18:32:17+00:00"
+ "last_run": "2026-11-25T20:31:01+00:00"
 }
