@@ -279,7 +279,8 @@
    "youtube:Hrxfej4iC-c",
    "youtube:WVOdTTIlYUU",
    "youtube:pTs2Fai1XPU",
-   "youtube:ddMD9VEn1ug"
+   "youtube:ddMD9VEn1ug",
+   "youtube:DMCjn1GiPtA"
   ],
   "b3dae9b6": [
    "tiktok:7710525636502211871",
@@ -289,12 +290,6 @@
   ]
  },
  "runs": [
-  {
-   "at": "2026-11-24T02:56:28+00:00",
-   "ok": false,
-   "summary": "could not list youtube Ardan-editzz",
-   "error": "could not list https://www.youtube.com/@Ardan-editzz/shorts: ERROR: '/home/runner/work/rgclipzah-loop/rgclipzah-loop/cookies.txt' does not look like a Netscape format cookies file"
-  },
   {
    "at": "2026-11-24T02:56:28+00:00",
    "ok": false,
@@ -452,21 +447,14 @@
    "at": "2026-11-25T10:01:09+00:00",
    "ok": true,
    "summary": "1 new post(s) processed (0 image, 1 video)"
+  },
+  {
+   "at": "2026-11-25T12:01:14+00:00",
+   "ok": true,
+   "summary": "1 new post(s) processed (0 image, 1 video)"
   }
  ],
  "items": [
-  {
-   "key": "youtube:Hu1_JtPzYgM",
-   "source": "youtube TaleTalker088",
-   "title": "Bro sold a Ferrari without saying a word. \ud83d\ude02\ud83d\ude05",
-   "kind": "video",
-   "url": "https://www.youtube.com/watch?v=Hu1_JtPzYgM",
-   "at": "2026-11-23T22:42:17+00:00",
-   "status": "failed",
-   "package": "",
-   "results": [],
-   "detail": "ERROR: [youtube] Hu1_JtPzYgM: Sign in to confirm you\u2019re not a bot. This helps protect our community. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-d"
-  },
   {
    "key": "youtube:102L-ssLKWc",
    "source": "youtube YahBak",
@@ -2045,7 +2033,41 @@
     }
    ],
    "detail": "youtube: posted; instagram: posted; facebook: posted"
+  },
+  {
+   "key": "youtube:DMCjn1GiPtA",
+   "source": "youtube alizedits",
+   "title": "Messed with Wrong A.I - TRAKELLA (Slowed) #trending #shorts",
+   "kind": "video",
+   "url": "https://www.youtube.com/watch?v=DMCjn1GiPtA",
+   "at": "2026-11-25T12:01:15+00:00",
+   "status": "posted",
+   "package": "20261125-1201-49bfbe",
+   "results": [
+    {
+     "platform": "youtube",
+     "ok": true,
+     "url": "https://www.youtube.com/shorts/8meJzU0vxQA",
+     "error": "",
+     "quota": false
+    },
+    {
+     "platform": "instagram",
+     "ok": true,
+     "url": "https://www.instagram.com/reel/DgKe6oJB_Kx/",
+     "error": "",
+     "quota": false
+    },
+    {
+     "platform": "facebook",
+     "ok": true,
+     "url": "https://www.facebook.com/reel/1518525440158840",
+     "error": "",
+     "quota": false
+    }
+   ],
+   "detail": "youtube: posted; instagram: posted; facebook: posted"
   }
  ],
- "last_run": "2026-11-25T10:01:09+00:00"
+ "last_run": "2026-11-25T12:01:14+00:00"
 }
