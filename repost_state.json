@@ -275,7 +275,8 @@
    "youtube:bx0n1jihShM",
    "youtube:85Ga0k4glSk",
    "youtube:Qao6jSMAoAQ",
-   "youtube:O-7pdOKtcRg"
+   "youtube:O-7pdOKtcRg",
+   "youtube:Hrxfej4iC-c"
   ],
   "b3dae9b6": [
    "tiktok:7710525636502211871",
@@ -285,12 +286,6 @@
   ]
  },
  "runs": [
-  {
-   "at": "2026-11-24T02:56:26+00:00",
-   "ok": false,
-   "summary": "could not list youtube CLIPSEDIT.88",
-   "error": "could not list https://www.youtube.com/@CLIPSEDIT.88/shorts: ERROR: '/home/runner/work/rgclipzah-loop/rgclipzah-loop/cookies.txt' does not look like a Netscape format cookies file"
-  },
   {
    "at": "2026-11-24T02:56:27+00:00",
    "ok": false,
@@ -452,40 +447,14 @@
    "at": "2026-11-25T02:01:00+00:00",
    "ok": true,
    "summary": "1 new post(s) processed (0 image, 1 video)"
+  },
+  {
+   "at": "2026-11-25T04:01:04+00:00",
+   "ok": true,
+   "summary": "1 new post(s) processed (0 image, 1 video)"
   }
  ],
  "items": [
-  {
-   "key": "youtube:2U13vMS5ilo",
-   "source": "youtube alizedits",
-   "title": "ULTRON Is BACK! - MONTAGEM GLORIA (Slowed) #trending #shorts",
-   "kind": "video",
-   "url": "https://www.youtube.com/watch?v=2U13vMS5ilo",
-   "at": "2026-11-24T01:26:10+08:00",
-   "status": "posted",
-   "package": "20261124-0527-2ee27d",
-   "results": [
-    {
-     "platform": "youtube",
-     "ok": true,
-     "url": "https://www.youtube.com/shorts/isa4dO1rIIU",
-     "error": ""
-    },
-    {
-     "platform": "instagram",
-     "ok": true,
-     "url": "https://www.instagram.com/reel/DgGWC-6nIqM/",
-     "error": ""
-    },
-    {
-     "platform": "facebook",
-     "ok": true,
-     "url": "https://www.facebook.com/reel/1144266828344816",
-     "error": ""
-    }
-   ],
-   "detail": "youtube: posted; instagram: posted; facebook: posted"
-  },
   {
    "key": "youtube:OJ5Xfz6fMyA",
    "source": "youtube alizedits",
@@ -1976,7 +1945,41 @@
     }
    ],
    "detail": "youtube: posted; instagram: posted; facebook: posted"
+  },
+  {
+   "key": "youtube:Hrxfej4iC-c",
+   "source": "youtube alizedits",
+   "title": "These Two Together! - MALEMO (Ultra Slowed) #trending #shorts",
+   "kind": "video",
+   "url": "https://www.youtube.com/watch?v=Hrxfej4iC-c",
+   "at": "2026-11-25T04:01:05+00:00",
+   "status": "posted",
+   "package": "20261125-0401-619dff",
+   "results": [
+    {
+     "platform": "youtube",
+     "ok": true,
+     "url": "https://www.youtube.com/shorts/FPQYFfjOr1M",
+     "error": "",
+     "quota": false
+    },
+    {
+     "platform": "instagram",
+     "ok": true,
+     "url": "https://www.instagram.com/reel/DgJoAoJBKAC/",
+     "error": "",
+     "quota": false
+    },
+    {
+     "platform": "facebook",
+     "ok": true,
+     "url": "https://www.facebook.com/reel/2467691180427270",
+     "error": "",
+     "quota": false
+    }
+   ],
+   "detail": "youtube: posted; instagram: posted; facebook: posted"
   }
  ],
- "last_run": "2026-11-25T02:01:00+00:00"
+ "last_run": "2026-11-25T04:01:04+00:00"
 }
