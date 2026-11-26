@@ -289,7 +289,8 @@
    "youtube:flbZW0H0HFA",
    "youtube:rNqpK983rKk",
    "youtube:UEkExeVY5DM",
-   "youtube:xhLixKcwknc"
+   "youtube:xhLixKcwknc",
+   "youtube:JX0ZNfgYnak"
   ],
   "b3dae9b6": [
    "tiktok:7710525636502211871",
@@ -300,12 +301,6 @@
   ]
  },
  "runs": [
-  {
-   "at": "2026-11-24T02:56:34+00:00",
-   "ok": false,
-   "summary": "could not list tiktok christal2660",
-   "error": "could not list https://www.tiktok.com/@christal2660: ERROR: '/home/runner/work/rgclipzah-loop/rgclipzah-loop/cookies.txt' does not look like a Netscape format cookies file"
-  },
   {
    "at": "2026-11-24T02:56:34+00:00",
    "ok": false,
@@ -452,21 +447,14 @@
    "at": "2026-11-26T08:30:58+00:00",
    "ok": true,
    "summary": "1 new post(s) processed (0 image, 1 video)"
+  },
+  {
+   "at": "2026-11-26T10:30:58+00:00",
+   "ok": true,
+   "summary": "1 new post(s) processed (0 image, 1 video)"
   }
  ],
  "items": [
-  {
-   "key": "youtube:DbMIz90CjEQ",
-   "source": "youtube Armanyt89",
-   "title": "You're Our Hero..\u2764\ufe0f\" | Toy Story 5 | Headlights ( feat. KIDDO) #shorts #kindness #toystory",
-   "kind": "video",
-   "url": "https://www.youtube.com/watch?v=DbMIz90CjEQ",
-   "at": "2026-11-24T02:59:54+00:00",
-   "status": "failed",
-   "package": "",
-   "results": [],
-   "detail": "ERROR: [youtube] DbMIz90CjEQ: Sign in to confirm you\u2019re not a bot. This helps protect our community. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-d"
-  },
   {
    "key": "youtube:okBoq08tX3I",
    "source": "youtube Armanyt89",
@@ -2211,7 +2199,41 @@
     }
    ],
    "detail": "youtube: posted; instagram: posted; facebook: posted"
+  },
+  {
+   "key": "youtube:JX0ZNfgYnak",
+   "source": "youtube alizedits",
+   "title": "WANDA IS BACK! - ZAKHELO (Slowed) #trending #shorts",
+   "kind": "video",
+   "url": "https://www.youtube.com/watch?v=JX0ZNfgYnak",
+   "at": "2026-11-26T10:30:59+00:00",
+   "status": "posted",
+   "package": "20261126-1031-edb9e5",
+   "results": [
+    {
+     "platform": "youtube",
+     "ok": true,
+     "url": "https://www.youtube.com/shorts/6i-DnW5A1iE",
+     "error": "",
+     "quota": false
+    },
+    {
+     "platform": "instagram",
+     "ok": true,
+     "url": "https://www.instagram.com/reel/DgM5WwFsLsZ/",
+     "error": "",
+     "quota": false
+    },
+    {
+     "platform": "facebook",
+     "ok": true,
+     "url": "https://www.facebook.com/reel/1595984069227177",
+     "error": "",
+     "quota": false
+    }
+   ],
+   "detail": "youtube: posted; instagram: posted; facebook: posted"
   }
  ],
- "last_run": "2026-11-26T08:30:58+00:00"
+ "last_run": "2026-11-26T10:30:58+00:00"
 }
