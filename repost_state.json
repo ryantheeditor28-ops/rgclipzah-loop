@@ -290,7 +290,8 @@
    "youtube:rNqpK983rKk",
    "youtube:UEkExeVY5DM",
    "youtube:xhLixKcwknc",
-   "youtube:JX0ZNfgYnak"
+   "youtube:JX0ZNfgYnak",
+   "youtube:nD0861QhBF0"
   ],
   "b3dae9b6": [
    "tiktok:7710525636502211871",
@@ -301,12 +302,6 @@
   ]
  },
  "runs": [
-  {
-   "at": "2026-11-24T02:56:34+00:00",
-   "ok": false,
-   "summary": "could not list tiktok drxpz.aepp",
-   "error": "could not list https://www.tiktok.com/@drxpz.aepp: ERROR: '/home/runner/work/rgclipzah-loop/rgclipzah-loop/cookies.txt' does not look like a Netscape format cookies file"
-  },
   {
    "at": "2026-11-24T02:56:35+00:00",
    "ok": false,
@@ -452,21 +447,14 @@
    "at": "2026-11-26T10:30:58+00:00",
    "ok": true,
    "summary": "1 new post(s) processed (0 image, 1 video)"
+  },
+  {
+   "at": "2026-11-26T12:31:06+00:00",
+   "ok": true,
+   "summary": "1 new post(s) processed (0 image, 1 video)"
   }
  ],
  "items": [
-  {
-   "key": "youtube:okBoq08tX3I",
-   "source": "youtube Armanyt89",
-   "title": "She Came Back For Him..\ud83e\udd7a\u2764\ufe0f\" | The Magic Roads | Headlights ( feat. KIDDO) #shorts #kindness #magic",
-   "kind": "video",
-   "url": "https://www.youtube.com/watch?v=okBoq08tX3I",
-   "at": "2026-11-24T02:59:55+00:00",
-   "status": "failed",
-   "package": "",
-   "results": [],
-   "detail": "ERROR: [youtube] okBoq08tX3I: Sign in to confirm you\u2019re not a bot. This helps protect our community. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-d"
-  },
   {
    "key": "youtube:ULAnEBcNV7o",
    "source": "youtube CLIPSEDIT.88",
@@ -2233,7 +2221,41 @@
     }
    ],
    "detail": "youtube: posted; instagram: posted; facebook: posted"
+  },
+  {
+   "key": "youtube:nD0861QhBF0",
+   "source": "youtube alizedits",
+   "title": "Brutal ULTRON! - TRAKELLA (Slowed) #trending #shorts",
+   "kind": "video",
+   "url": "https://www.youtube.com/watch?v=nD0861QhBF0",
+   "at": "2026-11-26T12:31:07+00:00",
+   "status": "posted",
+   "package": "20261126-1231-4ac01b",
+   "results": [
+    {
+     "platform": "youtube",
+     "ok": true,
+     "url": "https://www.youtube.com/shorts/sc_ACvLrCkA",
+     "error": "",
+     "quota": false
+    },
+    {
+     "platform": "instagram",
+     "ok": true,
+     "url": "https://www.instagram.com/reel/DgNHJtKOXic/",
+     "error": "",
+     "quota": false
+    },
+    {
+     "platform": "facebook",
+     "ok": true,
+     "url": "https://www.facebook.com/reel/1852379095781313",
+     "error": "",
+     "quota": false
+    }
+   ],
+   "detail": "youtube: posted; instagram: posted; facebook: posted"
   }
  ],
- "last_run": "2026-11-26T10:30:58+00:00"
+ "last_run": "2026-11-26T12:31:06+00:00"
 }
