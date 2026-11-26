@@ -285,7 +285,8 @@
    "youtube:F7xtP7J8iVY",
    "youtube:c85J9WF5cl8",
    "youtube:nAnyf1-QgKY",
-   "youtube:NjTttNwGej4"
+   "youtube:NjTttNwGej4",
+   "youtube:flbZW0H0HFA"
   ],
   "b3dae9b6": [
    "tiktok:7710525636502211871",
@@ -296,12 +297,6 @@
   ]
  },
  "runs": [
-  {
-   "at": "2026-11-24T02:56:31+00:00",
-   "ok": false,
-   "summary": "could not list tiktok jxudk24",
-   "error": "could not list https://www.tiktok.com/@jxudk24: ERROR: '/home/runner/work/rgclipzah-loop/rgclipzah-loop/cookies.txt' does not look like a Netscape format cookies file"
-  },
   {
    "at": "2026-11-24T02:56:32+00:00",
    "ok": false,
@@ -452,21 +447,14 @@
    "at": "2026-11-26T00:31:10+00:00",
    "ok": true,
    "summary": "1 new post(s) processed (0 image, 1 video)"
+  },
+  {
+   "at": "2026-11-26T02:31:03+00:00",
+   "ok": true,
+   "summary": "1 new post(s) processed (0 image, 1 video)"
   }
  ],
  "items": [
-  {
-   "key": "youtube:A7KXjMF58cs",
-   "source": "youtube sippymemes",
-   "title": "mr.beast just be doing anything \ud83d\ude2d\ud83d\udc94",
-   "kind": "video",
-   "url": "https://www.youtube.com/watch?v=A7KXjMF58cs",
-   "at": "2026-11-24T02:59:48+00:00",
-   "status": "failed",
-   "package": "",
-   "results": [],
-   "detail": "ERROR: [youtube] A7KXjMF58cs: Sign in to confirm you\u2019re not a bot. This helps protect our community. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-d"
-  },
   {
    "key": "youtube:nLiYPzwq01E",
    "source": "youtube sippymemes",
@@ -2123,7 +2111,41 @@
     }
    ],
    "detail": "youtube: posted; instagram: posted; facebook: posted"
+  },
+  {
+   "key": "youtube:flbZW0H0HFA",
+   "source": "youtube alizedits",
+   "title": "MAN OF AURA! - Karvenora (Slowed) #trending #shorts",
+   "kind": "video",
+   "url": "https://www.youtube.com/watch?v=flbZW0H0HFA",
+   "at": "2026-11-26T02:31:04+00:00",
+   "status": "posted",
+   "package": "20261126-0231-d91794",
+   "results": [
+    {
+     "platform": "youtube",
+     "ok": true,
+     "url": "https://www.youtube.com/shorts/AU7PGX7Fpic",
+     "error": "",
+     "quota": false
+    },
+    {
+     "platform": "instagram",
+     "ok": true,
+     "url": "https://www.instagram.com/reel/DgMCbRhzVnE/",
+     "error": "",
+     "quota": false
+    },
+    {
+     "platform": "facebook",
+     "ok": true,
+     "url": "https://www.facebook.com/reel/1193546106666485",
+     "error": "",
+     "quota": false
+    }
+   ],
+   "detail": "youtube: posted; instagram: posted; facebook: posted"
   }
  ],
- "last_run": "2026-11-26T00:31:10+00:00"
+ "last_run": "2026-11-26T02:31:03+00:00"
 }
