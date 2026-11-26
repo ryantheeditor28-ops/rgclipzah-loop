@@ -284,7 +284,8 @@
    "youtube:f9UZtxoHMW0",
    "youtube:F7xtP7J8iVY",
    "youtube:c85J9WF5cl8",
-   "youtube:nAnyf1-QgKY"
+   "youtube:nAnyf1-QgKY",
+   "youtube:NjTttNwGej4"
   ],
   "b3dae9b6": [
    "tiktok:7710525636502211871",
@@ -295,12 +296,6 @@
   ]
  },
  "runs": [
-  {
-   "at": "2026-11-24T02:56:31+00:00",
-   "ok": false,
-   "summary": "could not list tiktok cl1p0calypse",
-   "error": "could not list https://www.tiktok.com/@cl1p0calypse: ERROR: '/home/runner/work/rgclipzah-loop/rgclipzah-loop/cookies.txt' does not look like a Netscape format cookies file"
-  },
   {
    "at": "2026-11-24T02:56:31+00:00",
    "ok": false,
@@ -452,21 +447,14 @@
    "at": "2026-11-25T22:31:00+00:00",
    "ok": true,
    "summary": "1 new post(s) processed (0 image, 1 video)"
+  },
+  {
+   "at": "2026-11-26T00:31:10+00:00",
+   "ok": true,
+   "summary": "1 new post(s) processed (0 image, 1 video)"
   }
  ],
  "items": [
-  {
-   "key": "youtube:zw4tkVBE7X8",
-   "source": "youtube YahBak",
-   "title": "\u201cAn elegant gentleman assassin who follows the rules.\u201d\u2620\ufe0f\ud83d\udd25 | Most Dangerous Game | #Trending #Shorts",
-   "kind": "video",
-   "url": "https://www.youtube.com/watch?v=zw4tkVBE7X8",
-   "at": "2026-11-24T02:59:46+00:00",
-   "status": "failed",
-   "package": "",
-   "results": [],
-   "detail": "ERROR: [youtube] zw4tkVBE7X8: Sign in to confirm you\u2019re not a bot. This helps protect our community. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-d"
-  },
   {
    "key": "youtube:A7KXjMF58cs",
    "source": "youtube sippymemes",
@@ -2101,7 +2089,41 @@
     }
    ],
    "detail": "youtube: posted; instagram: posted; facebook: posted"
+  },
+  {
+   "key": "youtube:NjTttNwGej4",
+   "source": "youtube alizedits",
+   "title": "LUCIA the Baddie! - Undress Rehearsal (Hardtekk - Slowed) #trending #shorts",
+   "kind": "video",
+   "url": "https://www.youtube.com/watch?v=NjTttNwGej4",
+   "at": "2026-11-26T00:31:11+00:00",
+   "status": "posted",
+   "package": "20261126-0031-4469e7",
+   "results": [
+    {
+     "platform": "youtube",
+     "ok": true,
+     "url": "https://www.youtube.com/shorts/p0B1MXGnADg",
+     "error": "",
+     "quota": false
+    },
+    {
+     "platform": "instagram",
+     "ok": true,
+     "url": "https://www.instagram.com/reel/DgL0vCFRE7R/",
+     "error": "",
+     "quota": false
+    },
+    {
+     "platform": "facebook",
+     "ok": true,
+     "url": "https://www.facebook.com/reel/1075863892132577",
+     "error": "",
+     "quota": false
+    }
+   ],
+   "detail": "youtube: posted; instagram: posted; facebook: posted"
   }
  ],
- "last_run": "2026-11-25T22:31:00+00:00"
+ "last_run": "2026-11-26T00:31:10+00:00"
 }
