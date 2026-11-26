@@ -303,14 +303,12 @@
    "tiktok:7712406194882727199",
    "tiktok:7712005457438608670",
    "tiktok:7712005155532606751"
+  ],
+  "08d813ca": [
+   "youtube:w0raibjQi4o"
   ]
  },
  "runs": [
-  {
-   "at": "2026-11-24T04:41:45+00:00",
-   "ok": true,
-   "summary": "1 new post(s) processed (0 image, 1 video)"
-  },
   {
    "at": "2026-11-24T04:59:00+00:00",
    "ok": true,
@@ -455,43 +453,14 @@
    "at": "2026-11-26T20:31:23+00:00",
    "ok": true,
    "summary": "1 new post(s) processed (0 image, 1 video), 28 failed"
+  },
+  {
+   "at": "2026-11-26T22:30:52+00:00",
+   "ok": true,
+   "summary": "1 new post(s) processed (0 image, 1 video)"
   }
  ],
  "items": [
-  {
-   "key": "tiktok:7711626380902960397",
-   "source": "tiktok jxudk24",
-   "title": "#movie ",
-   "kind": "video",
-   "url": "https://www.tiktok.com/@jxudk24/video/7711626380902960397",
-   "at": "2026-11-25T14:02:54+00:00",
-   "status": "posted",
-   "package": "20261125-1403-f3609e",
-   "results": [
-    {
-     "platform": "youtube",
-     "ok": true,
-     "url": "https://www.youtube.com/shorts/tCnwg4a1xmA",
-     "error": "",
-     "quota": false
-    },
-    {
-     "platform": "instagram",
-     "ok": true,
-     "url": "https://www.instagram.com/reel/DgKs9aGKSIZ/",
-     "error": "",
-     "quota": false
-    },
-    {
-     "platform": "facebook",
-     "ok": true,
-     "url": "https://www.facebook.com/reel/28777462265283463",
-     "error": "",
-     "quota": false
-    }
-   ],
-   "detail": "youtube: posted; instagram: posted; facebook: posted"
-  },
   {
    "key": "youtube:f9UZtxoHMW0",
    "source": "youtube alizedits",
@@ -2009,7 +1978,41 @@
     }
    ],
    "detail": "youtube: posted; instagram: posted; facebook: posted"
+  },
+  {
+   "key": "youtube:w0raibjQi4o",
+   "source": "youtube TaleTalker088",
+   "title": "Bro's authority is on another level. \ud83d\ude02\ud83d\ude05",
+   "kind": "video",
+   "url": "https://www.youtube.com/watch?v=w0raibjQi4o",
+   "at": "2026-11-26T22:30:53+00:00",
+   "status": "posted",
+   "package": "20261126-2231-487f4b",
+   "results": [
+    {
+     "platform": "youtube",
+     "ok": true,
+     "url": "https://www.youtube.com/shorts/ZMr50YiZQfY",
+     "error": "",
+     "quota": false
+    },
+    {
+     "platform": "instagram",
+     "ok": true,
+     "url": "https://www.instagram.com/reel/DgOLzJlpUFY/",
+     "error": "",
+     "quota": false
+    },
+    {
+     "platform": "facebook",
+     "ok": true,
+     "url": "https://www.facebook.com/reel/1100289059692632",
+     "error": "",
+     "quota": false
+    }
+   ],
+   "detail": "youtube: posted; instagram: posted; facebook: posted"
   }
  ],
- "last_run": "2026-11-26T20:31:23+00:00"
+ "last_run": "2026-11-26T22:30:52+00:00"
 }
