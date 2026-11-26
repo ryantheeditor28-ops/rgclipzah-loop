@@ -291,7 +291,8 @@
    "youtube:UEkExeVY5DM",
    "youtube:xhLixKcwknc",
    "youtube:JX0ZNfgYnak",
-   "youtube:nD0861QhBF0"
+   "youtube:nD0861QhBF0",
+   "youtube:WusKMceiv-E"
   ],
   "b3dae9b6": [
    "tiktok:7710525636502211871",
@@ -302,12 +303,6 @@
   ]
  },
  "runs": [
-  {
-   "at": "2026-11-24T02:56:35+00:00",
-   "ok": false,
-   "summary": "could not list tiktok dailyclips.gg98",
-   "error": "could not list https://www.tiktok.com/@dailyclips.gg98: ERROR: '/home/runner/work/rgclipzah-loop/rgclipzah-loop/cookies.txt' does not look like a Netscape format cookies file"
-  },
   {
    "at": "2026-11-24T02:56:23+00:00",
    "ok": false,
@@ -452,21 +447,14 @@
    "at": "2026-11-26T12:31:06+00:00",
    "ok": true,
    "summary": "1 new post(s) processed (0 image, 1 video)"
+  },
+  {
+   "at": "2026-11-26T14:30:59+00:00",
+   "ok": true,
+   "summary": "1 new post(s) processed (0 image, 1 video)"
   }
  ],
  "items": [
-  {
-   "key": "youtube:ULAnEBcNV7o",
-   "source": "youtube CLIPSEDIT.88",
-   "title": "\"This is our Future BTW!\" - I, Robot Edit | Washing Machine Heart (Slowed & Reverb) #shorts #fyp",
-   "kind": "video",
-   "url": "https://www.youtube.com/watch?v=ULAnEBcNV7o",
-   "at": "2026-11-24T02:59:57+00:00",
-   "status": "failed",
-   "package": "",
-   "results": [],
-   "detail": "ERROR: [youtube] ULAnEBcNV7o: Sign in to confirm you\u2019re not a bot. This helps protect our community. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-d"
-  },
   {
    "key": "youtube:_xMmn18oWEE",
    "source": "youtube CLIPSEDIT.88",
@@ -2255,7 +2243,41 @@
     }
    ],
    "detail": "youtube: posted; instagram: posted; facebook: posted"
+  },
+  {
+   "key": "youtube:WusKMceiv-E",
+   "source": "youtube alizedits",
+   "title": "Physical Form of MY DREAMS...",
+   "kind": "video",
+   "url": "https://www.youtube.com/watch?v=WusKMceiv-E",
+   "at": "2026-11-26T14:31:00+00:00",
+   "status": "posted",
+   "package": "20261126-1431-53b5da",
+   "results": [
+    {
+     "platform": "youtube",
+     "ok": true,
+     "url": "https://www.youtube.com/shorts/A6B15gMjxb8",
+     "error": "",
+     "quota": false
+    },
+    {
+     "platform": "instagram",
+     "ok": true,
+     "url": "https://www.instagram.com/reel/DgNUzgRPxmT/",
+     "error": "",
+     "quota": false
+    },
+    {
+     "platform": "facebook",
+     "ok": true,
+     "url": "https://www.facebook.com/reel/2635290383648476",
+     "error": "",
+     "quota": false
+    }
+   ],
+   "detail": "youtube: posted; instagram: posted; facebook: posted"
   }
  ],
- "last_run": "2026-11-26T12:31:06+00:00"
+ "last_run": "2026-11-26T14:30:59+00:00"
 }
