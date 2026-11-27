@@ -250,6 +250,16 @@
     "max_per_run": 2,
     "min_score": 100,
     "edit": true
+   },
+   {
+    "id": "76ce906f",
+    "kind": "youtube",
+    "url": "https://www.youtube.com/@JackHayes0/shorts",
+    "ident": "JackHayes0",
+    "enabled": true,
+    "max_per_run": 2,
+    "min_score": 100,
+    "edit": true
    }
   ],
   "mode": "auto",
