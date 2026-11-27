@@ -316,15 +316,11 @@
    "youtube:Zca-eKzSBvE",
    "youtube:6YxCot-pjvI",
    "youtube:HmtumfV6pjM",
-   "youtube:qr0q0dyEI-U"
+   "youtube:qr0q0dyEI-U",
+   "youtube:WVT_mAm3BcU"
   ]
  },
  "runs": [
-  {
-   "at": "2026-11-25T10:01:09+00:00",
-   "ok": true,
-   "summary": "1 new post(s) processed (0 image, 1 video)"
-  },
   {
    "at": "2026-11-25T12:01:14+00:00",
    "ok": true,
@@ -469,43 +465,14 @@
    "at": "2026-11-27T20:30:58+00:00",
    "ok": true,
    "summary": "1 new post(s) processed (0 image, 1 video)"
+  },
+  {
+   "at": "2026-11-27T22:30:57+00:00",
+   "ok": true,
+   "summary": "1 new post(s) processed (0 image, 1 video)"
   }
  ],
  "items": [
-  {
-   "key": "youtube:WusKMceiv-E",
-   "source": "youtube alizedits",
-   "title": "Physical Form of MY DREAMS...",
-   "kind": "video",
-   "url": "https://www.youtube.com/watch?v=WusKMceiv-E",
-   "at": "2026-11-26T14:31:00+00:00",
-   "status": "posted",
-   "package": "20261126-1431-53b5da",
-   "results": [
-    {
-     "platform": "youtube",
-     "ok": true,
-     "url": "https://www.youtube.com/shorts/A6B15gMjxb8",
-     "error": "",
-     "quota": false
-    },
-    {
-     "platform": "instagram",
-     "ok": true,
-     "url": "https://www.instagram.com/reel/DgNUzgRPxmT/",
-     "error": "",
-     "quota": false
-    },
-    {
-     "platform": "facebook",
-     "ok": true,
-     "url": "https://www.facebook.com/reel/2635290383648476",
-     "error": "",
-     "quota": false
-    }
-   ],
-   "detail": "youtube: posted; instagram: posted; facebook: posted"
-  },
   {
    "key": "youtube:TlklP32B_Hs",
    "source": "youtube alizedits",
@@ -2023,7 +1990,41 @@
     }
    ],
    "detail": "youtube: posted; instagram: posted; facebook: posted"
+  },
+  {
+   "key": "youtube:WVT_mAm3BcU",
+   "source": "youtube TaleTalker088",
+   "title": "He's got all the superpowers I wish I had. \ud83d\ude33\u263a\ufe0f",
+   "kind": "video",
+   "url": "https://www.youtube.com/watch?v=WVT_mAm3BcU",
+   "at": "2026-11-27T22:30:59+00:00",
+   "status": "posted",
+   "package": "20261127-2232-330b8f",
+   "results": [
+    {
+     "platform": "youtube",
+     "ok": true,
+     "url": "https://www.youtube.com/shorts/pbY5Y0m340k",
+     "error": "",
+     "quota": false
+    },
+    {
+     "platform": "instagram",
+     "ok": true,
+     "url": "https://www.instagram.com/reel/DgQwpluAXiQ/",
+     "error": "",
+     "quota": false
+    },
+    {
+     "platform": "facebook",
+     "ok": true,
+     "url": "https://www.facebook.com/reel/1716101693451186",
+     "error": "",
+     "quota": false
+    }
+   ],
+   "detail": "youtube: posted; instagram: posted; facebook: posted"
   }
  ],
- "last_run": "2026-11-27T20:30:58+00:00"
+ "last_run": "2026-11-27T22:30:57+00:00"
 }
