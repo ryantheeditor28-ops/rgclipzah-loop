@@ -312,15 +312,11 @@
    "youtube:WyOHVCxra_I",
    "youtube:nW8gU3dPiHQ",
    "youtube:Ieg0EVb9En4",
-   "youtube:oiNA4XKeEDU"
+   "youtube:oiNA4XKeEDU",
+   "youtube:Zca-eKzSBvE"
   ]
  },
  "runs": [
-  {
-   "at": "2026-11-25T02:01:00+00:00",
-   "ok": true,
-   "summary": "1 new post(s) processed (0 image, 1 video)"
-  },
   {
    "at": "2026-11-25T04:01:04+00:00",
    "ok": true,
@@ -465,43 +461,14 @@
    "at": "2026-11-27T12:30:56+00:00",
    "ok": true,
    "summary": "1 new post(s) processed (0 image, 1 video)"
+  },
+  {
+   "at": "2026-11-27T14:31:01+00:00",
+   "ok": true,
+   "summary": "1 new post(s) processed (0 image, 1 video)"
   }
  ],
  "items": [
-  {
-   "key": "youtube:UEkExeVY5DM",
-   "source": "youtube alizedits",
-   "title": "New VICE CITY! - GTA 6 EDIT | ZAKHELO (Slowed) #trending #shorts",
-   "kind": "video",
-   "url": "https://www.youtube.com/watch?v=UEkExeVY5DM",
-   "at": "2026-11-26T06:30:59+00:00",
-   "status": "posted",
-   "package": "20261126-0631-710a78",
-   "results": [
-    {
-     "platform": "youtube",
-     "ok": true,
-     "url": "https://www.youtube.com/shorts/BCIG1tZqGXo",
-     "error": "",
-     "quota": false
-    },
-    {
-     "platform": "instagram",
-     "ok": true,
-     "url": "https://www.instagram.com/reel/DgMd6Tczhfn/",
-     "error": "",
-     "quota": false
-    },
-    {
-     "platform": "facebook",
-     "ok": true,
-     "url": "https://www.facebook.com/reel/2636698580093514",
-     "error": "",
-     "quota": false
-    }
-   ],
-   "detail": "youtube: posted; instagram: posted; facebook: posted"
-  },
   {
    "key": "youtube:xhLixKcwknc",
    "source": "youtube alizedits",
@@ -2019,7 +1986,41 @@
     }
    ],
    "detail": "youtube: posted; instagram: posted; facebook: posted"
+  },
+  {
+   "key": "youtube:Zca-eKzSBvE",
+   "source": "youtube TaleTalker088",
+   "title": "Nobody's taking my dog. \ud83d\ude02\ud83d\ude05",
+   "kind": "video",
+   "url": "https://www.youtube.com/watch?v=Zca-eKzSBvE",
+   "at": "2026-11-27T14:31:03+00:00",
+   "status": "posted",
+   "package": "20261127-1432-fe0eac",
+   "results": [
+    {
+     "platform": "youtube",
+     "ok": true,
+     "url": "https://www.youtube.com/shorts/AMffejRceRU",
+     "error": "",
+     "quota": false
+    },
+    {
+     "platform": "instagram",
+     "ok": true,
+     "url": "https://www.instagram.com/reel/DgP5u3dhSC9/",
+     "error": "",
+     "quota": false
+    },
+    {
+     "platform": "facebook",
+     "ok": true,
+     "url": "https://www.facebook.com/reel/1011018582075649",
+     "error": "",
+     "quota": false
+    }
+   ],
+   "detail": "youtube: posted; instagram: posted; facebook: posted"
   }
  ],
- "last_run": "2026-11-27T12:30:56+00:00"
+ "last_run": "2026-11-27T14:31:01+00:00"
 }
