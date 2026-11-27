@@ -307,15 +307,11 @@
   "08d813ca": [
    "youtube:w0raibjQi4o",
    "youtube:l7hoasyPuI8",
-   "youtube:_Y1kTny7V3s"
+   "youtube:_Y1kTny7V3s",
+   "youtube:Hu1_JtPzYgM"
   ]
  },
  "runs": [
-  {
-   "at": "2026-11-24T14:13:26+00:00",
-   "ok": true,
-   "summary": "1 new post(s) processed (0 image, 1 video), youtube skipped (daily quota reached)"
-  },
   {
    "at": "2026-11-24T18:18:32+00:00",
    "ok": true,
@@ -460,43 +456,14 @@
    "at": "2026-11-27T02:30:57+00:00",
    "ok": true,
    "summary": "1 new post(s) processed (0 image, 1 video)"
+  },
+  {
+   "at": "2026-11-27T04:31:00+00:00",
+   "ok": true,
+   "summary": "1 new post(s) processed (0 image, 1 video)"
   }
  ],
  "items": [
-  {
-   "key": "youtube:c85J9WF5cl8",
-   "source": "youtube alizedits",
-   "title": "I am Both! - Karvenora (Slowed) #trending #shorts",
-   "kind": "video",
-   "url": "https://www.youtube.com/watch?v=c85J9WF5cl8",
-   "at": "2026-11-25T20:31:02+00:00",
-   "status": "posted",
-   "package": "20261125-2031-a3e177",
-   "results": [
-    {
-     "platform": "youtube",
-     "ok": false,
-     "url": "",
-     "error": "youtube daily upload quota reached (unverified channels are capped at ~6 uploads/day). Verify the channel to raise the limit to 500/day.",
-     "quota": true
-    },
-    {
-     "platform": "instagram",
-     "ok": true,
-     "url": "https://www.instagram.com/reel/DgLZQaDhyOk/",
-     "error": "",
-     "quota": false
-    },
-    {
-     "platform": "facebook",
-     "ok": true,
-     "url": "https://www.facebook.com/reel/1773484427087885",
-     "error": "",
-     "quota": false
-    }
-   ],
-   "detail": "youtube: youtube daily upload quota reached (unverified channels are capped at ~6 uploads/day). Verify the channel to raise the limit to 500/day.; instagram: posted; facebook: posted"
-  },
   {
    "key": "youtube:nAnyf1-QgKY",
    "source": "youtube alizedits",
@@ -2014,7 +1981,41 @@
     }
    ],
    "detail": "youtube: posted; instagram: posted; facebook: posted"
+  },
+  {
+   "key": "youtube:Hu1_JtPzYgM",
+   "source": "youtube TaleTalker088",
+   "title": "Bro sold a Ferrari without saying a word. \ud83d\ude02\ud83d\ude05",
+   "kind": "video",
+   "url": "https://www.youtube.com/watch?v=Hu1_JtPzYgM",
+   "at": "2026-11-27T04:31:02+00:00",
+   "status": "posted",
+   "package": "20261127-0432-ba7509",
+   "results": [
+    {
+     "platform": "youtube",
+     "ok": true,
+     "url": "https://www.youtube.com/shorts/c-0SqAJaGBQ",
+     "error": "",
+     "quota": false
+    },
+    {
+     "platform": "instagram",
+     "ok": true,
+     "url": "https://www.instagram.com/reel/DgO1EiDzwou/",
+     "error": "",
+     "quota": false
+    },
+    {
+     "platform": "facebook",
+     "ok": true,
+     "url": "https://www.facebook.com/reel/4750808311841423",
+     "error": "",
+     "quota": false
+    }
+   ],
+   "detail": "youtube: posted; instagram: posted; facebook: posted"
   }
  ],
- "last_run": "2026-11-27T02:30:57+00:00"
+ "last_run": "2026-11-27T04:31:00+00:00"
 }
