@@ -309,15 +309,11 @@
    "youtube:l7hoasyPuI8",
    "youtube:_Y1kTny7V3s",
    "youtube:Hu1_JtPzYgM",
-   "youtube:WyOHVCxra_I"
+   "youtube:WyOHVCxra_I",
+   "youtube:nW8gU3dPiHQ"
   ]
  },
  "runs": [
-  {
-   "at": "2026-11-24T20:10:32+00:00",
-   "ok": true,
-   "summary": "1 new post(s) processed (0 image, 1 video), youtube skipped (daily quota reached)"
-  },
   {
    "at": "2026-11-24T22:01:07+00:00",
    "ok": true,
@@ -462,43 +458,14 @@
    "at": "2026-11-27T06:30:53+00:00",
    "ok": true,
    "summary": "1 new post(s) processed (0 image, 1 video)"
+  },
+  {
+   "at": "2026-11-27T08:31:06+00:00",
+   "ok": true,
+   "summary": "1 new post(s) processed (0 image, 1 video)"
   }
  ],
  "items": [
-  {
-   "key": "youtube:NjTttNwGej4",
-   "source": "youtube alizedits",
-   "title": "LUCIA the Baddie! - Undress Rehearsal (Hardtekk - Slowed) #trending #shorts",
-   "kind": "video",
-   "url": "https://www.youtube.com/watch?v=NjTttNwGej4",
-   "at": "2026-11-26T00:31:11+00:00",
-   "status": "posted",
-   "package": "20261126-0031-4469e7",
-   "results": [
-    {
-     "platform": "youtube",
-     "ok": true,
-     "url": "https://www.youtube.com/shorts/p0B1MXGnADg",
-     "error": "",
-     "quota": false
-    },
-    {
-     "platform": "instagram",
-     "ok": true,
-     "url": "https://www.instagram.com/reel/DgL0vCFRE7R/",
-     "error": "",
-     "quota": false
-    },
-    {
-     "platform": "facebook",
-     "ok": true,
-     "url": "https://www.facebook.com/reel/1075863892132577",
-     "error": "",
-     "quota": false
-    }
-   ],
-   "detail": "youtube: posted; instagram: posted; facebook: posted"
-  },
   {
    "key": "youtube:flbZW0H0HFA",
    "source": "youtube alizedits",
@@ -2016,7 +1983,41 @@
     }
    ],
    "detail": "youtube: posted; instagram: posted; facebook: posted"
+  },
+  {
+   "key": "youtube:nW8gU3dPiHQ",
+   "source": "youtube TaleTalker088",
+   "title": "\u201cSmile.\u201d You don't get to tell me what to do. Ever again. \ud83d\ude33\u263a\ufe0f",
+   "kind": "video",
+   "url": "https://www.youtube.com/watch?v=nW8gU3dPiHQ",
+   "at": "2026-11-27T08:31:08+00:00",
+   "status": "posted",
+   "package": "20261127-0832-487754",
+   "results": [
+    {
+     "platform": "youtube",
+     "ok": true,
+     "url": "https://www.youtube.com/shorts/WoVFyOoQ6Lw",
+     "error": "",
+     "quota": false
+    },
+    {
+     "platform": "instagram",
+     "ok": true,
+     "url": "https://www.instagram.com/reel/DgPQizZBto3/",
+     "error": "",
+     "quota": false
+    },
+    {
+     "platform": "facebook",
+     "ok": true,
+     "url": "https://www.facebook.com/reel/1500336118673444",
+     "error": "",
+     "quota": false
+    }
+   ],
+   "detail": "youtube: posted; instagram: posted; facebook: posted"
   }
  ],
- "last_run": "2026-11-27T06:30:53+00:00"
+ "last_run": "2026-11-27T08:31:06+00:00"
 }
