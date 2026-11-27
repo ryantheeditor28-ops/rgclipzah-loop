@@ -306,15 +306,11 @@
   ],
   "08d813ca": [
    "youtube:w0raibjQi4o",
-   "youtube:l7hoasyPuI8"
+   "youtube:l7hoasyPuI8",
+   "youtube:_Y1kTny7V3s"
   ]
  },
  "runs": [
-  {
-   "at": "2026-11-24T05:19:28+00:00",
-   "ok": true,
-   "summary": "1 new post(s) processed (0 image, 1 video)"
-  },
   {
    "at": "2026-11-24T14:13:26+00:00",
    "ok": true,
@@ -459,43 +455,14 @@
    "at": "2026-11-27T00:30:56+00:00",
    "ok": true,
    "summary": "1 new post(s) processed (0 image, 1 video)"
+  },
+  {
+   "at": "2026-11-27T02:30:57+00:00",
+   "ok": true,
+   "summary": "1 new post(s) processed (0 image, 1 video)"
   }
  ],
  "items": [
-  {
-   "key": "youtube:F7xtP7J8iVY",
-   "source": "youtube alizedits",
-   "title": "Thor on Side Quest | Raya (Slowed) #trending #shorts",
-   "kind": "video",
-   "url": "https://www.youtube.com/watch?v=F7xtP7J8iVY",
-   "at": "2026-11-25T18:32:18+00:00",
-   "status": "posted",
-   "package": "20261125-1833-f62a53",
-   "results": [
-    {
-     "platform": "youtube",
-     "ok": false,
-     "url": "",
-     "error": "youtube daily upload quota reached (unverified channels are capped at ~6 uploads/day). Verify the channel to raise the limit to 500/day.",
-     "quota": true
-    },
-    {
-     "platform": "instagram",
-     "ok": true,
-     "url": "https://www.instagram.com/reel/DgLLy-UB0Ly/",
-     "error": "",
-     "quota": false
-    },
-    {
-     "platform": "facebook",
-     "ok": true,
-     "url": "https://www.facebook.com/reel/2254858655071626",
-     "error": "",
-     "quota": false
-    }
-   ],
-   "detail": "youtube: youtube daily upload quota reached (unverified channels are capped at ~6 uploads/day). Verify the channel to raise the limit to 500/day.; instagram: posted; facebook: posted"
-  },
   {
    "key": "youtube:c85J9WF5cl8",
    "source": "youtube alizedits",
@@ -2013,7 +1980,41 @@
     }
    ],
    "detail": "youtube: posted; instagram: posted; facebook: posted"
+  },
+  {
+   "key": "youtube:_Y1kTny7V3s",
+   "source": "youtube TaleTalker088",
+   "title": "He's the most polite robber I've ever seen. \ud83d\ude33\ud83d\ude02",
+   "kind": "video",
+   "url": "https://www.youtube.com/watch?v=_Y1kTny7V3s",
+   "at": "2026-11-27T02:30:59+00:00",
+   "status": "posted",
+   "package": "20261127-0231-9fa887",
+   "results": [
+    {
+     "platform": "youtube",
+     "ok": true,
+     "url": "https://www.youtube.com/shorts/YA6YOxgoRgM",
+     "error": "",
+     "quota": false
+    },
+    {
+     "platform": "instagram",
+     "ok": true,
+     "url": "https://www.instagram.com/reel/DgOnT1hByMJ/",
+     "error": "",
+     "quota": false
+    },
+    {
+     "platform": "facebook",
+     "ok": true,
+     "url": "https://www.facebook.com/reel/1135569815861106",
+     "error": "",
+     "quota": false
+    }
+   ],
+   "detail": "youtube: posted; instagram: posted; facebook: posted"
   }
  ],
- "last_run": "2026-11-27T00:30:56+00:00"
+ "last_run": "2026-11-27T02:30:57+00:00"
 }
