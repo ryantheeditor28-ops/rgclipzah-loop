@@ -315,15 +315,11 @@
    "youtube:oiNA4XKeEDU",
    "youtube:Zca-eKzSBvE",
    "youtube:6YxCot-pjvI",
-   "youtube:HmtumfV6pjM"
+   "youtube:HmtumfV6pjM",
+   "youtube:qr0q0dyEI-U"
   ]
  },
  "runs": [
-  {
-   "at": "2026-11-25T08:01:05+00:00",
-   "ok": true,
-   "summary": "1 new post(s) processed (0 image, 1 video)"
-  },
   {
    "at": "2026-11-25T10:01:09+00:00",
    "ok": true,
@@ -468,43 +464,14 @@
    "at": "2026-11-27T18:30:54+00:00",
    "ok": true,
    "summary": "1 new post(s) processed (0 image, 1 video)"
+  },
+  {
+   "at": "2026-11-27T20:30:58+00:00",
+   "ok": true,
+   "summary": "1 new post(s) processed (0 image, 1 video)"
   }
  ],
  "items": [
-  {
-   "key": "youtube:nD0861QhBF0",
-   "source": "youtube alizedits",
-   "title": "Brutal ULTRON! - TRAKELLA (Slowed) #trending #shorts",
-   "kind": "video",
-   "url": "https://www.youtube.com/watch?v=nD0861QhBF0",
-   "at": "2026-11-26T12:31:07+00:00",
-   "status": "posted",
-   "package": "20261126-1231-4ac01b",
-   "results": [
-    {
-     "platform": "youtube",
-     "ok": true,
-     "url": "https://www.youtube.com/shorts/sc_ACvLrCkA",
-     "error": "",
-     "quota": false
-    },
-    {
-     "platform": "instagram",
-     "ok": true,
-     "url": "https://www.instagram.com/reel/DgNHJtKOXic/",
-     "error": "",
-     "quota": false
-    },
-    {
-     "platform": "facebook",
-     "ok": true,
-     "url": "https://www.facebook.com/reel/1852379095781313",
-     "error": "",
-     "quota": false
-    }
-   ],
-   "detail": "youtube: posted; instagram: posted; facebook: posted"
-  },
   {
    "key": "youtube:WusKMceiv-E",
    "source": "youtube alizedits",
@@ -2022,7 +1989,41 @@
     }
    ],
    "detail": "youtube: posted; instagram: posted; facebook: posted"
+  },
+  {
+   "key": "youtube:qr0q0dyEI-U",
+   "source": "youtube TaleTalker088",
+   "title": "He won $370 million. The whole block went crazy. \ud83d\ude05\ud83d\udc80",
+   "kind": "video",
+   "url": "https://www.youtube.com/watch?v=qr0q0dyEI-U",
+   "at": "2026-11-27T20:31:00+00:00",
+   "status": "posted",
+   "package": "20261127-2032-0d1e17",
+   "results": [
+    {
+     "platform": "youtube",
+     "ok": true,
+     "url": "https://www.youtube.com/shorts/9l7mZzFW6t0",
+     "error": "",
+     "quota": false
+    },
+    {
+     "platform": "instagram",
+     "ok": true,
+     "url": "https://www.instagram.com/reel/DgQi8JuCZ8v/",
+     "error": "",
+     "quota": false
+    },
+    {
+     "platform": "facebook",
+     "ok": true,
+     "url": "https://www.facebook.com/reel/1144828401244485",
+     "error": "",
+     "quota": false
+    }
+   ],
+   "detail": "youtube: posted; instagram: posted; facebook: posted"
   }
  ],
- "last_run": "2026-11-27T18:30:54+00:00"
+ "last_run": "2026-11-27T20:30:58+00:00"
 }
