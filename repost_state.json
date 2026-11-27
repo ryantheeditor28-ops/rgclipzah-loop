@@ -240,6 +240,16 @@
     "max_per_run": 2,
     "min_score": 100,
     "edit": true
+   },
+   {
+    "id": "0772332c",
+    "kind": "youtube",
+    "url": "https://www.youtube.com/@HhHh-n4h7i/shorts",
+    "ident": "HhHh-n4h7i",
+    "enabled": true,
+    "max_per_run": 2,
+    "min_score": 100,
+    "edit": true
    }
   ],
   "mode": "auto",
