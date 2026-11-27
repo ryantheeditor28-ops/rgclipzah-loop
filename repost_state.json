@@ -310,15 +310,11 @@
    "youtube:_Y1kTny7V3s",
    "youtube:Hu1_JtPzYgM",
    "youtube:WyOHVCxra_I",
-   "youtube:nW8gU3dPiHQ"
+   "youtube:nW8gU3dPiHQ",
+   "youtube:Ieg0EVb9En4"
   ]
  },
  "runs": [
-  {
-   "at": "2026-11-24T22:01:07+00:00",
-   "ok": true,
-   "summary": "1 new post(s) processed (0 image, 1 video)"
-  },
   {
    "at": "2026-11-25T00:01:02+00:00",
    "ok": true,
@@ -463,43 +459,14 @@
    "at": "2026-11-27T08:31:06+00:00",
    "ok": true,
    "summary": "1 new post(s) processed (0 image, 1 video)"
+  },
+  {
+   "at": "2026-11-27T10:30:56+00:00",
+   "ok": true,
+   "summary": "1 new post(s) processed (0 image, 1 video)"
   }
  ],
  "items": [
-  {
-   "key": "youtube:flbZW0H0HFA",
-   "source": "youtube alizedits",
-   "title": "MAN OF AURA! - Karvenora (Slowed) #trending #shorts",
-   "kind": "video",
-   "url": "https://www.youtube.com/watch?v=flbZW0H0HFA",
-   "at": "2026-11-26T02:31:04+00:00",
-   "status": "posted",
-   "package": "20261126-0231-d91794",
-   "results": [
-    {
-     "platform": "youtube",
-     "ok": true,
-     "url": "https://www.youtube.com/shorts/AU7PGX7Fpic",
-     "error": "",
-     "quota": false
-    },
-    {
-     "platform": "instagram",
-     "ok": true,
-     "url": "https://www.instagram.com/reel/DgMCbRhzVnE/",
-     "error": "",
-     "quota": false
-    },
-    {
-     "platform": "facebook",
-     "ok": true,
-     "url": "https://www.facebook.com/reel/1193546106666485",
-     "error": "",
-     "quota": false
-    }
-   ],
-   "detail": "youtube: posted; instagram: posted; facebook: posted"
-  },
   {
    "key": "youtube:rNqpK983rKk",
    "source": "youtube alizedits",
@@ -2017,7 +1984,41 @@
     }
    ],
    "detail": "youtube: posted; instagram: posted; facebook: posted"
+  },
+  {
+   "key": "youtube:Ieg0EVb9En4",
+   "source": "youtube TaleTalker088",
+   "title": "The Double Life of a Star, and the madness his secrets bring. \ud83d\ude33",
+   "kind": "video",
+   "url": "https://www.youtube.com/watch?v=Ieg0EVb9En4",
+   "at": "2026-11-27T10:30:57+00:00",
+   "status": "posted",
+   "package": "20261127-1031-2c6253",
+   "results": [
+    {
+     "platform": "youtube",
+     "ok": true,
+     "url": "https://www.youtube.com/shorts/gAK3hidH2VQ",
+     "error": "",
+     "quota": false
+    },
+    {
+     "platform": "instagram",
+     "ok": true,
+     "url": "https://www.instagram.com/reel/DgPeO4UhVRK/",
+     "error": "",
+     "quota": false
+    },
+    {
+     "platform": "facebook",
+     "ok": true,
+     "url": "https://www.facebook.com/reel/1579091553984219",
+     "error": "",
+     "quota": false
+    }
+   ],
+   "detail": "youtube: posted; instagram: posted; facebook: posted"
   }
  ],
- "last_run": "2026-11-27T08:31:06+00:00"
+ "last_run": "2026-11-27T10:30:56+00:00"
 }
