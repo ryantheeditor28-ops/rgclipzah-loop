@@ -305,15 +305,11 @@
    "tiktok:7712005155532606751"
   ],
   "08d813ca": [
-   "youtube:w0raibjQi4o"
+   "youtube:w0raibjQi4o",
+   "youtube:l7hoasyPuI8"
   ]
  },
  "runs": [
-  {
-   "at": "2026-11-24T04:59:00+00:00",
-   "ok": true,
-   "summary": "1 new post(s) processed (0 image, 1 video)"
-  },
   {
    "at": "2026-11-24T05:19:28+00:00",
    "ok": true,
@@ -458,43 +454,14 @@
    "at": "2026-11-26T22:30:52+00:00",
    "ok": true,
    "summary": "1 new post(s) processed (0 image, 1 video)"
+  },
+  {
+   "at": "2026-11-27T00:30:56+00:00",
+   "ok": true,
+   "summary": "1 new post(s) processed (0 image, 1 video)"
   }
  ],
  "items": [
-  {
-   "key": "youtube:f9UZtxoHMW0",
-   "source": "youtube alizedits",
-   "title": "DARE DEVIL - KARVENOR (Slowed) #trending #shorts",
-   "kind": "video",
-   "url": "https://www.youtube.com/watch?v=f9UZtxoHMW0",
-   "at": "2026-11-25T16:31:11+00:00",
-   "status": "posted",
-   "package": "20261125-1631-7d69f7",
-   "results": [
-    {
-     "platform": "youtube",
-     "ok": true,
-     "url": "https://www.youtube.com/shorts/nWVKeae76Bw",
-     "error": "",
-     "quota": false
-    },
-    {
-     "platform": "instagram",
-     "ok": true,
-     "url": "https://www.instagram.com/reel/DgK90ygP6uo/",
-     "error": "",
-     "quota": false
-    },
-    {
-     "platform": "facebook",
-     "ok": true,
-     "url": "https://www.facebook.com/reel/1052652761204762",
-     "error": "",
-     "quota": false
-    }
-   ],
-   "detail": "youtube: posted; instagram: posted; facebook: posted"
-  },
   {
    "key": "youtube:F7xtP7J8iVY",
    "source": "youtube alizedits",
@@ -2012,7 +1979,41 @@
     }
    ],
    "detail": "youtube: posted; instagram: posted; facebook: posted"
+  },
+  {
+   "key": "youtube:l7hoasyPuI8",
+   "source": "youtube TaleTalker088",
+   "title": "No pity is the best respect. \ud83d\ude33\ud83d\ude0a",
+   "kind": "video",
+   "url": "https://www.youtube.com/watch?v=l7hoasyPuI8",
+   "at": "2026-11-27T00:30:58+00:00",
+   "status": "posted",
+   "package": "20261127-0032-93fc11",
+   "results": [
+    {
+     "platform": "youtube",
+     "ok": true,
+     "url": "https://www.youtube.com/shorts/wx8r4CHOKpc",
+     "error": "",
+     "quota": false
+    },
+    {
+     "platform": "instagram",
+     "ok": true,
+     "url": "https://www.instagram.com/reel/DgOZojSCfSS/",
+     "error": "",
+     "quota": false
+    },
+    {
+     "platform": "facebook",
+     "ok": true,
+     "url": "https://www.facebook.com/reel/4681781942104027",
+     "error": "",
+     "quota": false
+    }
+   ],
+   "detail": "youtube: posted; instagram: posted; facebook: posted"
   }
  ],
- "last_run": "2026-11-26T22:30:52+00:00"
+ "last_run": "2026-11-27T00:30:56+00:00"
 }
