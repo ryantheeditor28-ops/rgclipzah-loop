@@ -313,15 +313,11 @@
    "youtube:nW8gU3dPiHQ",
    "youtube:Ieg0EVb9En4",
    "youtube:oiNA4XKeEDU",
-   "youtube:Zca-eKzSBvE"
+   "youtube:Zca-eKzSBvE",
+   "youtube:6YxCot-pjvI"
   ]
  },
  "runs": [
-  {
-   "at": "2026-11-25T04:01:04+00:00",
-   "ok": true,
-   "summary": "1 new post(s) processed (0 image, 1 video)"
-  },
   {
    "at": "2026-11-25T06:01:00+00:00",
    "ok": true,
@@ -466,43 +462,14 @@
    "at": "2026-11-27T14:31:01+00:00",
    "ok": true,
    "summary": "1 new post(s) processed (0 image, 1 video)"
+  },
+  {
+   "at": "2026-11-27T16:30:56+00:00",
+   "ok": true,
+   "summary": "1 new post(s) processed (0 image, 1 video)"
   }
  ],
  "items": [
-  {
-   "key": "youtube:xhLixKcwknc",
-   "source": "youtube alizedits",
-   "title": "MR.WICK - MONTAGEM GLORIA (Slowed) #trending #shorts",
-   "kind": "video",
-   "url": "https://www.youtube.com/watch?v=xhLixKcwknc",
-   "at": "2026-11-26T08:30:58+00:00",
-   "status": "posted",
-   "package": "20261126-0832-b6c300",
-   "results": [
-    {
-     "platform": "youtube",
-     "ok": true,
-     "url": "https://www.youtube.com/shorts/zT9PA9_x-Bo",
-     "error": "",
-     "quota": false
-    },
-    {
-     "platform": "instagram",
-     "ok": true,
-     "url": "https://www.instagram.com/reel/DgMrwR6RtWl/",
-     "error": "",
-     "quota": false
-    },
-    {
-     "platform": "facebook",
-     "ok": true,
-     "url": "https://www.facebook.com/reel/2426908251459501",
-     "error": "",
-     "quota": false
-    }
-   ],
-   "detail": "youtube: posted; instagram: posted; facebook: posted"
-  },
   {
    "key": "youtube:JX0ZNfgYnak",
    "source": "youtube alizedits",
@@ -2020,7 +1987,41 @@
     }
    ],
    "detail": "youtube: posted; instagram: posted; facebook: posted"
+  },
+  {
+   "key": "youtube:6YxCot-pjvI",
+   "source": "youtube TaleTalker088",
+   "title": "\"Pay it forward.\" The idea that changed a city. \ud83d\ude0a\u263a\ufe0f",
+   "kind": "video",
+   "url": "https://www.youtube.com/watch?v=6YxCot-pjvI",
+   "at": "2026-11-27T16:30:58+00:00",
+   "status": "posted",
+   "package": "20261127-1631-09d337",
+   "results": [
+    {
+     "platform": "youtube",
+     "ok": true,
+     "url": "https://www.youtube.com/shorts/lXN68CkrV7o",
+     "error": "",
+     "quota": false
+    },
+    {
+     "platform": "instagram",
+     "ok": true,
+     "url": "https://www.instagram.com/reel/DgQHbxmOvxj/",
+     "error": "",
+     "quota": false
+    },
+    {
+     "platform": "facebook",
+     "ok": true,
+     "url": "https://www.facebook.com/reel/1136128312357185",
+     "error": "",
+     "quota": false
+    }
+   ],
+   "detail": "youtube: posted; instagram: posted; facebook: posted"
   }
  ],
- "last_run": "2026-11-27T14:31:01+00:00"
+ "last_run": "2026-11-27T16:30:56+00:00"
 }
