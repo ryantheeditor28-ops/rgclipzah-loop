@@ -311,15 +311,11 @@
    "youtube:Hu1_JtPzYgM",
    "youtube:WyOHVCxra_I",
    "youtube:nW8gU3dPiHQ",
-   "youtube:Ieg0EVb9En4"
+   "youtube:Ieg0EVb9En4",
+   "youtube:oiNA4XKeEDU"
   ]
  },
  "runs": [
-  {
-   "at": "2026-11-25T00:01:02+00:00",
-   "ok": true,
-   "summary": "1 new post(s) processed (0 image, 1 video)"
-  },
   {
    "at": "2026-11-25T02:01:00+00:00",
    "ok": true,
@@ -464,43 +460,14 @@
    "at": "2026-11-27T10:30:56+00:00",
    "ok": true,
    "summary": "1 new post(s) processed (0 image, 1 video)"
+  },
+  {
+   "at": "2026-11-27T12:30:56+00:00",
+   "ok": true,
+   "summary": "1 new post(s) processed (0 image, 1 video)"
   }
  ],
  "items": [
-  {
-   "key": "youtube:rNqpK983rKk",
-   "source": "youtube alizedits",
-   "title": "John WICK! - Karvenora (Slowed) #trending #shorts",
-   "kind": "video",
-   "url": "https://www.youtube.com/watch?v=rNqpK983rKk",
-   "at": "2026-11-26T04:31:00+00:00",
-   "status": "posted",
-   "package": "20261126-0431-92b1f3",
-   "results": [
-    {
-     "platform": "youtube",
-     "ok": true,
-     "url": "https://www.youtube.com/shorts/eaFUhceoxOA",
-     "error": "",
-     "quota": false
-    },
-    {
-     "platform": "instagram",
-     "ok": true,
-     "url": "https://www.instagram.com/reel/DgMQKpuP7hN/",
-     "error": "",
-     "quota": false
-    },
-    {
-     "platform": "facebook",
-     "ok": true,
-     "url": "https://www.facebook.com/reel/2419610808855893",
-     "error": "",
-     "quota": false
-    }
-   ],
-   "detail": "youtube: posted; instagram: posted; facebook: posted"
-  },
   {
    "key": "youtube:UEkExeVY5DM",
    "source": "youtube alizedits",
@@ -2018,7 +1985,41 @@
     }
    ],
    "detail": "youtube: posted; instagram: posted; facebook: posted"
+  },
+  {
+   "key": "youtube:oiNA4XKeEDU",
+   "source": "youtube TaleTalker088",
+   "title": "Everyone says he's crazy. The animals know he's not.\u263a\ufe0f\ud83d\ude02",
+   "kind": "video",
+   "url": "https://www.youtube.com/watch?v=oiNA4XKeEDU",
+   "at": "2026-11-27T12:30:57+00:00",
+   "status": "posted",
+   "package": "20261127-1231-ac51a4",
+   "results": [
+    {
+     "platform": "youtube",
+     "ok": true,
+     "url": "https://www.youtube.com/shorts/7kRCbgUs08s",
+     "error": "",
+     "quota": false
+    },
+    {
+     "platform": "instagram",
+     "ok": true,
+     "url": "https://www.instagram.com/reel/DgPsAryBL86/",
+     "error": "",
+     "quota": false
+    },
+    {
+     "platform": "facebook",
+     "ok": true,
+     "url": "https://www.facebook.com/reel/1206161135699837",
+     "error": "",
+     "quota": false
+    }
+   ],
+   "detail": "youtube: posted; instagram: posted; facebook: posted"
   }
  ],
- "last_run": "2026-11-27T10:30:56+00:00"
+ "last_run": "2026-11-27T12:30:56+00:00"
 }
