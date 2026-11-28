@@ -555,6 +555,33 @@ def _attempts(state: dict, key: str) -> int:
     return sum(1 for it in state["items"] if it.get("key") == key)
 
 
+def _caption_key(hook: str) -> str:
+    """Caption identity: lowercased, every non-word char stripped."""
+    return re.sub(r"[^\w]+", "", hook.lower())
+
+
+def _dup_caption(state: dict, item: dict) -> bool:
+    """True when this video's caption would repeat a recently posted one.
+
+    Some source creators title every upload the same, so video-ID dedupe
+    alone let one caption ship on post after post. Compare captions instead:
+    a fresh video whose caption matches the recent history is skipped."""
+    if item.get("kind") != "video":
+        return False
+    key = _caption_key(_hook(item["title"]))
+    return bool(key) and key in state.get("hook_history", [])
+
+
+def _remember_caption(state: dict, item: dict) -> None:
+    """Record a shipped caption so the same text does not repeat soon."""
+    key = _caption_key(_hook(item["title"]))
+    if not key:
+        return
+    hist = [k for k in state.get("hook_history", []) if k != key]
+    hist.append(key)
+    state["hook_history"] = hist[-40:]
+
+
 def run_cycle(only_source: str | None = None, max_items: int | None = None) -> dict:
     """One harvest+repost pass over every enabled source. Thread-safe."""
     global _running
@@ -627,7 +654,10 @@ def _run_cycle_inner(only_source: str | None, max_items: int | None) -> dict:
             continue
         fresh = [i for i in found if i["key"] not in state["seen"].get(source["id"], [])
                  and _attempts(state, i["key"]) < 3]
-        log(f"repost: {source['kind']} {source['ident']}: {len(fresh)} new of {len(found)}")
+        dupes = sum(1 for i in fresh if _dup_caption(state, i))
+        fresh = [i for i in fresh if not _dup_caption(state, i)]
+        log(f"repost: {source['kind']} {source['ident']}: {len(fresh)} new of {len(found)}"
+            + (f", {dupes} skipped (caption repeats a recent post)" if dupes else ""))
         for item in fresh[:source["max_per_run"]]:
             if len(made) >= cycle_limit:
                 break
@@ -677,6 +707,7 @@ def _run_cycle_inner(only_source: str | None, max_items: int | None) -> dict:
             state["items"] = [*state["items"][-99:], entry]
             if entry["status"] in ("posted", "packaged"):
                 _mark_seen(state, source["id"], item["key"])  # failures stay fresh and retry (max 3)
+                _remember_caption(state, item)
                 made.append(entry)
                 made_kinds[qk] += 1
             else:
