@@ -313,7 +313,8 @@
    "youtube:JX0ZNfgYnak",
    "youtube:nD0861QhBF0",
    "youtube:WusKMceiv-E",
-   "youtube:TlklP32B_Hs"
+   "youtube:TlklP32B_Hs",
+   "youtube:spGtZd74D5o"
   ],
   "b3dae9b6": [
    "tiktok:7710525636502211871",
@@ -343,11 +344,6 @@
   ]
  },
  "runs": [
-  {
-   "at": "2026-11-25T16:31:10+00:00",
-   "ok": true,
-   "summary": "1 new post(s) processed (0 image, 1 video)"
-  },
   {
    "at": "2026-11-25T18:32:17+00:00",
    "ok": true,
@@ -492,21 +488,14 @@
    "at": "2026-11-28T02:30:58+00:00",
    "ok": true,
    "summary": "1 new post(s) processed (0 image, 1 video)"
+  },
+  {
+   "at": "2026-11-28T04:30:58+00:00",
+   "ok": true,
+   "summary": "1 new post(s) processed (0 image, 1 video)"
   }
  ],
  "items": [
-  {
-   "key": "youtube:w0raibjQi4o",
-   "source": "youtube TaleTalker088",
-   "title": "Bro's authority is on another level. \ud83d\ude02\ud83d\ude05",
-   "kind": "video",
-   "url": "https://www.youtube.com/watch?v=w0raibjQi4o",
-   "at": "2026-11-26T16:31:49+00:00",
-   "status": "failed",
-   "package": "",
-   "results": [],
-   "detail": "ERROR: [youtube] w0raibjQi4o: Video unavailable. This content isn\u2019t available."
-  },
   {
    "key": "youtube:Hu1_JtPzYgM",
    "source": "youtube TaleTalker088",
@@ -2090,7 +2079,41 @@
     }
    ],
    "detail": "youtube: posted; instagram: posted; facebook: posted"
+  },
+  {
+   "key": "youtube:spGtZd74D5o",
+   "source": "youtube alizedits",
+   "title": "DREAM + DEDICATION #edit #shorts",
+   "kind": "video",
+   "url": "https://www.youtube.com/watch?v=spGtZd74D5o",
+   "at": "2026-11-28T04:30:59+00:00",
+   "status": "posted",
+   "package": "20261128-0431-9db0e0",
+   "results": [
+    {
+     "platform": "youtube",
+     "ok": true,
+     "url": "https://www.youtube.com/shorts/EdagGC0aHY4",
+     "error": "",
+     "quota": false
+    },
+    {
+     "platform": "instagram",
+     "ok": true,
+     "url": "https://www.instagram.com/reel/DgRZveVTyZw/",
+     "error": "",
+     "quota": false
+    },
+    {
+     "platform": "facebook",
+     "ok": true,
+     "url": "https://www.facebook.com/reel/1714757426931821",
+     "error": "",
+     "quota": false
+    }
+   ],
+   "detail": "youtube: posted; instagram: posted; facebook: posted"
   }
  ],
- "last_run": "2026-11-28T02:30:58+00:00"
+ "last_run": "2026-11-28T04:30:58+00:00"
 }
