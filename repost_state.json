@@ -313,7 +313,8 @@
    "youtube:nD0861QhBF0",
    "youtube:WusKMceiv-E",
    "youtube:TlklP32B_Hs",
-   "youtube:spGtZd74D5o"
+   "youtube:spGtZd74D5o",
+   "youtube:oxcsa7FmV1Q"
   ],
   "b3dae9b6": [
    "tiktok:7710525636502211871",
@@ -346,11 +347,6 @@
   ]
  },
  "runs": [
-  {
-   "at": "2026-11-26T00:31:10+00:00",
-   "ok": true,
-   "summary": "1 new post(s) processed (0 image, 1 video)"
-  },
   {
    "at": "2026-11-26T02:31:03+00:00",
    "ok": true,
@@ -495,21 +491,14 @@
    "at": "2026-11-28T10:31:12+00:00",
    "ok": true,
    "summary": "1 new post(s) processed (0 image, 1 video)"
+  },
+  {
+   "at": "2026-11-28T12:30:55+00:00",
+   "ok": true,
+   "summary": "1 new post(s) processed (0 image, 1 video)"
   }
  ],
  "items": [
-  {
-   "key": "youtube:A7KXjMF58cs",
-   "source": "youtube sippymemes",
-   "title": "mr.beast just be doing anything \ud83d\ude2d\ud83d\udc94",
-   "kind": "video",
-   "url": "https://www.youtube.com/watch?v=A7KXjMF58cs",
-   "at": "2026-11-26T16:31:57+00:00",
-   "status": "failed",
-   "package": "",
-   "results": [],
-   "detail": "ERROR: [youtube] A7KXjMF58cs: Video unavailable. This content isn\u2019t available."
-  },
   {
    "key": "youtube:nLiYPzwq01E",
    "source": "youtube sippymemes",
@@ -2160,11 +2149,39 @@
     }
    ],
    "detail": "instagram: posted; facebook: posted"
+  },
+  {
+   "key": "youtube:oxcsa7FmV1Q",
+   "source": "youtube alizedits",
+   "title": "THOR IN DOOMSDAY! - TRAKELLA (Slowed) #trending #shorts",
+   "kind": "video",
+   "url": "https://www.youtube.com/watch?v=oxcsa7FmV1Q",
+   "at": "2026-11-28T12:30:56+00:00",
+   "status": "posted",
+   "package": "20261128-1231-e4d372",
+   "results": [
+    {
+     "platform": "instagram",
+     "ok": true,
+     "url": "https://www.instagram.com/reel/DgSQrrITCnp/",
+     "error": "",
+     "quota": false
+    },
+    {
+     "platform": "facebook",
+     "ok": true,
+     "url": "https://www.facebook.com/reel/1709789380715803",
+     "error": "",
+     "quota": false
+    }
+   ],
+   "detail": "instagram: posted; facebook: posted"
   }
  ],
- "last_run": "2026-11-28T10:31:12+00:00",
+ "last_run": "2026-11-28T12:30:55+00:00",
  "hook_history": [
   "mybrainisacomputer",
-  "eveniflifeknockedhimdownhedwinitbackinthe"
+  "eveniflifeknockedhimdownhedwinitbackinthe",
+  "thorindoomsdaytrakellaslowedtrendingshorts"
  ]
 }
