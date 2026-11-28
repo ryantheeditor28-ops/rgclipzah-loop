@@ -337,15 +337,11 @@
    "youtube:6YxCot-pjvI",
    "youtube:HmtumfV6pjM",
    "youtube:qr0q0dyEI-U",
-   "youtube:WVT_mAm3BcU"
+   "youtube:WVT_mAm3BcU",
+   "youtube:LnQssNAmaVI"
   ]
  },
  "runs": [
-  {
-   "at": "2026-11-25T12:01:14+00:00",
-   "ok": true,
-   "summary": "1 new post(s) processed (0 image, 1 video)"
-  },
   {
    "at": "2026-11-25T14:01:45+00:00",
    "ok": true,
@@ -490,21 +486,14 @@
    "at": "2026-11-27T22:30:57+00:00",
    "ok": true,
    "summary": "1 new post(s) processed (0 image, 1 video)"
+  },
+  {
+   "at": "2026-11-28T00:31:37+00:00",
+   "ok": true,
+   "summary": "1 new post(s) processed (0 image, 1 video)"
   }
  ],
  "items": [
-  {
-   "key": "youtube:TlklP32B_Hs",
-   "source": "youtube alizedits",
-   "title": "New Additon! - Corsair HS35 V3 #shorts",
-   "kind": "video",
-   "url": "https://www.youtube.com/watch?v=TlklP32B_Hs",
-   "at": "2026-11-26T16:31:43+00:00",
-   "status": "failed",
-   "package": "",
-   "results": [],
-   "detail": "ERROR: [youtube] TlklP32B_Hs: Video unavailable. This content isn\u2019t available."
-  },
   {
    "key": "youtube:spGtZd74D5o",
    "source": "youtube alizedits",
@@ -2044,7 +2033,41 @@
     }
    ],
    "detail": "youtube: posted; instagram: posted; facebook: posted"
+  },
+  {
+   "key": "youtube:LnQssNAmaVI",
+   "source": "youtube TaleTalker088",
+   "title": "They called him \"poor boy.\" Until he became a world champion. \ud83d\ude33\u263a\ufe0f",
+   "kind": "video",
+   "url": "https://www.youtube.com/watch?v=LnQssNAmaVI",
+   "at": "2026-11-28T00:31:38+00:00",
+   "status": "posted",
+   "package": "20261128-0032-1fc87b",
+   "results": [
+    {
+     "platform": "youtube",
+     "ok": true,
+     "url": "https://www.youtube.com/shorts/wLjzTqHaBuI",
+     "error": "",
+     "quota": false
+    },
+    {
+     "platform": "instagram",
+     "ok": true,
+     "url": "https://www.instagram.com/reel/DgQ-b4zIQTz/",
+     "error": "",
+     "quota": false
+    },
+    {
+     "platform": "facebook",
+     "ok": true,
+     "url": "https://www.facebook.com/reel/1612581716841173",
+     "error": "",
+     "quota": false
+    }
+   ],
+   "detail": "youtube: posted; instagram: posted; facebook: posted"
   }
  ],
- "last_run": "2026-11-27T22:30:57+00:00"
+ "last_run": "2026-11-28T00:31:37+00:00"
 }
