@@ -312,7 +312,8 @@
    "youtube:xhLixKcwknc",
    "youtube:JX0ZNfgYnak",
    "youtube:nD0861QhBF0",
-   "youtube:WusKMceiv-E"
+   "youtube:WusKMceiv-E",
+   "youtube:TlklP32B_Hs"
   ],
   "b3dae9b6": [
    "tiktok:7710525636502211871",
@@ -342,11 +343,6 @@
   ]
  },
  "runs": [
-  {
-   "at": "2026-11-25T14:01:45+00:00",
-   "ok": true,
-   "summary": "1 new post(s) processed (0 image, 1 video), 28 failed"
-  },
   {
    "at": "2026-11-25T16:31:10+00:00",
    "ok": true,
@@ -491,21 +487,14 @@
    "at": "2026-11-28T00:31:37+00:00",
    "ok": true,
    "summary": "1 new post(s) processed (0 image, 1 video)"
+  },
+  {
+   "at": "2026-11-28T02:30:58+00:00",
+   "ok": true,
+   "summary": "1 new post(s) processed (0 image, 1 video)"
   }
  ],
  "items": [
-  {
-   "key": "youtube:spGtZd74D5o",
-   "source": "youtube alizedits",
-   "title": "DREAM + DEDICATION #edit #shorts",
-   "kind": "video",
-   "url": "https://www.youtube.com/watch?v=spGtZd74D5o",
-   "at": "2026-11-26T16:31:46+00:00",
-   "status": "failed",
-   "package": "",
-   "results": [],
-   "detail": "ERROR: [youtube] spGtZd74D5o: Video unavailable. This content isn\u2019t available."
-  },
   {
    "key": "youtube:w0raibjQi4o",
    "source": "youtube TaleTalker088",
@@ -2067,7 +2056,41 @@
     }
    ],
    "detail": "youtube: posted; instagram: posted; facebook: posted"
+  },
+  {
+   "key": "youtube:TlklP32B_Hs",
+   "source": "youtube alizedits",
+   "title": "New Additon! - Corsair HS35 V3 #shorts",
+   "kind": "video",
+   "url": "https://www.youtube.com/watch?v=TlklP32B_Hs",
+   "at": "2026-11-28T02:30:59+00:00",
+   "status": "posted",
+   "package": "20261128-0231-978441",
+   "results": [
+    {
+     "platform": "youtube",
+     "ok": true,
+     "url": "https://www.youtube.com/shorts/BiGl8oJzYxo",
+     "error": "",
+     "quota": false
+    },
+    {
+     "platform": "instagram",
+     "ok": true,
+     "url": "https://www.instagram.com/reel/DgRMGeGTzil/",
+     "error": "",
+     "quota": false
+    },
+    {
+     "platform": "facebook",
+     "ok": true,
+     "url": "https://www.facebook.com/reel/2251699909037836",
+     "error": "",
+     "quota": false
+    }
+   ],
+   "detail": "youtube: posted; instagram: posted; facebook: posted"
   }
  ],
- "last_run": "2026-11-28T00:31:37+00:00"
+ "last_run": "2026-11-28T02:30:58+00:00"
 }
