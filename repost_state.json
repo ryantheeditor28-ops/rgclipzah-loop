@@ -340,15 +340,11 @@
    "youtube:qr0q0dyEI-U",
    "youtube:WVT_mAm3BcU",
    "youtube:LnQssNAmaVI",
-   "youtube:bCrTt7ENiJU"
+   "youtube:bCrTt7ENiJU",
+   "youtube:m6_P3BX6XAc"
   ]
  },
  "runs": [
-  {
-   "at": "2026-11-25T20:31:01+00:00",
-   "ok": true,
-   "summary": "1 new post(s) processed (0 image, 1 video), youtube skipped (daily quota reached)"
-  },
   {
    "at": "2026-11-25T22:31:00+00:00",
    "ok": true,
@@ -493,21 +489,14 @@
    "at": "2026-11-28T06:30:56+00:00",
    "ok": true,
    "summary": "1 new post(s) processed (0 image, 1 video)"
+  },
+  {
+   "at": "2026-11-28T08:31:19+00:00",
+   "ok": true,
+   "summary": "1 new post(s) processed (0 image, 1 video)"
   }
  ],
  "items": [
-  {
-   "key": "youtube:102L-ssLKWc",
-   "source": "youtube YahBak",
-   "title": "\u201cThe Element Man Who Can Turn Into Any Substance.\u201d\u2620\ufe0f\ud83d\udd25 |Superman| #Trending #Shorts",
-   "kind": "video",
-   "url": "https://www.youtube.com/watch?v=102L-ssLKWc",
-   "at": "2026-11-26T16:31:53+00:00",
-   "status": "failed",
-   "package": "",
-   "results": [],
-   "detail": "ERROR: [youtube] 102L-ssLKWc: Video unavailable. This content isn\u2019t available."
-  },
   {
    "key": "youtube:zw4tkVBE7X8",
    "source": "youtube YahBak",
@@ -2128,7 +2117,37 @@
     }
    ],
    "detail": "instagram: posted; facebook: posted"
+  },
+  {
+   "key": "youtube:m6_P3BX6XAc",
+   "source": "youtube TaleTalker088",
+   "title": "\"My brain is a computer.\" \u263a\ufe0f\ud83d\ude33",
+   "kind": "video",
+   "url": "https://www.youtube.com/watch?v=m6_P3BX6XAc",
+   "at": "2026-11-28T08:31:21+00:00",
+   "status": "posted",
+   "package": "20261128-0832-b6c039",
+   "results": [
+    {
+     "platform": "instagram",
+     "ok": true,
+     "url": "https://www.instagram.com/reel/DgR1YuqBdDj/",
+     "error": "",
+     "quota": false
+    },
+    {
+     "platform": "facebook",
+     "ok": true,
+     "url": "https://www.facebook.com/reel/2059081914800864",
+     "error": "",
+     "quota": false
+    }
+   ],
+   "detail": "instagram: posted; facebook: posted"
   }
  ],
- "last_run": "2026-11-28T06:30:56+00:00"
+ "last_run": "2026-11-28T08:31:19+00:00",
+ "hook_history": [
+  "mybrainisacomputer"
+ ]
 }
